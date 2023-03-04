@@ -1,0 +1,3 @@
+# Ignore db.js file
+
+lib/db.js
