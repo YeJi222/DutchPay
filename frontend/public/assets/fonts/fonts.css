@@ -1,0 +1,19 @@
+@font-face {
+	font-family: "DoHyeon";
+	src: url("./DoHyeon-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Jua";
+	src: url("./Jua-Regular.ttf");
+}
+
+@font-face {
+	font-family: "InterBold";
+	src: url("./Inter-Bold.ttf");
+}
+
+@font-face {
+	font-family: "InterSemiBold";
+	src: url("./Inter-SemiBold.ttf");
+}
