@@ -7,6 +7,8 @@ function Login(){
     const [isToggled, setIsToggled] = useState("login");
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const [bank, setBank] = useState("");
+    const [account, setAccount] = useState("");
 
     const handleToggle = () => {
         setIsToggled(isToggled === "login" ? "sign up" : "login");
@@ -62,8 +64,12 @@ function Login(){
                     isToggled={isToggled}
                     id={id}
                     pw={pw}
+                    bank={bank}
+                    account={account}
                     setId={setId}
                     setPw={setPw}
+                    setBank={setBank}
+                    setAccount={setAccount}
                 /> 
                 )}
             </div>
