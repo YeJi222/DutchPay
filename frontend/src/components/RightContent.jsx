@@ -1,10 +1,10 @@
 import React from 'react';
 import InputBox from './InputBox';
 
-function RightContent({mainTitle}){
+function RightContent({mainTitle, isToggled}){
     return(
         <div className='rightPart'>
-            <div className='mainTitle'>
+            <div className='mainTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#ABBFFF" }}>
                 {mainTitle}
             </div>
             <div className='inputBoxArea'>
@@ -12,11 +12,13 @@ function RightContent({mainTitle}){
                     inputTitle="Phone Number"
                     boxTitleText="ID"
                     placeholder="010-1234-5678"
+                    isToggled={isToggled}
                 />
                 <InputBox
                     inputTitle="Password"
                     boxTitleText="PW"
                     placeholder="*******"
+                    isToggled={isToggled}
                 />
             </div>
             <div className='button'>

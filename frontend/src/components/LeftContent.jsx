@@ -1,8 +1,8 @@
 import React from 'react';
 
-function LeftContent({topText, bottomText}){
+function LeftContent({topText, bottomText, isToggled}){
     return(
-        <div className='leftPart'>
+        <div className='leftPart' style={{ backgroundColor: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}>
             <div className='leftTopText'>
                 <h1>{topText}</h1>
             </div>
