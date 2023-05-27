@@ -5,15 +5,17 @@ import Toggle from './Toggle';
 
 function Login(){
     const [isToggled, setIsToggled] = useState("login");
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
 
     const handleToggle = () => {
         setIsToggled(isToggled === "login" ? "sign up" : "login");
-        console.log(isToggled);
+        // console.log(isToggled);
     };
 
     return(
-        <div className='page'>
-            <header style={{ fill: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}>
+        <div className='page' style={{ backgroundImage: isToggled === "login" ? "url('/assets/svg/wave.svg')" : "url('/assets/svg/wave2.svg')" }}>
+            <header>
                 {isToggled === "login" ? (
                     <img src="/images/logo.png" className='logoImg'/>
                 ) : (
@@ -49,11 +51,19 @@ function Login(){
                     <RightContent
                     mainTitle="Log In"
                     isToggled={isToggled}
+                    id={id}
+                    pw={pw}
+                    setId={setId}
+                    setPw={setPw}
                 /> 
                 ) : (
                     <RightContent
                     mainTitle="sign up"
                     isToggled={isToggled}
+                    id={id}
+                    pw={pw}
+                    setId={setId}
+                    setPw={setPw}
                 /> 
                 )}
             </div>

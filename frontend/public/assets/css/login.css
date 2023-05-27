@@ -78,7 +78,7 @@ header{
     transition: color 0.3s;
   }
 
-#root {
+.page {
     background-image: url('/assets/svg/wave.svg');
     background-size: cover;
     height: 100vh;
@@ -206,4 +206,5 @@ body {
     margin-top: 100px;
     border-radius: 40px;
     font-size: 25px;
+    cursor: pointer;
 }
