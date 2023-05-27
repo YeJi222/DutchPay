@@ -22,6 +22,26 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
         })
     }
 
+    const signUpAction = e => {
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('pw', pw);
+        formData.append('bank', bank);
+        formData.append('account', account);
+    
+        axios({
+            method: "post",
+            url: 'http://localhost:8090/signup',
+            data: formData
+        })
+        .then(function(response){
+            console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+
     return(
         <div className='rightPart'>
             <div className='mainTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#ABBFFF" }}>
@@ -71,9 +91,14 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
                     <div style={{marginBottom : "-30px"}}></div>
                 </div>
             )}
-            <div className='button' onClick={loginAction}>
+            <div className='button' 
+                onClick={isToggled === "login" ? loginAction : signUpAction}
+            >
                 {mainTitle} {'>'}
             </div>
+                
+                
+            
         </div> 
     );
 }

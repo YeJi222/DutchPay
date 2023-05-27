@@ -1,5 +1,6 @@
 package com.dutchpay.dp.data.entity;
 
+import com.dutchpay.dp.data.dto.UserDTO;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -20,9 +21,19 @@ import lombok.ToString;
 @Table(name = "User")
 public class UserEntity {
     @Id
-    String id;
-    String pw;
+    String userID;
+    String userPW;
     String phone;
     String bank;
     String account;
+
+    public UserDTO toDto(){
+        return UserDTO.builder()
+            .userID(userID)
+            .userPW(userPW)
+            .phone(phone)
+            .bank(bank)
+            .account(account)
+            .build();
+    }
 }
