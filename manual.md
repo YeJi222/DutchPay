@@ -31,7 +31,7 @@
 
 
 ## 💊 Trouble Shooting    
-1. Parameter 0 of constructor in com.dutchpay.dp.data.dao.Impl.UserDAOImpl required a bean of type 'com.dutchpay.dp.data.repository.UserRepository' that could not be found. 에러
+### 1. Parameter 0 of constructor in com.dutchpay.dp.data.dao.Impl.UserDAOImpl required a bean of type 'com.dutchpay.dp.data.repository.UserRepository' that could not be found. 에러
 -> pom.xml dependency 추가 필요
 
 ```xml
@@ -51,4 +51,14 @@
   <groupId>org.mariadb.jdbc</groupId>
   <artifactId>mariadb-java-client</artifactId>
 </dependency>
+```
+
+### 2. Error executing DDL 에러   
+-> group 테이블을 생성하려고 하는데, group이 예약어여서 발생한 에러   
+-> group을 groups로 바꾸니 테이블이 에러 없이 잘 생성되었다   
+(+) application.properties 파일에 jpa관련 설정만 해주면, repository 생성 전에 Entity만 생성해주어도 create table이 가능    
+```properties
+  ## JPA
+  spring.jpa.hibernate.ddl-auto=create
+  spring.jpa.show-sql=true
 ```
