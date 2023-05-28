@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount, confirmId, confirmPw, setConfirmId, setConfirmPw}){    
+    const navigate = useNavigate();
     const loginAction = e => {
         const formData = new FormData();
         formData.append('userId', id);
@@ -36,19 +37,55 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                 console.log(response.data);
                 if(response.data === "login success"){
                     // 세션 저장 & 메인 화면으로 이동
-                    // setConfirmId("yes");
-                    // setConfirmPw("yes");
-                    // console.log(confirmPw);
+                    localStorage.setItem('userId', id);
+                    localStorage.setItem('userPw', pw);
+
+                    const userData = { userId: id, userPw: pw };
+                    localStorage.setItem('user', JSON.stringify(userData));
+
+                    const storedData = localStorage.getItem('user');
+                    const sessionData = JSON.parse(storedData);
+                    console.log("storedData : ", sessionData);
+                    console.log("userId : ", sessionData.userId);
+                    console.log("userPw : ", sessionData.userPw);
+
+                    // navigate('./main');
                 } else if(response.data === "wrong password"){
                     // 패스워드 재확인 요청
-                    // setConfirmPw("no");
-                    // setConfirmId("yes");
-                    // console.log(confirmPw);
+                    let timerInterval;
+                    Swal.fire({
+                        title: '로그인 실패',
+                        html: '비밀번호를 다시 확인해주세요 :) ',
+                        timer: 1300,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {}
+                    })
                 } else if(response.data === "no-existing member"){
                     // 아이디 재확인 요청
-                    // setConfirmId("no");
-                    // setConfirmPw("yes");
-                    // console.log(confirmId);
+                    let timerInterval;
+                    Swal.fire({
+                        title: '로그인 실패',
+                        html: '아이디를 다시 확인해주세요 :) ',
+                        timer: 1300,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {}
+                    })
                 }
             })
             .catch(function(error){
