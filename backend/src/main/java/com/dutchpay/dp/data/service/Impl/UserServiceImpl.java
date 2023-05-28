@@ -16,6 +16,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getUser(String phone){
+        return userHandler.getUserEntity(phone);
+    }
+
+    @Override
     public UserDTO saveUser(String userId, String userPw, String phone, String bank, String account){
         return userHandler.saveUserEntity(userId, userPw, phone, bank, account);
     }

@@ -20,9 +20,9 @@ import lombok.ToString;
 @ToString
 @Table(name = "User")
 public class UserEntity {
-    @Id
     String userId;
     String userPw;
+    @Id
     String phone;
     String bank;
     String account;

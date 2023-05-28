@@ -58,6 +58,25 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                             setIsToggled("login");
                         }
                     })
+                } else if(response.data === "existing member"){
+                    let timerInterval;
+                    Swal.fire({
+                        title: '이미 등록된 회원입니다',
+                        html: '기존의 아이디로 로그인 해주세요 :) ',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            // setIsToggled("login");
+                        }
+                    })
                 }
             })
             .catch(function(error){

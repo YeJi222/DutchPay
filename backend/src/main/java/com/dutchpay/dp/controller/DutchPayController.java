@@ -1,7 +1,9 @@
 package com.dutchpay.dp.controller;
 
+import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.repository.UserRepository;
 import com.dutchpay.dp.data.service.UserService;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +28,16 @@ public class DutchPayController {
         System.out.println("bank: " + bank);
         System.out.println("account: " + account);
 
-        userService.saveUser(userId, userPw, phone, bank, account);
+        try{ // 이미 등록된 회원인 경우,
+            UserDTO userInfo = userService.getUser(phone);
+            System.out.println(userInfo);
 
-        return "signUp success";
+            return "existing member";
+        } catch (Exception e){ // 등록된 회원 정보가 아닐 경우, sign up
+            userService.saveUser(userId, userPw, phone, bank, account);
+
+            return "signUp success";
+        }
     }
     @PostMapping(value = "/login")
     public String loginAction(@RequestParam("id") String id, @RequestParam("pw") String pw){

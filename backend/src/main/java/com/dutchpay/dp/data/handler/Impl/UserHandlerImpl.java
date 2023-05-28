@@ -4,6 +4,7 @@ import com.dutchpay.dp.data.dao.UserDAO;
 import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.UserEntity;
 import com.dutchpay.dp.data.handler.UserHandler;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,14 @@ public class UserHandlerImpl implements UserHandler {
     @Autowired
     public UserHandlerImpl(UserDAO userDAO){
         this.userDAO = userDAO;
+    }
+
+    @Override
+    public UserDTO getUserEntity(String phone){
+        UserEntity userEntity = userDAO.getUser(phone);
+        UserDTO user = new UserDTO(userEntity.getUserId(), userEntity.getUserPw(), userEntity.getPhone(), userEntity.getBank(),
+            userEntity.getAccount());
+        return user;
     }
 
     @Override
