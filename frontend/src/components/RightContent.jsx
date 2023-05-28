@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount}){    
     const loginAction = e => {
         const formData = new FormData();
-        formData.append('id', id);
-        formData.append('pw', pw);
+        formData.append('userId', id);
+        formData.append('userPw', pw);
     
         axios({
             method: "post",

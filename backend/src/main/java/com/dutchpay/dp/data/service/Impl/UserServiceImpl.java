@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUser(String phone){
-        return userHandler.getUserEntity(phone);
+    public UserDTO getUser(String userId){
+        return userHandler.getUserEntity(userId);
     }
 
     @Override

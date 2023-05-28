@@ -20,8 +20,8 @@ public class UserHandlerImpl implements UserHandler {
     }
 
     @Override
-    public UserDTO getUserEntity(String phone){
-        UserEntity userEntity = userDAO.getUser(phone);
+    public UserDTO getUserEntity(String userId){
+        UserEntity userEntity = userDAO.getUser(userId);
         UserDTO user = new UserDTO(userEntity.getUserId(), userEntity.getUserPw(), userEntity.getPhone(), userEntity.getBank(),
             userEntity.getAccount());
         return user;

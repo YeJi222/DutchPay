@@ -29,7 +29,7 @@ public class DutchPayController {
         System.out.println("account: " + account);
 
         try{ // 이미 등록된 회원인 경우,
-            UserDTO userInfo = userService.getUser(phone);
+            UserDTO userInfo = userService.getUser(userId);
             System.out.println(userInfo);
 
             return "existing member";
@@ -40,10 +40,21 @@ public class DutchPayController {
         }
     }
     @PostMapping(value = "/login")
-    public String loginAction(@RequestParam("id") String id, @RequestParam("pw") String pw){
-        System.out.println("id : " + id);
-        System.out.println("pw: " + pw);
+    public String loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw){
+        System.out.println("userId : " + userId);
+        System.out.println("userPw: " + userPw);
 
-        return "login success";
+        try{ // userId가 등록된 회원인 경우
+            UserDTO userInfo = userService.getUser(userId);
+            System.out.println(userInfo);
+
+            if(userInfo.getUserPw().equals(userPw)){ // 비밀번호 확인
+                return "login success";
+            } else{
+                return "wrong password";
+            }
+        } catch (Exception e){ // 등록된 회원 정보가 아닐 경우, 로그인 실패
+            return "no-existing member";
+        }
     }
 }

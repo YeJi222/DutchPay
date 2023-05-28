@@ -16,8 +16,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserEntity getUser(String phone){
-        UserEntity userEntity = userRepository.getReferenceById(phone);
+    public UserEntity getUser(String userId){
+        UserEntity userEntity = userRepository.getReferenceById(userId);
         return userEntity;
     }
 
