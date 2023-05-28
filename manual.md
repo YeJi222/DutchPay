@@ -72,6 +72,8 @@ jpa 버전을 마음대로 바꾸면 안된다..! 3.0.3버전을 최신 버저�
 </dependency>
 ```
 
+### 4. 리액트에서 useNavigate() may be used only in the context of a <Router> component. 애러
+
 ## Reference  
 1. sweetalert2    
 https://sweetalert2.github.io/#usage
