@@ -1,5 +1,7 @@
 package com.dutchpay.dp.data.service;
 
-public interface UserService {
+import com.dutchpay.dp.data.dto.UserDTO;
 
+public interface UserService {
+    UserDTO saveUser(String userId, String userPw, String phone, String bank, String account);
 }

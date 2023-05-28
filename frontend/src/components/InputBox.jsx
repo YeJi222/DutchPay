@@ -4,9 +4,9 @@ function inputBox({inputTitle, boxTitleText, placeholder, isToggled, inputValue,
     return(
         <div>
             <p className='inputTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}>{inputTitle}</p>
-            {boxName === "bank" || boxName === "account" ? (
+            {boxName === "phone" || boxName === "bank" || boxName === "account" ? (
                     <div className='inputBox' style={{ backgroundColor: "#E3EAFF" }}>
-                        <input className='input' style={{ backgroundColor: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}
+                        <input className='inputTotal' style={{ backgroundColor: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}
                             placeholder={placeholder}
                             value={inputValue}
                             onChange={(e) => setFunc(e.target.value)}

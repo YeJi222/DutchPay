@@ -7,6 +7,7 @@ function Login(){
     const [isToggled, setIsToggled] = useState("login");
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const [phone, setPhone] = useState("");
     const [bank, setBank] = useState("");
     const [account, setAccount] = useState("");
 
@@ -64,10 +65,12 @@ function Login(){
                     isToggled={isToggled}
                     id={id}
                     pw={pw}
+                    phone={phone}
                     bank={bank}
                     account={account}
                     setId={setId}
                     setPw={setPw}
+                    setPhone={setPhone}
                     setBank={setBank}
                     setAccount={setAccount}
                 /> 

@@ -3,7 +3,7 @@ import InputBox from './InputBox';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw, setBank, setAccount}){
+function RightContent({mainTitle, isToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount}){
     const loginAction = e => {
         const formData = new FormData();
         formData.append('id', id);
@@ -24,8 +24,9 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
 
     const signUpAction = e => {
         const formData = new FormData();
-        formData.append('id', id);
-        formData.append('pw', pw);
+        formData.append('userId', id);
+        formData.append('userPw', pw);
+        formData.append('phone', phone);
         formData.append('bank', bank);
         formData.append('account', account);
     
@@ -47,7 +48,7 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
             <div className='mainTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#ABBFFF" }}>
                 {mainTitle}
             </div>
-            <div className='inputBoxArea' style={{ marginTop: isToggled !== "login" ? "-80px" : "0"}}>
+            <div className='inputBoxArea' style={{ marginTop: isToggled !== "login" ? "-100px" : "0"}}>
                 <InputBox
                     inputTitle="ID"
                     boxTitleText="ID"
@@ -73,6 +74,14 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
             (
                 <div className='inputBoxArea'>
                     <InputBox
+                        inputTitle="Phone Number"
+                        placeholder="Enter your phone number except '-'"
+                        isToggled={isToggled}
+                        inputValue={phone}
+                        boxName="phone"
+                        setFunc={setPhone}
+                    />
+                    <InputBox
                         inputTitle="Bank"
                         placeholder="Enter your bank name"
                         isToggled={isToggled}
@@ -88,7 +97,7 @@ function RightContent({mainTitle, isToggled, id, pw, bank, account, setId, setPw
                         boxName="account"
                         setFunc={setAccount}
                     />
-                    <div style={{marginBottom : "-30px"}}></div>
+                    <div style={{marginBottom : "-55px"}}></div>
                 </div>
             )}
             <div className='button' 

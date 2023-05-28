@@ -1,5 +1,6 @@
 package com.dutchpay.dp.data.service.Impl;
 
+import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.handler.UserHandler;
 import com.dutchpay.dp.data.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,4 +15,8 @@ public class UserServiceImpl implements UserService {
         this.userHandler = userHandler;
     }
 
+    @Override
+    public UserDTO saveUser(String userId, String userPw, String phone, String bank, String account){
+        return userHandler.saveUserEntity(userId, userPw, phone, bank, account);
+    }
 }

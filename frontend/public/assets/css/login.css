@@ -152,7 +152,7 @@ body {
     color: #FFF3F3;
     font-size: 48px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-bottom: 120px;
 }
 .inputBoxArea{
@@ -194,7 +194,14 @@ body {
     background-color: #FFF3F3;
     border: none;
     border-radius: 0px 12px 12px 0px;
-    margin-left: 10px;
+    padding: 10px;
+}
+.inputTotal{
+    flex: 1;
+    background-color: #FFF3F3;
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
 }
 
 .button{

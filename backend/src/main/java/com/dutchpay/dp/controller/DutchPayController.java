@@ -18,12 +18,15 @@ public class DutchPayController {
     }
 
     @PostMapping(value = "/signup")
-    public String loginAction(@RequestParam("id") String id, @RequestParam("pw") String pw,
-        @RequestParam("bank") String bank, @RequestParam("account") String account){
-        System.out.println("id : " + id);
-        System.out.println("pw: " + pw);
+    public String loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw,
+        @RequestParam("phone") String phone, @RequestParam("bank") String bank, @RequestParam("account") String account){
+        System.out.println("userId : " + userId);
+        System.out.println("userPw: " + userPw);
+        System.out.println("phone: " + phone);
         System.out.println("bank: " + bank);
         System.out.println("account: " + account);
+
+        userService.saveUser(userId, userPw, phone, bank, account);
 
         return "sign up success";
     }
