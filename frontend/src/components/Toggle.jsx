@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 function Toggle(props){
-
     return(
         <div className='toggleArea'>
             <input type="checkbox" id="toggle" className="toggleCheckbox"
                 checked={props.isToggled} onClick={props.handleToggle}
             />
-            <label htmlFor="toggle" className='toggleContainer'
-            >
-                <div>login</div>   
-                <div>sign up</div>
-            </label>
-
-            {props.isToggled === "login" ? (
+            {props.toggleName === "loginToggle" ? (
+                <label htmlFor="toggle" className='toggleContainer'>
+                    <div>login</div>   
+                    <div>sign up</div>
+                </label>
+            ) : (
+                <label htmlFor="toggle" className='toggleContainer'>
+                    <div>receive</div>   
+                    <div>send</div>
+                </label>
+            )}
+            {props.isToggled === "login" || props.isToggled === "receive" ? (
                 <style>
                 {`.toggleCheckbox:checked + .toggleContainer::before {
                     left: 0%;

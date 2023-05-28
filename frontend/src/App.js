@@ -1,11 +1,20 @@
 import Login from "./components/Login";
+import Main from "./components/Main";
 import './index.css'
+import{ BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
   return (
-    <div className="wave-bg">
-      <Login/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />}> </Route>
+        <Route path="/main" element={<Main />}></Route>
+      </Routes>
+    </BrowserRouter>
+
+    // <div className="wave-bg">
+    //   <Login/>
+    // </div>
   );
 }
 

@@ -29,6 +29,7 @@ function Login(){
                 <span className='title'>Dutch Pay</span>
             </header>
             <Toggle
+                toggleName="loginToggle"
                 isToggled={isToggled}
                 handleToggle={handleToggle}
             />

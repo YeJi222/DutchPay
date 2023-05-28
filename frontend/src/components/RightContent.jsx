@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount, confirmId, confirmPw, setConfirmId, setConfirmPw}){    
     const navigate = useNavigate();
+
     const loginAction = e => {
         const formData = new FormData();
         formData.append('userId', id);
@@ -49,7 +50,7 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                     console.log("userId : ", sessionData.userId);
                     console.log("userPw : ", sessionData.userPw);
 
-                    // navigate('./main');
+                    navigate('./main');
                 } else if(response.data === "wrong password"){
                     // 패스워드 재확인 요청
                     let timerInterval;
