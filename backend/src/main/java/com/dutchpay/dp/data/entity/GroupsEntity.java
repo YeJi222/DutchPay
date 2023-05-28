@@ -1,12 +1,12 @@
 package com.dutchpay.dp.data.entity;
 
-import com.dutchpay.dp.data.dto.UserDTO;
+import com.dutchpay.dp.data.dto.GroupsDTO;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import jakarta.persistence.Entity;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -18,22 +18,22 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-@Table(name = "User")
-public class UserEntity {
+@Table(name = "Groups")
+public class GroupsEntity {
     @Id
+    String groupId;
     String userId;
-    String userPw;
-    String phone;
-    String bank;
-    String account;
+    String totalMoney;
+    String payContent;
+    String members;
 
-    public UserDTO toDto(){
-        return UserDTO.builder()
+    public GroupsDTO toDto(){
+        return GroupsDTO.builder()
+            .groupId(groupId)
             .userId(userId)
-            .userPw(userPw)
-            .phone(phone)
-            .bank(bank)
-            .account(account)
+            .totalMoney(totalMoney)
+            .payContent(payContent)
+            .members(members)
             .build();
     }
 }

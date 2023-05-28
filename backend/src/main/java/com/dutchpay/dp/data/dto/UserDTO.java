@@ -13,16 +13,16 @@ import lombok.ToString;
 @ToString
 @Builder
 public class UserDTO {
-    private String userID;
-    private String userPW;
+    private String userId;
+    private String userPw;
     private String phone;
     private String bank;
     private String account;
 
     public UserEntity toEntity(){
         return UserEntity.builder()
-            .userID(userID)
-            .userPW(userPW)
+            .userId(userId)
+            .userPw(userPw)
             .phone(phone)
             .bank(bank)
             .account(account)
