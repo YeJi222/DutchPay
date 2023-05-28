@@ -63,6 +63,7 @@ function Login(){
                     <RightContent
                     mainTitle="sign up"
                     isToggled={isToggled}
+                    setIsToggled={setIsToggled}
                     id={id}
                     pw={pw}
                     phone={phone}

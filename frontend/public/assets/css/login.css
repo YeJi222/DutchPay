@@ -66,7 +66,7 @@ header{
     transition: color 0.3s;
   }
   .toggleCheckbox:checked + .toggleContainer div:last-child{
-    color: #111111;
+    color: #ABC0FF;
     transition: color 0.3s;
   }
   .toggleCheckbox + .toggleContainer div:first-child{

@@ -28,7 +28,7 @@ public class DutchPayController {
 
         userService.saveUser(userId, userPw, phone, bank, account);
 
-        return "sign up success";
+        return "signUp success";
     }
     @PostMapping(value = "/login")
     public String loginAction(@RequestParam("id") String id, @RequestParam("pw") String pw){

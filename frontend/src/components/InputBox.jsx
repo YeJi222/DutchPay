@@ -10,7 +10,7 @@ function inputBox({inputTitle, boxTitleText, placeholder, isToggled, inputValue,
                             placeholder={placeholder}
                             value={inputValue}
                             onChange={(e) => setFunc(e.target.value)}
-                            type={boxName === "account" ? "number" : "text"}
+                            type={boxName === "phone" || boxName === "account" ? "number" : "text"}
                         >
                         </input>
                     </div>
