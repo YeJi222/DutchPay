@@ -39,12 +39,8 @@
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
-<dependency>
-  <groupId>org.springframework.data</groupId>
-  <artifactId>spring-data-jpa</artifactId>
-  <version>3.1.0</version> <!-- 3.0.3 버전에서 3.1.0으로 업그레이드 시켜줌 -->
-</dependency>
 ```
+
 (+) mariadb dependency도 추가 시켜주어야 추가적인 에러가 발생하지 않는다
 ```xml
 <dependency>
@@ -61,4 +57,17 @@
   ## JPA
   spring.jpa.hibernate.ddl-auto=create
   spring.jpa.show-sql=true
+```
+
+### 3. java.lang.ClassNotFoundException: org.springframework.data.domain.ScrollPosition 에러    
+jpa 버전을 마음대로 바꾸면 안된다..! 3.0.3버전을 최신 버저인 3.1.0으로 바꾸면서 생긴 에러   
+스프링 부트와 스프링 데이터 JPA 버전 간에 호환성이 있어야 정상적으로 작동한다    
+일치하지 않는 버전을 사용할 경우 클래스를 찾을 수 없는 ClassNotFoundException이 발생
+
+```xml
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-jpa</artifactId>
+  <version>3.1.0</version> <!-- 3.0.3 버전에서 3.1.0으로 업그레이드 시켜 주면서 발생한 에러 -->
+</dependency>
 ```
