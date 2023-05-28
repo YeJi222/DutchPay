@@ -24,3 +24,31 @@
   <li>  </li>
   <li>  </li>
 </ul>
+
+
+
+
+
+
+## 💊 Trouble Shooting    
+1. Parameter 0 of constructor in com.dutchpay.dp.data.dao.Impl.UserDAOImpl required a bean of type 'com.dutchpay.dp.data.repository.UserRepository' that could not be found. 에러
+-> pom.xml dependency 추가 필요
+
+```xml
+<dependency> <!-- jpa dependncy 추가 -->
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-jpa</artifactId>
+  <version>3.1.0</version> <!-- 3.0.3 버전에서 3.1.0으로 업그레이드 시켜줌 -->
+</dependency>
+```
+(+) mariadb dependency도 추가 시켜주어야 추가적인 에러가 발생하지 않는다
+```xml
+<dependency>
+  <groupId>org.mariadb.jdbc</groupId>
+  <artifactId>mariadb-java-client</artifactId>
+</dependency>
+```
