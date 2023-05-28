@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import InputBox from './InputBox';
-import Modal from './Modal';
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount}){
-    const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        setShowModal(true);
-
-        const timeout = setTimeout(() => {
-        setShowModal(false);
-        }, 5000); // 5초 후에 모달을 닫습니다.
-
-        return () => clearTimeout(timeout);
-    }, []);
-    
+function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount}){    
     const loginAction = e => {
         const formData = new FormData();
         formData.append('id', id);
@@ -52,37 +39,25 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
             })
             .then(function(response){
                 if(response.data === "signUp success"){
-                    console.log(showModal);
-                    // modal 띄우고, login 화면으로
+                    // 알림창 띄우고, login 화면으로
                     let timerInterval;
                     Swal.fire({
-                    title: '회원가입 완료!',
-                    html: '로그인 화면으로 이동합니다 :) ',
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                        // const b = Swal.getHtmlContainer().querySelector('b')
-                        timerInterval = setInterval(() => {
-                            // b.textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                    }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        console.log('I was closed by the timer')
-                        setIsToggled("login");
-                    }
+                        title: '회원가입 완료!',
+                        html: '로그인 화면으로 이동합니다 :) ',
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            setIsToggled("login");
+                        }
                     })
-                
-    
-
-
-
-                    // setIsToggled("login");
                 }
             })
             .catch(function(error){
@@ -157,9 +132,6 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
             >
                 {mainTitle} {'>'}
             </div>
-            {showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}    
-                
-            
         </div> 
     );
 }

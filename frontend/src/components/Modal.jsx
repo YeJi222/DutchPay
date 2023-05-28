@@ -1,17 +1,33 @@
-import React, { useEffect, useState } from 'react';
+// 아직 미사용
 
-function Modal({showModal, setShowModal}) {
-  return (
-    <div>
-      {showModal && (
-        <div className="modal">
-          {/* 모달 내용 */}
-          알림창 내용
-        </div>
-      )}
-      {/* 나머지 컴포넌트 */}
-    </div>
-  );
+import React, { useEffect } from 'react';
+import Swal from "sweetalert2";
+
+function Modal({ setIsToggled }) {
+  useEffect(() => {
+    let timerInterval;
+    Swal.fire({
+      title: '회원가입 완료!',
+      html: '로그인 화면으로 이동합니다 :) ',
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+        setIsToggled('login');
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        setIsToggled('login');
+      }
+    });
+  }, []);
+
+  // `return null;` 문장을 제거합니다.
+
 }
 
 export default Modal;
