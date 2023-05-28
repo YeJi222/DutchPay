@@ -4,23 +4,58 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount}){    
+function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount, confirmId, confirmPw, setConfirmId, setConfirmPw}){    
     const loginAction = e => {
         const formData = new FormData();
         formData.append('userId', id);
         formData.append('userPw', pw);
     
-        axios({
-            method: "post",
-            url: 'http://localhost:8090/login',
-            data: formData
-        })
-        .then(function(response){
-            console.log(response.data);
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+        if(id === ""){
+            console.log("no id");
+            setConfirmId("no");
+        } else{
+            setConfirmId("yes");
+        }
+        if(pw === ""){
+            console.log("no pw");
+            setConfirmPw("no");
+        } else{
+            setConfirmPw("yes");
+        }
+        if(id != "" && pw != ""){
+            console.log("ok");
+            setConfirmId("yes");
+            setConfirmPw("yes");
+
+            axios({
+                method: "post",
+                url: 'http://localhost:8090/login',
+                data: formData
+            })
+            .then(function(response){
+                console.log(response.data);
+                if(response.data === "login success"){
+                    // 세션 저장 & 메인 화면으로 이동
+                    // setConfirmId("yes");
+                    // setConfirmPw("yes");
+                    // console.log(confirmPw);
+                } else if(response.data === "wrong password"){
+                    // 패스워드 재확인 요청
+                    // setConfirmPw("no");
+                    // setConfirmId("yes");
+                    // console.log(confirmPw);
+                } else if(response.data === "no-existing member"){
+                    // 아이디 재확인 요청
+                    // setConfirmId("no");
+                    // setConfirmPw("yes");
+                    // console.log(confirmId);
+                }
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        }
+        
     }
 
     const signUpAction = e => {
@@ -103,6 +138,7 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                     inputValue={id}
                     boxName="id"
                     setFunc={setId}
+                    confirmInput={confirmId}
                 />
                 <InputBox
                     inputTitle="Password"
@@ -112,6 +148,7 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                     inputValue={pw}
                     boxName="pw"
                     setFunc={setPw}
+                    confirmInput={confirmPw}
                 />
             </div>
             {isToggled === "login" ? (

@@ -10,6 +10,8 @@ function Login(){
     const [phone, setPhone] = useState("");
     const [bank, setBank] = useState("");
     const [account, setAccount] = useState("");
+    const [confirmId, setConfirmId] = useState("yes");
+    const [confirmPw, setConfirmPw] = useState("yes");
 
     const handleToggle = () => {
         setIsToggled(isToggled === "login" ? "sign up" : "login");
@@ -58,6 +60,10 @@ function Login(){
                     pw={pw}
                     setId={setId}
                     setPw={setPw}
+                    confirmId={confirmId}
+                    confirmPw={confirmPw}
+                    setConfirmId={setConfirmId}
+                    setConfirmPw={setConfirmPw}
                 /> 
                 ) : (
                     <RightContent

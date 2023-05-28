@@ -1,6 +1,6 @@
 import React from 'react';
 
-function inputBox({inputTitle, boxTitleText, placeholder, isToggled, inputValue, boxName, setFunc}){
+function inputBox({inputTitle, boxTitleText, placeholder, isToggled, inputValue, boxName, setFunc, confirmInput}){
     return(
         <div>
             <p className='inputTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#E3EAFF" }}>{inputTitle}</p>
@@ -29,9 +29,8 @@ function inputBox({inputTitle, boxTitleText, placeholder, isToggled, inputValue,
                     </div>
                 )}
             
-            
-            <div className='errorMessage'>
-                Please check she {inputTitle} again.
+            <div className='errorMessage' style={{display: confirmInput === "yes" ? "none" : "block" }}>
+            Please fill {inputTitle} in the blanks.
             </div>
         </div>
     );
