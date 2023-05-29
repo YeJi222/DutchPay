@@ -2,12 +2,14 @@ package com.dutchpay.dp.controller;
 
 import com.dutchpay.dp.data.dto.GroupsDTO;
 import com.dutchpay.dp.data.dto.UserDTO;
+import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.repository.UserRepository;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -104,7 +106,7 @@ public class DutchPayController {
         UserDTO userInfo = userService.getUser(userId);
         // System.out.println("getUserInfo : " + userInfo);
 
-        GroupsDTO groupsInfo = groupsService.getGroups(userId);
+        List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
         System.out.println("groupsInfo : " + groupsInfo);
 
         map.put("userId", userInfo.getUserId());

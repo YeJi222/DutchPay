@@ -7,6 +7,7 @@ import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.entity.UserEntity;
 import com.dutchpay.dp.data.handler.GroupsHandler;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +23,14 @@ public class GroupsHandlerImpl implements GroupsHandler {
     }
 
     @Override
-    public GroupsDTO getGroupsEntity(String userId){
-        GroupsEntity groupsEntity = groupsDAO.getGroups(userId);
+    public List<GroupsEntity> getGroupsEntityList(String userId){
+        List<GroupsEntity> groupsEntityList = groupsDAO.getGroupsEntityList(userId);
+        return groupsEntityList;
+    }
+
+    @Override
+    public GroupsDTO getGroupsEntity(String groupId){
+        GroupsEntity groupsEntity = groupsDAO.getGroups(groupId);
         GroupsDTO groups = new GroupsDTO(groupsEntity.getGroupId(), groupsEntity.getUserId(),
             groupsEntity.getTotalMoney(), groupsEntity.getPayContent(), groupsEntity.getMembers(), groupsEntity.getState());
         return groups;
