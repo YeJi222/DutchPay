@@ -38,6 +38,7 @@ function Main(){
             console.log(error);
         })
     }, []);
+    // console.log(userInfo);
 
     const handleToggle = () => {
         setIsMainToggled(isMainToggled === "receive" ? "send" : "receive");
@@ -69,6 +70,9 @@ function Main(){
                         phone={userInfo.phone}
                         bank={userInfo.bank}
                         account={userInfo.account}
+                        onLen={userInfo.onLen}
+                        offLen={userInfo.offLen}
+                        sumMoney={userInfo.sumMoney}
                     />
                 ) : (
                     <MainLeftContent

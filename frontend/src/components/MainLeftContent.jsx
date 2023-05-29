@@ -42,9 +42,9 @@ function MainLeftContent(props){
                 문자 보내기
             </div>
             <div className='mainLeftBottomText'>
-                진행중: 건<br></br>
-                정산 완료 : 건<br></br>
-                총 받은 금액 : 원<br></br>
+                진행중: {props.onLen}건<br></br>
+                정산 완료 : {props.offLen}건<br></br>
+                총 받은 금액 : {props.sumMoney}원<br></br>
             </div>
         </div>    
     );

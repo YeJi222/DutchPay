@@ -106,14 +106,29 @@ public class DutchPayController {
         UserDTO userInfo = userService.getUser(userId);
         // System.out.println("getUserInfo : " + userInfo);
 
-        List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
-        System.out.println("groupsInfo : " + groupsInfo);
-
         map.put("userId", userInfo.getUserId());
         map.put("userPw", userInfo.getUserPw());
         map.put("phone", userInfo.getPhone());
         map.put("bank", userInfo.getBank());
         map.put("account", userInfo.getAccount());
+
+        List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
+        System.out.println("groupsInfo : " + groupsInfo);
+
+        int onLen = 0;
+        int offLen = 0;
+        int sumMoney = 0;
+        for(int i = 0 ; i < groupsInfo.size() ; i++){
+            if(groupsInfo.get(i).getState().equals("on")){
+                onLen++;
+            } else{
+                offLen++;
+                sumMoney += Integer.parseInt(groupsInfo.get(i).getTotalMoney());
+            }
+        }
+        map.put("onLen", Integer.toString(onLen));
+        map.put("offLen", Integer.toString(offLen));
+        map.put("sumMoney", Integer.toString(sumMoney));
 
         return map;
     }
