@@ -129,6 +129,7 @@ public class DutchPayController {
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
         map.put("sumMoney", Integer.toString(sumMoney));
+        map.put("groupsEntityList", groupsInfo);
 
         return map;
     }

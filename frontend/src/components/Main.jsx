@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RightContent from './RightContent';
+import MainRightContent from './MainRightContent';
 import axios from "axios";
 import { useNavigate, useLocation  } from "react-router-dom";
 import MainLeftContent from './MainLeftContent';
@@ -38,7 +38,7 @@ function Main(){
             console.log(error);
         })
     }, []);
-    // console.log(userInfo);
+    // console.log(userInfo.groupsEntityList.length);
 
     const handleToggle = () => {
         setIsMainToggled(isMainToggled === "receive" ? "send" : "receive");
@@ -84,18 +84,20 @@ function Main(){
                 )}
 
                 {/* right content */}
-                {/* {isMainToggled === "receive" ? (
-                    <RightContent
-                        mainTitle="Log In"
+                {isMainToggled === "receive" ? (
+                    <MainRightContent
+                        toggleTitle="receive"
                         isToggled={isMainToggled}
+                        onLen={userInfo.onLen}
+                        offLen={userInfo.offLen}
+                        groupsEntityList={userInfo.groupsEntityList}
                     /> 
                 ) : (
-                    <RightContent
-                        mainTitle="sign up"
+                    <MainRightContent
+                        toggleTitle="send"
                         isToggled={isMainToggled}
-                        setIsToggled={setIsMainToggled}
                     /> 
-                )} */}
+                )}
             </div>
         </div>
     )

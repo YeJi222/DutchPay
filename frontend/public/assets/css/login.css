@@ -118,14 +118,6 @@ body {
     height: 75vh;
     border-radius: 20px;
 }
-.mainCenterWrapper{
-    display: flex;
-    background-color: #333333;
-    margin: auto;
-    width: 95vw;
-    height: 80vh;
-    border-radius: 20px;
-}
 .leftPart{
     flex: 1.3;
     background-color: #FFF6F6;
@@ -232,6 +224,15 @@ body {
 }
 
 /* main */
+.mainCenterWrapper{
+    display: flex;
+    background-color: #333333;
+    margin: auto;
+    /* width: 95vw; */
+    width: 95%;
+    height: 80vh;
+    border-radius: 20px;
+}
 .mainLeftPart{
     background-color: #FFF6F6;
     /* width: 30vw; */
@@ -276,4 +277,40 @@ body {
 .pigMainImg{
     margin-top: 30px;
     width: 200px;
+}
+.mainRightPart{
+    flex: 2;
+    width: 50vw;
+    height: 75vh;
+    font-family: "Jua";
+    padding: 20px;
+}
+
+/* receive */
+.receiveTitle{
+    text-align: center;
+    font-size: 28px;
+    color: white;
+}
+.middleTitle{
+    font-size: 18px;
+    color: #D2CECE;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.boxListArea{
+    display: flex;
+    overflow: scroll;
+    width: inherit;
+}
+.payBox{
+    background-color: #FDE1E1;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    margin-right: 15px;
+}
+.payName{
+    text-align: center;
+    padding: 5px;
 }
