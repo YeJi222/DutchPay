@@ -166,7 +166,7 @@ body {
     font-size: 48px;
     text-align: center;
     margin-top: 80px;
-    margin-bottom: 120px;
+    margin-bottom: 110px;
 }
 .inputBoxArea{
     margin: auto;
@@ -175,6 +175,7 @@ body {
 .inputTitle{
     /* margin-left: 70px; */
     color: #FFF3F3;
+    margin-top: 10px;
     font-family: "InterSemiBold";
 }
 .inputBox{
@@ -200,7 +201,8 @@ body {
 }
 .errorMessage{
     color: tomato;
-    display: none;
+    height: 10px;
+    /* display: none; */
 }
 .input{
     flex: 0.9;
