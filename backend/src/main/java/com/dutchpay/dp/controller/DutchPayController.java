@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sns.SnsClient;
+import software.amazon.awssdk.services.sns.model.PublishRequest;
+import software.amazon.awssdk.services.sns.model.PublishResponse;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -70,5 +77,29 @@ public class DutchPayController {
 
             return map;
         }
+    }
+
+    @PostMapping(value = "/sendMessage")
+    public String sendMessageAction(){
+        // AWS SNS 클라이언트 생성
+        SnsClient snsClient = SnsClient.builder()
+            .region(Region.AP_NORTHEAST_1)
+            .credentialsProvider(StaticCredentialsProvider.create(
+                AwsBasicCredentials.create("AKIAV7YAOUQTVARO6PPP", "secret")))
+            .build();
+
+        // 문자 메시지 전송 요청 생성
+        PublishRequest request = PublishRequest.builder()
+            .message("send message test")
+            .phoneNumber("+8201071061792")
+            .build();
+
+        // 문자 메시지 전송 요청 보내기
+        PublishResponse response = snsClient.publish(request);
+
+        // 전송 결과 확인
+        System.out.println("Message sent. Message ID: " + response.messageId());
+
+        return "send message";
     }
 }

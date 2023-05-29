@@ -1,11 +1,25 @@
 import React from 'react';
+import axios from "axios";
 import { useNavigate, useLocation  } from "react-router-dom";
 
 function MainLeftContent(props){
     const navigate = useNavigate();
 
-    const goDucthPay = (e) =>{
+    const goDucthPay = e =>{
         navigate('./goDutch');
+    }
+
+    const sendMessage = e => {
+        axios({
+            method: "post",
+            url: 'http://localhost:8090/sendMessage',
+        })
+        .then(function(response){
+            console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
     }
 
     return(
@@ -23,6 +37,9 @@ function MainLeftContent(props){
             </div>
             <div className='pigImgArea'>
                     <img src="/images/pig.png" className='pigMainImg'></img>
+            </div>
+            <div className='goDutchBtn' onClick={sendMessage}>
+                문자 보내기
             </div>
             <div className='mainLeftBottomText'>
                 진행중: 건<br></br>
