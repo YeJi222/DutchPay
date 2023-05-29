@@ -9,37 +9,35 @@ function Main(){
     const navigate = useNavigate();
     const location = useLocation();
 
+    // console.log("state: ", location.state);
+
     const [isMainToggled, setIsMainToggled] = useState("receive");
-    const [userInfo, setUserInfo] = useState();
-    // const userId = location.state.userId;
-    const userPw = location.state.userPw;
-    const phone = location.state.phone;
-    const bank = location.state.bank;
-    const account = location.state.account;
+    const [userInfo, setUserInfo] = useState(location.state);
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
-    const userId = sessionData.userId;
+    const sessionUserId = sessionData.userId;
 
-    console.log("storedData : ", sessionData);
-    console.log("userId : ", sessionData.userId);
-    console.log("userPw : ", sessionData.userPw);
+    // console.log("storedData : ", sessionData);
+    // console.log("userId : ", sessionData.userId);
+    // console.log("userPw : ", sessionData.userPw);
 
     useEffect(() => {
+        const formData = new FormData();
+        formData.append('sessionUserId', sessionUserId);
+
         axios({
-            method: "get",
+            method: "post",
             url: 'http://localhost:8090/getUserInfo',
-            data: userId
+            data: formData
         })
         .then(function(response){
-            console.log(response.data);
+            setUserInfo(response.data);
         })
         .catch(function(error){
             console.log(error);
         })
     }, []);
-
-
 
     const handleToggle = () => {
         setIsMainToggled(isMainToggled === "receive" ? "send" : "receive");
@@ -66,11 +64,11 @@ function Main(){
                 {isMainToggled === "receive" ? (
                     <MainLeftContent
                         isToggled={isMainToggled}
-                        userId={userId}
-                        userPw={userPw}
-                        phone={phone}
-                        bank={bank}
-                        account={account}
+                        userId={userInfo.userId}
+                        userPw={userInfo.userPw}
+                        phone={userInfo.phone}
+                        bank={userInfo.bank}
+                        account={userInfo.account}
                     />
                 ) : (
                     <MainLeftContent

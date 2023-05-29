@@ -50,14 +50,18 @@ function RightContent(props){
                     console.log("userId : ", sessionData.userId);
                     console.log("userPw : ", sessionData.userPw);
 
-                    navigate('./main', {
-                    state: {
+                    const stateData = {
                         userId: response.data.userId,
                         userPw: response.data.userPw,
                         phone: response.data.phone,
                         bank: response.data.bank,
                         account: response.data.account
-                        }
+                    };
+
+                    // console.log("stateData", stateData);
+
+                    navigate('./main', {
+                        state: stateData
                     });
                 } else if(response.data.responseData === "wrong password"){
                     // 패스워드 재확인 요청
