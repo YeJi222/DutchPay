@@ -230,3 +230,50 @@ body {
     font-size: 25px;
     cursor: pointer;
 }
+
+/* main */
+.mainLeftPart{
+    background-color: #FFF6F6;
+    /* width: 30vw; */
+    height: inherit;
+    border-radius: 20px;
+    font-family: "DoHyeon";
+}
+.mainLeftTopText{
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.goDutchBtn{
+    background-color: #FF7C7C;
+    color: white;
+    width: 90px;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+    border-radius: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.userInfo{
+    font-size: 20px;
+    padding: 15px;
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.mainLeftBottomText{
+    position: bottom;
+    font-family: "DoHyeon";
+    font-size: 22px;
+    padding: 15px;
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.pigMainImg{
+    width: 200px;
+}

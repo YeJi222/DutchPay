@@ -60,43 +60,43 @@ function Login(){
                 {/* right content */}
                 {isToggled === "login" ? (
                     <RightContent
-                    mainTitle="Log In"
-                    isToggled={isToggled}
-                    id={id}
-                    pw={pw}
-                    setId={setId}
-                    setPw={setPw}
-                    confirmId={confirmId}
-                    confirmPw={confirmPw}
-                    setConfirmId={setConfirmId}
-                    setConfirmPw={setConfirmPw}
-                /> 
+                        mainTitle="Log In"
+                        isToggled={isToggled}
+                        id={id}
+                        pw={pw}
+                        setId={setId}
+                        setPw={setPw}
+                        confirmId={confirmId}
+                        confirmPw={confirmPw}
+                        setConfirmId={setConfirmId}
+                        setConfirmPw={setConfirmPw}
+                    /> 
                 ) : (
                     <RightContent
-                    mainTitle="sign up"
-                    isToggled={isToggled}
-                    setIsToggled={setIsToggled}
-                    id={id}
-                    pw={pw}
-                    phone={phone}
-                    bank={bank}
-                    account={account}
-                    setId={setId}
-                    setPw={setPw}
-                    setPhone={setPhone}
-                    setBank={setBank}
-                    setAccount={setAccount}
-                    confirmSignUpId={confirmSignUpId}
-                    confirmSignUpPw={confirmSignUpPw}
-                    confirmSignUpPhone={confirmSignUpPhone}
-                    confirmSignUpBank={confirmSignUpBank}
-                    confirmSignUpAccount={confirmSignUpAccount}
-                    setConfirmSignUpId={setConfirmSignUpId}
-                    setConfirmSignUpPw={setConfirmSignUpPw}
-                    setConfirmSignUpPhone={setConfirmSignUpPhone}
-                    setConfirmSignUpBank={setConfirmSignUpBank}
-                    setConfirmSignUpAccount={setConfirmSignUpAccount}
-                /> 
+                        mainTitle="sign up"
+                        isToggled={isToggled}
+                        setIsToggled={setIsToggled}
+                        id={id}
+                        pw={pw}
+                        phone={phone}
+                        bank={bank}
+                        account={account}
+                        setId={setId}
+                        setPw={setPw}
+                        setPhone={setPhone}
+                        setBank={setBank}
+                        setAccount={setAccount}
+                        confirmSignUpId={confirmSignUpId}
+                        confirmSignUpPw={confirmSignUpPw}
+                        confirmSignUpPhone={confirmSignUpPhone}
+                        confirmSignUpBank={confirmSignUpBank}
+                        confirmSignUpAccount={confirmSignUpAccount}
+                        setConfirmSignUpId={setConfirmSignUpId}
+                        setConfirmSignUpPw={setConfirmSignUpPw}
+                        setConfirmSignUpPhone={setConfirmSignUpPhone}
+                        setConfirmSignUpBank={setConfirmSignUpBank}
+                        setConfirmSignUpAccount={setConfirmSignUpAccount}
+                    /> 
                 )}
             </div>
         </div>

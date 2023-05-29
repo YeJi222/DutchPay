@@ -4,6 +4,7 @@ import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.repository.UserRepository;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +41,9 @@ public class DutchPayController {
         }
     }
     @PostMapping(value = "/login")
-    public String loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw){
+    public HashMap<String, Object> loginAction(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw){
+        HashMap<String, Object> map = new HashMap<>();
+
         System.out.println("userId : " + userId);
         System.out.println("userPw: " + userPw);
 
@@ -49,12 +52,23 @@ public class DutchPayController {
             System.out.println(userInfo);
 
             if(userInfo.getUserPw().equals(userPw)){ // 비밀번호 확인
-                return "login success";
+                map.put("responseData", "login success");
+                map.put("userId", userInfo.getUserId());
+                map.put("userPw", userInfo.getUserPw());
+                map.put("phone", userInfo.getPhone());
+                map.put("bank", userInfo.getBank());
+                map.put("account", userInfo.getAccount());
+
             } else{
-                return "wrong password";
+                map.put("responseData", "wrong password");
+
             }
+            System.out.println(map);
+            return map;
         } catch (Exception e){ // 등록된 회원 정보가 아닐 경우, 로그인 실패
-            return "no-existing member";
+            map.put("responseData", "no-existing member");
+
+            return map;
         }
     }
 }

@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import LeftContent from './LeftContent';
 import RightContent from './RightContent';
+import { useNavigate, useLocation  } from "react-router-dom";
+import MainLeftContent from './MainLeftContent';
 import Toggle from './Toggle';
 
 function Main(){
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const [isMainToggled, setIsMainToggled] = useState("receive");
+    const userId = location.state.userId;
+    const userPw = location.state.userPw;
+    const phone = location.state.phone;
+    const bank = location.state.bank;
+    const account = location.state.account;
 
     const handleToggle = () => {
         setIsMainToggled(isMainToggled === "receive" ? "send" : "receive");
@@ -29,14 +38,16 @@ function Main(){
             <div className='mainCenterWrapper'>
                 {/* left content */}
                 {isMainToggled === "receive" ? (
-                    <LeftContent
-                        topText="Welcome :)"
-                        bottomText="This Web is Dutch Pay Service.
-                        Please log in before using this service."
+                    <MainLeftContent
                         isToggled={isMainToggled}
+                        userId={userId}
+                        userPw={userPw}
+                        phone={phone}
+                        bank={bank}
+                        account={account}
                     />
                 ) : (
-                    <LeftContent
+                    <MainLeftContent
                         topText="Welcome :)"
                         bottomText="This Web is Dutch Pay Service.
                         Please sign up before login this service."

@@ -35,8 +35,8 @@ function RightContent(props){
                 data: formData
             })
             .then(function(response){
-                console.log(response.data);
-                if(response.data === "login success"){
+                console.log(response.data.phone);
+                if(response.data.responseData === "login success"){
                     // 세션 저장 & 메인 화면으로 이동
                     localStorage.setItem('userId', props.id);
                     localStorage.setItem('userPw', props.pw);
@@ -50,8 +50,16 @@ function RightContent(props){
                     console.log("userId : ", sessionData.userId);
                     console.log("userPw : ", sessionData.userPw);
 
-                    navigate('./main');
-                } else if(response.data === "wrong password"){
+                    navigate('./main', {
+                    state: {
+                        userId: response.data.userId,
+                        userPw: response.data.userPw,
+                        phone: response.data.phone,
+                        bank: response.data.bank,
+                        account: response.data.account
+                        }
+                    });
+                } else if(response.data.responseData === "wrong password"){
                     // 패스워드 재확인 요청
                     let timerInterval;
                     Swal.fire({
@@ -69,7 +77,7 @@ function RightContent(props){
                         /* Read more about handling dismissals below */
                         if (result.dismiss === Swal.DismissReason.timer) {}
                     })
-                } else if(response.data === "no-existing member"){
+                } else if(response.data.responseData === "no-existing member"){
                     // 아이디 재확인 요청
                     let timerInterval;
                     Swal.fire({
