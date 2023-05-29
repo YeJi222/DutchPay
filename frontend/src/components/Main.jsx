@@ -26,7 +26,7 @@ function Main(){
                 handleToggle={handleToggle}
             />
 
-            <div className='centerWrapper'>
+            <div className='mainCenterWrapper'>
                 {/* left content */}
                 {isMainToggled === "receive" ? (
                     <LeftContent

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function Toggle(props){
     return(
-        <div className='toggleArea'>
+        <div className={props.toggleName === "loginToggle" ? "loginToggleArea" : "mainToggleArea"}>
             <input type="checkbox" id="toggle" className="toggleCheckbox"
                 checked={props.isToggled} onClick={props.handleToggle}
             />
