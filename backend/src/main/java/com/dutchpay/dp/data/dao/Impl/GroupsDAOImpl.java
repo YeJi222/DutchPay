@@ -17,7 +17,7 @@ public class GroupsDAOImpl implements GroupsDAO {
 
     @Override
     public GroupsEntity getGroups(String userId){
-        GroupsEntity groupsEntity = groupsRepository.getReferenceById(userId);
+        GroupsEntity groupsEntity = groupsRepository.findByUserId(userId);
         return groupsEntity;
     }
 }
