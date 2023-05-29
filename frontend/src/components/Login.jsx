@@ -12,6 +12,11 @@ function Login(){
     const [account, setAccount] = useState("");
     const [confirmId, setConfirmId] = useState("yes");
     const [confirmPw, setConfirmPw] = useState("yes");
+    const [confirmSignUpId, setConfirmSignUpId] = useState("yes");
+    const [confirmSignUpPw, setConfirmSignUpPw] = useState("yes");
+    const [confirmSignUpPhone, setConfirmSignUpPhone] = useState("yes");
+    const [confirmSignUpBank, setConfirmSignUpBank] = useState("yes");
+    const [confirmSignUpAccount, setConfirmSignUpAccount] = useState("yes");
 
     const handleToggle = () => {
         setIsToggled(isToggled === "login" ? "sign up" : "login");
@@ -81,6 +86,16 @@ function Login(){
                     setPhone={setPhone}
                     setBank={setBank}
                     setAccount={setAccount}
+                    confirmSignUpId={confirmSignUpId}
+                    confirmSignUpPw={confirmSignUpPw}
+                    confirmSignUpPhone={confirmSignUpPhone}
+                    confirmSignUpBank={confirmSignUpBank}
+                    confirmSignUpAccount={confirmSignUpAccount}
+                    setConfirmSignUpId={setConfirmSignUpId}
+                    setConfirmSignUpPw={setConfirmSignUpPw}
+                    setConfirmSignUpPhone={setConfirmSignUpPhone}
+                    setConfirmSignUpBank={setConfirmSignUpBank}
+                    setConfirmSignUpAccount={setConfirmSignUpAccount}
                 /> 
                 )}
             </div>

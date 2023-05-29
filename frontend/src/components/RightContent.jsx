@@ -4,30 +4,30 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, account, setId, setPw, setPhone, setBank, setAccount, confirmId, confirmPw, setConfirmId, setConfirmPw}){    
+function RightContent(props){    
     const navigate = useNavigate();
 
     const loginAction = e => {
         const formData = new FormData();
-        formData.append('userId', id);
-        formData.append('userPw', pw);
+        formData.append('userId', props.id);
+        formData.append('userPw', props.pw);
     
-        if(id === ""){
+        if(props.id === ""){
             console.log("no id");
-            setConfirmId("no");
+            props.setConfirmId("no");
         } else{
-            setConfirmId("yes");
+            props.setConfirmId("yes");
         }
-        if(pw === ""){
+        if(props.pw === ""){
             console.log("no pw");
-            setConfirmPw("no");
+            props.setConfirmPw("no");
         } else{
-            setConfirmPw("yes");
+            props.setConfirmPw("yes");
         }
-        if(id != "" && pw != ""){
+        if(props.id != "" && props.pw != ""){
             console.log("ok");
-            setConfirmId("yes");
-            setConfirmPw("yes");
+            props.setConfirmId("yes");
+            props.setConfirmPw("yes");
 
             axios({
                 method: "post",
@@ -38,10 +38,10 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                 console.log(response.data);
                 if(response.data === "login success"){
                     // 세션 저장 & 메인 화면으로 이동
-                    localStorage.setItem('userId', id);
-                    localStorage.setItem('userPw', pw);
+                    localStorage.setItem('userId', props.id);
+                    localStorage.setItem('userPw', props.pw);
 
-                    const userData = { userId: id, userPw: pw };
+                    const userData = { userId: props.id, userPw: props.pw };
                     localStorage.setItem('user', JSON.stringify(userData));
 
                     const storedData = localStorage.getItem('user');
@@ -98,13 +98,13 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
 
     const signUpAction = e => {
         const formData = new FormData();
-        formData.append('userId', id);
-        formData.append('userPw', pw);
-        formData.append('phone', phone);
-        formData.append('bank', bank);
-        formData.append('account', account);
+        formData.append('userId', props.id);
+        formData.append('userPw', props.pw);
+        formData.append('phone', props.phone);
+        formData.append('bank', props.bank);
+        formData.append('account', props.account);
 
-        if(id != "" && pw != "" && phone != "" && bank != "" && account != ""){
+        if(props.id != "" && props.pw != "" && props.phone != "" && props.bank != "" && props.account != ""){
             axios({
                 method: "post",
                 url: 'http://localhost:8090/signup',
@@ -128,7 +128,7 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                         }).then((result) => {
                         /* Read more about handling dismissals below */
                         if (result.dismiss === Swal.DismissReason.timer) {
-                            setIsToggled("login");
+                            props.setIsToggled("login");
                         }
                     })
                 } else if(response.data === "existing member"){
@@ -164,32 +164,32 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
 
     return(
         <div className='rightPart'>
-            <div className='mainTitle' style={{ color: isToggled === "login" ? "#FFF6F6" : "#ABBFFF" }}>
-                {mainTitle}
+            <div className='mainTitle' style={{ color: props.isToggled === "login" ? "#FFF6F6" : "#ABBFFF" }}>
+                {props.mainTitle}
             </div>
-            <div className='inputBoxArea' style={{ marginTop: isToggled !== "login" ? "-100px" : "0"}}>
+            <div className='inputBoxArea' style={{ marginTop: props.isToggled !== "login" ? "-100px" : "0"}}>
                 <InputBox
                     inputTitle="ID"
                     boxTitleText="ID"
                     placeholder="Enter your ID"
-                    isToggled={isToggled}
-                    inputValue={id}
+                    isToggled={props.isToggled}
+                    inputValue={props.id}
                     boxName="id"
-                    setFunc={setId}
-                    confirmInput={confirmId}
+                    setFunc={props.setId}
+                    confirmInput={props.confirmId}
                 />
                 <InputBox
                     inputTitle="Password"
                     boxTitleText="PW"
                     placeholder="*******"
-                    isToggled={isToggled}
-                    inputValue={pw}
+                    isToggled={props.isToggled}
+                    inputValue={props.pw}
                     boxName="pw"
-                    setFunc={setPw}
-                    confirmInput={confirmPw}
+                    setFunc={props.setPw}
+                    confirmInput={props.confirmPw}
                 />
             </div>
-            {isToggled === "login" ? (
+            {props.isToggled === "login" ? (
                 <div></div>
             ) : 
             (
@@ -197,34 +197,34 @@ function RightContent({mainTitle, isToggled, setIsToggled, id, pw, phone, bank, 
                     <InputBox
                         inputTitle="Phone Number"
                         placeholder="Enter your phone number except '-'"
-                        isToggled={isToggled}
-                        inputValue={phone}
+                        isToggled={props.isToggled}
+                        inputValue={props.phone}
                         boxName="phone"
-                        setFunc={setPhone}
+                        setFunc={props.setPhone}
                     />
                     <InputBox
                         inputTitle="Bank"
                         placeholder="Enter your bank name"
-                        isToggled={isToggled}
-                        inputValue={bank}
+                        isToggled={props.isToggled}
+                        inputValue={props.bank}
                         boxName="bank"
-                        setFunc={setBank}
+                        setFunc={props.setBank}
                     />
                     <InputBox
                         inputTitle="Account"
                         placeholder="Enter your account"
-                        isToggled={isToggled}
-                        inputValue={account}
+                        isToggled={props.isToggled}
+                        inputValue={props.account}
                         boxName="account"
-                        setFunc={setAccount}
+                        setFunc={props.setAccount}
                     />
                     <div style={{marginBottom : "-55px"}}></div>
                 </div>
             )}
             <div className='button' 
-                onClick={isToggled === "login" ? loginAction : signUpAction}
+                onClick={props.isToggled === "login" ? loginAction : signUpAction}
             >
-                {mainTitle} {'>'}
+                {props.mainTitle} {'>'}
             </div>
         </div> 
     );
