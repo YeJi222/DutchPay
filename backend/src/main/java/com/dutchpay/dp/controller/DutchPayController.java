@@ -2,6 +2,7 @@ package com.dutchpay.dp.controller;
 
 import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.repository.UserRepository;
+import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,9 +23,11 @@ import software.amazon.awssdk.services.sns.model.PublishResponse;
 @RestController
 public class DutchPayController {
     private UserService userService;
+    private SendMessageService sendMessageService;
     @Autowired
-    public DutchPayController(UserService userService){
+    public DutchPayController(UserService userService, SendMessageService sendMessageService){
         this.userService = userService;
+        this.sendMessageService = sendMessageService;
     }
 
     @PostMapping(value = "/signup")
@@ -81,24 +84,11 @@ public class DutchPayController {
 
     @PostMapping(value = "/sendMessage")
     public String sendMessageAction(){
-        // AWS SNS 클라이언트 생성
-        SnsClient snsClient = SnsClient.builder()
-            .region(Region.AP_NORTHEAST_1)
-            .credentialsProvider(StaticCredentialsProvider.create(
-                AwsBasicCredentials.create("AKIAV7YAOUQTVARO6PPP", "secret")))
-            .build();
-
-        // 문자 메시지 전송 요청 생성
-        PublishRequest request = PublishRequest.builder()
-            .message("send message test")
-            .phoneNumber("+8201071061792")
-            .build();
-
-        // 문자 메시지 전송 요청 보내기
-        PublishResponse response = snsClient.publish(request);
+        String phone = "01012345678";
+        String result = sendMessageService.sendMessage(phone);
 
         // 전송 결과 확인
-        System.out.println("Message sent. Message ID: " + response.messageId());
+        System.out.println(result);
 
         return "send message";
     }

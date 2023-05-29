@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RightContent from './RightContent';
+import axios from "axios";
 import { useNavigate, useLocation  } from "react-router-dom";
 import MainLeftContent from './MainLeftContent';
 import Toggle from './Toggle';
@@ -9,11 +10,36 @@ function Main(){
     const location = useLocation();
 
     const [isMainToggled, setIsMainToggled] = useState("receive");
-    const userId = location.state.userId;
+    const [userInfo, setUserInfo] = useState();
+    // const userId = location.state.userId;
     const userPw = location.state.userPw;
     const phone = location.state.phone;
     const bank = location.state.bank;
     const account = location.state.account;
+
+    const storedData = localStorage.getItem('user');
+    const sessionData = JSON.parse(storedData);
+    const userId = sessionData.userId;
+
+    console.log("storedData : ", sessionData);
+    console.log("userId : ", sessionData.userId);
+    console.log("userPw : ", sessionData.userPw);
+
+    useEffect(() => {
+        axios({
+            method: "get",
+            url: 'http://localhost:8090/getUserInfo',
+            data: userId
+        })
+        .then(function(response){
+            console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }, []);
+
+
 
     const handleToggle = () => {
         setIsMainToggled(isMainToggled === "receive" ? "send" : "receive");
