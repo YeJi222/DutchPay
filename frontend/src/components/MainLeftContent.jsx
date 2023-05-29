@@ -25,7 +25,7 @@ function MainLeftContent(props){
     return(
         <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
             <div className='mainLeftTopText'>
-                ooo님 Wallet
+                {props.userId} 님 Wallet
             </div>
             <div className='goDutchBtn' onClick={goDucthPay}>
                 정산하기

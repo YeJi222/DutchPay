@@ -18,6 +18,7 @@ public class GroupsDTO {
     private String totalMoney;
     private String payContent;
     private String members;
+    private String state;
 
     public GroupsEntity toDto(){
         return GroupsEntity.builder()
@@ -26,6 +27,7 @@ public class GroupsDTO {
             .totalMoney(totalMoney)
             .payContent(payContent)
             .members(members)
+            .state(state)
             .build();
     }
 }

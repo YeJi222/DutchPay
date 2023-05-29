@@ -1,7 +1,9 @@
 package com.dutchpay.dp.controller;
 
+import com.dutchpay.dp.data.dto.GroupsDTO;
 import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.repository.UserRepository;
+import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
@@ -23,10 +25,12 @@ import software.amazon.awssdk.services.sns.model.PublishResponse;
 @RestController
 public class DutchPayController {
     private UserService userService;
+    private GroupsService groupsService;
     private SendMessageService sendMessageService;
     @Autowired
-    public DutchPayController(UserService userService, SendMessageService sendMessageService){
+    public DutchPayController(UserService userService, GroupsService groupsService, SendMessageService sendMessageService){
         this.userService = userService;
+        this.groupsService = groupsService;
         this.sendMessageService = sendMessageService;
     }
 
@@ -98,7 +102,10 @@ public class DutchPayController {
         HashMap<String, Object> map = new HashMap<>();
 
         UserDTO userInfo = userService.getUser(userId);
-        System.out.println("getUserInfo : " + userInfo);
+        // System.out.println("getUserInfo : " + userInfo);
+
+        GroupsDTO groupsInfo = groupsService.getGroups(userId);
+        System.out.println("groupsInfo : " + groupsInfo);
 
         map.put("userId", userInfo.getUserId());
         map.put("userPw", userInfo.getUserPw());
