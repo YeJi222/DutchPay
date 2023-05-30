@@ -20,7 +20,7 @@ public class GroupsDTO {
     private String members;
     private String state;
 
-    public GroupsEntity toDto(){
+    public GroupsEntity toEntity(){
         return GroupsEntity.builder()
             .groupId(groupId)
             .userId(userId)
