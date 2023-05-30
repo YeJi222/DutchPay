@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InputBox from './InputBox';
+import ReceivePayBox from './ReceivePayBox';
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -11,39 +12,18 @@ function RightContent(props){
     return(
         <div className='mainRightPart'>
             <div className="receiveTitle">정산 List</div>
-            {/* list part component 분리시키기 */}
-            <div className="middleTitle">진행중 ({props.onLen})</div>
-            <div className='boxListArea'>
-                {props.groupsEntityList !== undefined ? (
-                    props.groupsEntityList.map((item, idx) => (
-                        item.state === "on" ? (
-                            <div className='payBox'>
-                                <div className='payName'>{item.payContent}</div>
-                            </div>
-                        ) : (
-                            <div></div>
-                        )
-                    ))
-                ) : (
-                    <div></div>
-                )}
-            </div>
-            <div className="middleTitle">완료 ({props.offLen})</div>
-            <div className='boxListArea'>
-                {props.groupsEntityList !== undefined ? (
-                    props.groupsEntityList.map((item, idx) => (
-                        item.state === "off" ? (
-                            <div className='payBox'>
-                                <div className='payName'>{item.payContent}</div>
-                            </div>
-                        ) : (
-                            <div></div>
-                        )
-                    ))
-                ) : (
-                    <div></div>
-                )}
-            </div>
+            <ReceivePayBox
+                middleTitle="진행중"
+                state="on"
+                onLen={props.onLen}
+                groupsEntityList={props.groupsEntityList}
+            />
+            <ReceivePayBox
+                middleTitle="완료"
+                state="off"
+                offLen={props.offLen}
+                groupsEntityList={props.groupsEntityList}
+            />
         </div> 
     );
 }
