@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-function ReceivePayBox(props){   
+function ReceivePayBox(props){
     return(
         <div>
-            <div className="middleTitle">{props.middleTitle} ({props.onLen})</div>
+            <div className="middleTitle">
+                {props.middleTitle} {'('}{props.state === "on" ? props.onLen : props.offLen}{')'}
+            </div>
             <div className='boxListArea'>
                 {props.groupsEntityList !== undefined ? (
                     props.groupsEntityList.map((item, idx) => (

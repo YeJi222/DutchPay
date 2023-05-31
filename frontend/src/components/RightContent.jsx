@@ -109,14 +109,47 @@ function RightContent(props){
     }
 
     const signUpAction = e => {
-        const formData = new FormData();
-        formData.append('userId', props.id);
-        formData.append('userPw', props.pw);
-        formData.append('phone', props.phone);
-        formData.append('bank', props.bank);
-        formData.append('account', props.account);
+        console.log(props.confirmSignUpPhone);
 
-        if(props.id != "" && props.pw != "" && props.phone != "" && props.bank != "" && props.account != ""){
+        const formData = new FormData();
+        formData.append('userId', props.confirmSignUpId);
+        formData.append('userPw', props.confirmSignUpPw);
+        formData.append('phone', props.confirmSignUpPhone);
+        formData.append('bank', props.confirmSignUpBank);
+        formData.append('account', props.confirmSignUpAccount);
+
+        if(props.confirmSignUpId === ""){
+            console.log("no id");
+            props.setConfirmSignUpId("no");
+        } else{
+            props.setConfirmSignUpId("yes");
+        }
+        if(props.confirmSignUpPw === ""){
+            console.log("no pw");
+            props.setConfirmSignUpPw("no");
+        } else{
+            props.setConfirmSignUpPw("yes");
+        }
+        if(props.confirmSignUpPhone === ""){
+            console.log("no pw");
+            props.setConfirmSignUpPhone("no");
+        } else{
+            props.setConfirmSignUpPhone("yes");
+        }
+        if(props.confirmSignUpBank === ""){
+            console.log("no pw");
+            props.setConfirmSignUpBank("no");
+        } else{
+            props.setConfirmSignUpBank("yes");
+        }
+        if(props.confirmSignUpAccount === ""){
+            console.log("no pw");
+            props.setConfirmSignUpAccount("no");
+        } else{
+            props.setConfirmSignUpAccount("yes");
+        }
+
+        if(props.confirmSignUpId != "" && props.confirmSignUpPw != "" && props.confirmSignUpPhone != "" && props.confirmSignUpBank != "" && props.confirmSignUpAccount != ""){
             axios({
                 method: "post",
                 url: 'http://localhost:8090/signup',
@@ -188,7 +221,7 @@ function RightContent(props){
                     inputValue={props.id}
                     boxName="id"
                     setFunc={props.setId}
-                    confirmInput={props.confirmId}
+                    confirmInput={props.isToggled === "login" ? props.confirmId : props.confirmSignUpId}
                 />
                 <InputBox
                     inputTitle="Password"
@@ -198,7 +231,7 @@ function RightContent(props){
                     inputValue={props.pw}
                     boxName="pw"
                     setFunc={props.setPw}
-                    confirmInput={props.confirmPw}
+                    confirmInput={props.isToggled === "login" ? props.confirmPw : props.confirmSignUpPw}
                 />
             </div>
             {props.isToggled === "login" ? (
@@ -213,6 +246,7 @@ function RightContent(props){
                         inputValue={props.phone}
                         boxName="phone"
                         setFunc={props.setPhone}
+                        confirmInput={props.confirmSignUpPhone}
                     />
                     <InputBox
                         inputTitle="Bank"
@@ -221,6 +255,7 @@ function RightContent(props){
                         inputValue={props.bank}
                         boxName="bank"
                         setFunc={props.setBank}
+                        confirmInput={props.confirmSignUpBank}
                     />
                     <InputBox
                         inputTitle="Account"
@@ -229,6 +264,7 @@ function RightContent(props){
                         inputValue={props.account}
                         boxName="account"
                         setFunc={props.setAccount}
+                        confirmInput={props.confirmSignUpAccount}
                     />
                     <div style={{marginBottom : "-55px"}}></div>
                 </div>
