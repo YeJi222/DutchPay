@@ -118,38 +118,38 @@ function RightContent(props){
         formData.append('bank', props.confirmSignUpBank);
         formData.append('account', props.confirmSignUpAccount);
 
-        if(props.confirmSignUpId === ""){
+        if(props.id === ""){
             console.log("no id");
             props.setConfirmSignUpId("no");
         } else{
             props.setConfirmSignUpId("yes");
         }
-        if(props.confirmSignUpPw === ""){
+        if(props.pw === ""){
             console.log("no pw");
             props.setConfirmSignUpPw("no");
         } else{
             props.setConfirmSignUpPw("yes");
         }
-        if(props.confirmSignUpPhone === ""){
-            console.log("no pw");
+        if(props.phone === ""){
+            console.log("no phone");
             props.setConfirmSignUpPhone("no");
         } else{
             props.setConfirmSignUpPhone("yes");
         }
-        if(props.confirmSignUpBank === ""){
-            console.log("no pw");
+        if(props.bank === ""){
+            console.log("no bank");
             props.setConfirmSignUpBank("no");
         } else{
             props.setConfirmSignUpBank("yes");
         }
-        if(props.confirmSignUpAccount === ""){
-            console.log("no pw");
+        if(props.account === ""){
+            console.log("no account");
             props.setConfirmSignUpAccount("no");
         } else{
             props.setConfirmSignUpAccount("yes");
         }
 
-        if(props.confirmSignUpId != "" && props.confirmSignUpPw != "" && props.confirmSignUpPhone != "" && props.confirmSignUpBank != "" && props.confirmSignUpAccount != ""){
+        if(props.id != "" && props.pw != "" && props.phone != "" && props.bank != "" && props.account != ""){
             axios({
                 method: "post",
                 url: 'http://localhost:8090/signup',
