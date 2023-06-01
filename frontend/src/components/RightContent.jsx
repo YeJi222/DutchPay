@@ -38,8 +38,8 @@ function RightContent(props){
                 console.log(response.data.phone);
                 if(response.data.responseData === "login success"){
                     // 세션 저장 & 메인 화면으로 이동
-                    localStorage.setItem('userId', props.id);
-                    localStorage.setItem('userPw', props.pw);
+                    // localStorage.setItem('userId', props.id);
+                    // localStorage.setItem('userPw', props.pw);
 
                     const userData = { userId: props.id, userPw: props.pw };
                     localStorage.setItem('user', JSON.stringify(userData));

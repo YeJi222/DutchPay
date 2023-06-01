@@ -30,6 +30,16 @@ header{
     margin-top: -110px;
     margin-left: 50px;
 }
+.mainLogoutArea{
+    float: right;
+    padding: 10px 18px 10px 18px;
+    margin-top: -110px;
+    margin-right: 50px;
+    background-color: white;
+    border-radius:25px;
+    font-weight: bold;
+    cursor: pointer;
+}
 .toggleBtn{
     padding: 15px;
 }
