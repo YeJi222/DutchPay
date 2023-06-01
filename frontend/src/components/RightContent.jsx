@@ -112,11 +112,11 @@ function RightContent(props){
         console.log(props.confirmSignUpPhone);
 
         const formData = new FormData();
-        formData.append('userId', props.confirmSignUpId);
-        formData.append('userPw', props.confirmSignUpPw);
-        formData.append('phone', props.confirmSignUpPhone);
-        formData.append('bank', props.confirmSignUpBank);
-        formData.append('account', props.confirmSignUpAccount);
+        formData.append('userId', props.id);
+        formData.append('userPw', props.pw);
+        formData.append('phone', props.phone);
+        formData.append('bank', props.bank);
+        formData.append('account', props.account);
 
         if(props.id === ""){
             console.log("no id");
