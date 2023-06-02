@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import MainRightContent from './MainRightContent';
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import GoDutchLeftContent from './GoDutchLeftContent';
-import Toggle from './Toggle';
+import GoDutchRightContent from './GoDutchRightContent';
 
 function GoDutch(){
     const navigate = useNavigate();
@@ -80,33 +79,16 @@ function GoDutch(){
     
                 <div className='mainCenterWrapper'>
                     {/* left content */}
-                    <GoDutchLeftContent
-                        isToggled={isMainToggled}
-                        userId={userInfo.userId}
-                        userPw={userInfo.userPw}
-                        phone={userInfo.phone}
-                        bank={userInfo.bank}
-                        account={userInfo.account}
-                        onLen={userInfo.onLen}
-                        offLen={userInfo.offLen}
-                        sumMoney={userInfo.sumMoney}
-                    />
+                    <GoDutchLeftContent/>
     
                     {/* right content */}
-                    {isMainToggled === "receive" ? (
-                        <MainRightContent
-                            toggleTitle="receive"
-                            isToggled={isMainToggled}
-                            onLen={userInfo.onLen}
-                            offLen={userInfo.offLen}
-                            groupsEntityList={userInfo.groupsEntityList}
-                        /> 
-                    ) : (
-                        <MainRightContent
-                            toggleTitle="send"
-                            isToggled={isMainToggled}
-                        /> 
-                    )}
+                    <GoDutchRightContent
+                        toggleTitle="receive"
+                        isToggled={isMainToggled}
+                        onLen={userInfo.onLen}
+                        offLen={userInfo.offLen}
+                        groupsEntityList={userInfo.groupsEntityList}
+                    /> 
                 </div>
             </div>
         )

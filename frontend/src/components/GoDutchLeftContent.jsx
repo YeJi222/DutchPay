@@ -1,42 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useNavigate, useLocation  } from "react-router-dom";
 import PhoneBox from './PhoneBox';
 
 function GoDutchLeftContent(props){
-    const navigate = useNavigate();
-
-    const goDucthPay = e =>{
-        navigate('/goDutch', {state: props.userInfo});
-    }
-
-    const sendMessage = e => {
-        axios({
-            method: "post",
-            url: 'http://localhost:8090/sendMessage',
-        })
-        .then(function(response){
-            console.log(response.data);
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+    const [phoneBoxes, setPhoneBoxes] = useState([<PhoneBox phone_id="0"/>]);
+    
+    console.log("phoneBoxes", phoneBoxes);
+    const addPhoneNumbers = e =>{
+        console.log("phoneBoxes len", phoneBoxes.length);
+        setPhoneBoxes([...phoneBoxes, <PhoneBox phone_id={phoneBoxes.length}/>]);
     }
 
     return(
-        <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
+        <div className='mainLeftPart'>
             <div className='mainLeftTopText'>
                 정산할 인원
             </div>
-            <div className='addMembers'>
+            <div className='addMembers' onClick={addPhoneNumbers}>
                 +
             </div>
             <hr className='goDutchHr'></hr>
 
-            <PhoneBox/>
-            
+            <div className='phoneInfoArea'>
+                {phoneBoxes}
+            </div>
+
             <div className='goDutchLeftBottomText'>
-                총 인원 : 명<br></br>
+                총 인원 : {phoneBoxes.length}명<br></br>
                 총 금액 : 원
             </div>
         </div>    

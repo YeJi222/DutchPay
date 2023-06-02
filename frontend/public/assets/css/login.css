@@ -402,6 +402,9 @@ hr{
     padding: 10px 20px 10px 20px;
     height: 510px;
 }
+.phoneInputArea{
+    margin-bottom: 10px;
+}
 .phoneInput{
     padding: 8px;
     font-size: 15px;
