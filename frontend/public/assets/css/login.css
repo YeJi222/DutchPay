@@ -366,3 +366,56 @@ hr{
     padding-left: 40px;
     padding-bottom: 10px;
 }
+.addMembers{
+    float: right;
+    background-color: #FF7C7C;
+    color: white;
+    padding: 5px;
+    width: 25px;
+    text-align: center;
+    border-radius: 40px;
+    font-size: 20px;
+    margin-top: -50px;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.deleteMembers{
+    float: right;
+    background-color: #BABABA;
+    color: white;
+    padding: 5px;
+    width: 25px;
+    text-align: center;
+    border-radius: 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.goDutchHr{
+    margin-top: -5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background:#b8b4b4;
+    height: 2px;
+    border: 0;
+}
+.phoneInfoArea{
+    padding: 10px 20px 10px 20px;
+    height: 510px;
+}
+.phoneInput{
+    padding: 8px;
+    font-size: 15px;
+    border: none;
+    box-shadow: 2px 2px 4px grey;
+    border-radius: 20px;
+    width: 200px;
+}
+.goDutchLeftBottomText{
+    font-family: "DoHyeon";
+    font-size: 22px;
+    padding: 15px;
+    width: 250px;
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
