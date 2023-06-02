@@ -94,6 +94,7 @@ function Main(){
                     {/* left content */}
                     {isMainToggled === "receive" ? (
                         <MainLeftContent
+                            userInfo={userInfo}
                             isToggled={isMainToggled}
                             userId={userInfo.userId}
                             userPw={userInfo.userPw}

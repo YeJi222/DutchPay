@@ -315,6 +315,9 @@ body {
     width: 90%;
     padding : 10px;
 }
+.boxListArea::-webkit-scrollbar {
+    display: none;
+}
 .payBox{
     background-color: #FDE1E1;
     width: 150px;
@@ -352,4 +355,14 @@ hr{
     font-size: 15px;
     cursor: pointer;
     margin-top: 8px;
+}
+
+/* GoDutch */
+.backBtn{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: -35px;
+    padding-left: 40px;
+    padding-bottom: 10px;
 }

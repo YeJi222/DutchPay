@@ -6,7 +6,7 @@ function MainLeftContent(props){
     const navigate = useNavigate();
 
     const goDucthPay = e =>{
-        navigate('./goDutch');
+        navigate('/goDutch', {state: props.userInfo});
     }
 
     const sendMessage = e => {
