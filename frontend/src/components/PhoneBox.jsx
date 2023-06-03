@@ -17,7 +17,8 @@ function PhoneBox(props){
                 console.log("index", index);
 
                 // ...box : box의 모든 속성을 새로운 객체에 복사하고, 원하는 속성의 값을 변경할 수 있다
-                return { ...box, value: e.target.value }; // 특정 인덱스 요소의 value 변경
+                var validValue = e.target.value.replaceAll(/[^0-9]/g, "");
+                return { ...box, value: validValue }; // 특정 인덱스 요소의 value 변경
             }
             return box; // 나머지 요소는 그대로 유지
         });
@@ -28,6 +29,7 @@ function PhoneBox(props){
         <div className='phoneInputArea'>
             <input className='phoneInput' 
                 onChange={changePhone} 
+                value={JSON.stringify(props.phoneBoxes[props.phone_id].value).substring(1, JSON.stringify(props.phoneBoxes[props.phone_id].value).length - 1)} // "" 제거
                 placeholder="'-' 기호 없이 숫자만 입력해주세요">
             </input>
             <div className='deleteMembers' onClick={deletePhoneNumbers}>

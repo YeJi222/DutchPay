@@ -48,7 +48,8 @@ function GoDutchRightContent(props){
     };
 
     const changeMoney = (e) => {
-        props.setInputMoney(e.target.value);
+        props.setInputMoney(e.target.value.replaceAll(/[^0-9]/g, "")); // 숫자형식만 가능
+
         if(e.target.value != ""){
             setCheckMoneyBlank(true);
         } else{
@@ -69,6 +70,25 @@ function GoDutchRightContent(props){
             if(JSON.stringify(box.value).length === 2){ // blank
                 // console.log("clickDutchPayBtn", JSON.stringify(box.value));
                 phoneBlankCheck = false;
+            }
+            console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
+            if(JSON.stringify(box.value).length != 13){ // validation(전화번호 : 11자리)
+                let timerInterval;
+                Swal.fire({
+                    title: '전화번호 형식이 맞지 않습니다',
+                    html: '입력한 전화번호를 다시 한 번 확인해주세요 :) ',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {}
+                })
             }
         });
 
@@ -159,7 +179,7 @@ function GoDutchRightContent(props){
 
             <div className='dutchSubTitle'>정산할 금액</div>
             <input className='ducthInputBox' id='goDutchMoney' 
-                onChange={changeMoney}
+                onChange={changeMoney} value={props.inputMoney}
                 placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
             ></input>
 
