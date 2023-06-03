@@ -439,6 +439,15 @@ hr{
     font-size: 15px;
     border: none;
     border-radius: 10px;
-    width: 500px;
+    width: 400px;
     margin-bottom: 10px;
+}
+.selectBank{
+    padding: 9px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: "DoHyeon";
+    font-size: 17px;
+    margin-right: 10px;
 }

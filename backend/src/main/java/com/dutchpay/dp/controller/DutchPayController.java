@@ -1,4 +1,4 @@
-package com.dutchpay.dp.controller;
+package main.java.com.dutchpay.dp.controller;
 
 import com.dutchpay.dp.data.dto.GroupsDTO;
 import com.dutchpay.dp.data.dto.UserDTO;

@@ -9,8 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ValidationController {
     @PostMapping(value = "/checkValidAccount")
-    public String loginAction(@RequestParam("inputAccount") String inputAccount){
-        System.out.println("inputAccount : " + inputAccount);
+    public String loginAction(@RequestParam("inputBank") String inputBank, @RequestParam("inputAccount") String inputAccount){
+        System.out.println("inputBank : " + inputBank);
+        System.out.println("inputAccount : " + inputAccount.length());
+        boolean accountLen = false;
+
+        // 계좌번호 길이 : 10 ~ 16자리
+        if(inputAccount.length() < 10 || inputAccount.length() > 16){
+            accountLen = false;
+        } else{
+            accountLen = true;
+        }
+
+        // 은행별 계좌번호 체계 확인
+
 
 
 //        try{ // 이미 등록된 회원인 경우,
@@ -23,5 +35,6 @@ public class ValidationController {
 //
 //            return "signUp success";
 //        }
+        return "check valid account";
     }
 }
