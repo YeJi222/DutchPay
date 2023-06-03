@@ -10,6 +10,7 @@ function GoDutch(){
     const location = useLocation();
 
     const [userInfo, setUserInfo] = useState(location.state);
+    const [inputMoney, setInputMoney] = useState();
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -78,11 +79,16 @@ function GoDutch(){
     
                 <div className='mainCenterWrapper'>
                     {/* left content */}
-                    <GoDutchLeftContent/>
+                    <GoDutchLeftContent
+                        inputMoney={inputMoney}
+                        setInputMoney={setInputMoney}
+                    />
     
                     {/* right content */}
                     <GoDutchRightContent
                         userInfo={userInfo}
+                        inputMoney={inputMoney}
+                        setInputMoney={setInputMoney}
                     /> 
                 </div>
             </div>

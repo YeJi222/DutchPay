@@ -4,12 +4,12 @@ import { useNavigate, useLocation  } from "react-router-dom";
 import PhoneBox from './PhoneBox';
 
 function GoDutchLeftContent(props){
-    const [phoneBoxes, setPhoneBoxes] = useState([<PhoneBox phone_id="0"/>]);
+    const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
     
     console.log("phoneBoxes", phoneBoxes);
-    const addPhoneNumbers = e =>{
+    const addPhoneNumbers = (e) =>{
         console.log("phoneBoxes len", phoneBoxes.length);
-        setPhoneBoxes([...phoneBoxes, <PhoneBox phone_id={phoneBoxes.length}/>]);
+        setPhoneBoxes([...phoneBoxes, {array: <PhoneBox/>, value: ""}]);
     }
 
     return(
@@ -23,12 +23,19 @@ function GoDutchLeftContent(props){
             <hr className='goDutchHr'></hr>
 
             <div className='phoneInfoArea'>
-                {phoneBoxes}
+                {phoneBoxes.map((_, index) => (
+                    <PhoneBox
+                        key={index}
+                        phoneBoxes={phoneBoxes}
+                        setPhoneBoxes={setPhoneBoxes}
+                        phone_id={index}
+                    />
+                ))}
             </div>
 
             <div className='goDutchLeftBottomText'>
                 총 인원 : {phoneBoxes.length}명<br></br>
-                총 금액 : 원
+                정산 금액 : {props.inputMoney}원
             </div>
         </div>    
     );

@@ -47,6 +47,7 @@ function GoDutchRightContent(props){
     };
 
     const changeMoney = (e) => {
+        props.setInputMoney(e.target.value);
         if(e.target.value != ""){
             setCheckMoneyBlank(true);
         } else{
