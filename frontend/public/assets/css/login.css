@@ -440,7 +440,12 @@ hr{
     border: none;
     border-radius: 10px;
     width: 400px;
+    max-width: 45vw;
     margin-bottom: 10px;
+}
+.ducthInputBox::placeholder{
+    color: red;
+    font-family: "DoHyeon";
 }
 .selectBank{
     padding: 9px;
@@ -450,4 +455,27 @@ hr{
     font-family: "DoHyeon";
     font-size: 17px;
     margin-right: 10px;
+    margin-bottom: 10px;
+}
+.dutchPayBtn{
+    background-color: transparent;
+    border-radius: 8px;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    width: 140px;
+    display: grid;
+    grid-template-columns: 70px 70px;
+}
+.goDutchImg{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+.dutchPayText{
+    font-size: 20px;
+    height: 60px;
+    color: white;
+    margin-top: 20px;
 }

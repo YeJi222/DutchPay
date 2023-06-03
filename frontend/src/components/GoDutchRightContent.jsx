@@ -7,6 +7,8 @@ function GoDutchRightContent(props){
     const [inputBank, setInputBank] = useState(props.userInfo.bank);
     const [inputAccount, setInputAccount] = useState(props.userInfo.account);
     const [valid, setValid] = useState(true);
+    const [checkContentBlank, setCheckContentBlank] = useState(false);
+    const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
 
     const changeBank = (e) => {
         const bankInputValue = document.getElementsByClassName('selectBank')[0].value;
@@ -36,14 +38,63 @@ function GoDutchRightContent(props){
         })
     };
 
+    const changeContent = (e) => {
+        if(e.target.value != ""){
+            setCheckContentBlank(true);
+        } else{
+            setCheckContentBlank(false);
+        }
+    };
+
+    const changeMoney = (e) => {
+        if(e.target.value != ""){
+            setCheckMoneyBlank(true);
+        } else{
+            setCheckMoneyBlank(false);
+        }
+    };
+
+    const clickDutchPayBtn = (e) => {
+        console.log(checkContentBlank, checkMoneyBlank);
+
+        if(checkContentBlank == true && checkMoneyBlank === true){
+            console.log("no blank");
+            // member별 금액 확인 
+        } else{
+            let timerInterval;
+            Swal.fire({
+                title: '빈칸이 있습니다',
+                html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {}
+            })
+        }
+    };
+
     return(
         <div className='mainRightPart'>
             <div className="dutchTitle">정산하기</div>
-            
             <div className='dutchSubTitle'>정산할 내용</div>
-            <input className='ducthInputBox'></input>
+            <input className='ducthInputBox' id='goDutchContent' 
+                onChange={changeContent}
+                placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+            ></input>
+
             <div className='dutchSubTitle'>정산할 금액</div>
-            <input className='ducthInputBox'></input>
+            <input className='ducthInputBox' id='goDutchMoney' 
+                onChange={changeMoney}
+                placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+            ></input>
+
             <div className='dutchSubTitle'>계좌번호</div>
             <select class="selectBank" value={inputBank} onChange={changeBank}>
                 <option value="기업">기업</option>
@@ -59,7 +110,14 @@ function GoDutchRightContent(props){
 
             <input className='ducthInputBox' value={inputAccount} onChange={checkAccount}></input>
 
-            {valid ? <div style={{ color: 'green' }}>Valid Account</div> : <div style={{ color: 'red' }}>Check your account</div>}
+            {valid 
+            ? <div style={{ color: 'green' }}>Valid Account</div> 
+            : <div style={{ color: 'red' }}>Check your account</div>}
+
+            <div className='dutchPayBtn' onClick={clickDutchPayBtn}>
+                <img src="/images/goDutch.png" className='goDutchImg'/>
+                <div className='dutchPayText'>정산하기</div>
+            </div>
         </div> 
     );
 }
