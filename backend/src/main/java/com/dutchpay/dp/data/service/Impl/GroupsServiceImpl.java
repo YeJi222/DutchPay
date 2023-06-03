@@ -22,8 +22,8 @@ public class GroupsServiceImpl implements GroupsService {
         return groupsHandler.getGroupsEntityList(userId);
     }
 
-    @Override
-    public GroupsDTO getGroups(String groupId){
-        return groupsHandler.getGroupsEntity(groupId);
-    }
+//    @Override
+//    public GroupsDTO getGroups(String groupId){
+//        return groupsHandler.getGroupsEntity(groupId);
+//    }
 }

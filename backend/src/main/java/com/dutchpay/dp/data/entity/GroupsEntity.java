@@ -1,6 +1,8 @@
 package com.dutchpay.dp.data.entity;
 
 import com.dutchpay.dp.data.dto.GroupsDTO;
+import com.dutchpay.dp.data.entity.compositeKey.GroupsPK;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -20,21 +22,29 @@ import lombok.ToString;
 @ToString
 @Table(name = "Groups")
 public class GroupsEntity {
-    @Id
-    String groupId;
+    @EmbeddedId
+    GroupsPK compositeKey;
+//    @Id
+//    String groupId;
+
     String userId;
+    String userBank;
+    String userAccount;
     String totalMoney;
     String payContent;
-    String members;
+//    @Id
+//    String members;
     String state;
 
     public GroupsDTO toDto(){
         return GroupsDTO.builder()
-            .groupId(groupId)
+            .groupId(compositeKey.getGroupId())
             .userId(userId)
+            .userBank(userBank)
+            .userAccount(userAccount)
             .totalMoney(totalMoney)
             .payContent(payContent)
-            .members(members)
+            .members(compositeKey.getMembers())
             .state(state)
             .build();
     }

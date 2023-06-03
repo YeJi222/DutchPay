@@ -5,6 +5,6 @@ import com.dutchpay.dp.data.entity.GroupsEntity;
 import java.util.List;
 
 public interface GroupsService {
-    GroupsDTO getGroups(String groupId);
+    // GroupsDTO getGroups(String groupId, String members);
     List<GroupsEntity> getGroupsList(String userId);
 }

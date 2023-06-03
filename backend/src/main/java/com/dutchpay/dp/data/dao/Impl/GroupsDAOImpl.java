@@ -22,9 +22,9 @@ public class GroupsDAOImpl implements GroupsDAO {
         return groupsEntityList;
     }
 
-    @Override
-    public GroupsEntity getGroups(String groupId){
-        GroupsEntity groupsEntity = groupsRepository.getReferenceById(groupId);
-        return groupsEntity;
-    }
+//    @Override
+//    public GroupsEntity getGroups(String groupId){
+//        GroupsEntity groupsEntity = groupsRepository.getReferenceById(groupId);
+//        return groupsEntity;
+//    }
 }

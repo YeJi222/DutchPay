@@ -28,11 +28,13 @@ public class GroupsHandlerImpl implements GroupsHandler {
         return groupsEntityList;
     }
 
-    @Override
-    public GroupsDTO getGroupsEntity(String groupId){
-        GroupsEntity groupsEntity = groupsDAO.getGroups(groupId);
-        GroupsDTO groups = new GroupsDTO(groupsEntity.getGroupId(), groupsEntity.getUserId(),
-            groupsEntity.getTotalMoney(), groupsEntity.getPayContent(), groupsEntity.getMembers(), groupsEntity.getState());
-        return groups;
-    }
+//    @Override
+//    public GroupsDTO getGroupsEntity(String groupId){
+//        GroupsEntity groupsEntity = groupsDAO.getGroups(groupId);
+//        GroupsDTO groups = new GroupsDTO(groupsEntity.getGroupId(), groupsEntity.getUserId(),
+//            groupsEntity.getUserBank(), groupsEntity.getUserAccount(),
+//            groupsEntity.getTotalMoney(), groupsEntity.getPayContent(),
+//            groupsEntity.getMembers(), groupsEntity.getState());
+//        return groups;
+//    }
 }

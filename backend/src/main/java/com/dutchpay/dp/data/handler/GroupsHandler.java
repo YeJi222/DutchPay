@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface GroupsHandler {
     List<GroupsEntity>  getGroupsEntityList(String userId);
-    GroupsDTO getGroupsEntity(String groupId);
+    // GroupsDTO getGroupsEntity(String groupId, String members);
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface GroupsDAO {
     List<GroupsEntity> getGroupsEntityList(String userId);
-    GroupsEntity getGroups(String groupId);
+    // GroupsEntity getGroups(String groupId, String members);
 }
