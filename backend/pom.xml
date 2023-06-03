@@ -65,7 +65,7 @@
       <artifactId>spring-web</artifactId>
       <version>6.0.9</version>
     </dependency>
-  </dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

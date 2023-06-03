@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function GoDutchRightContent(props){
     const [inputBank, setInputBank] = useState(props.userInfo.bank);
     const [inputAccount, setInputAccount] = useState(props.userInfo.account);
-    const [valid, setValid] = useState(false);
+    const [valid, setValid] = useState(true);
 
     const changeBank = (e) => {
         const bankInputValue = document.getElementsByClassName('selectBank')[0].value;
@@ -15,12 +15,13 @@ function GoDutchRightContent(props){
     };
 
     const checkAccount = (e) => {
-        const accountInputValue = e.target.value;
-        setInputAccount(accountInputValue);
+        var accountInputValue = e.target.value;
+        accountInputValue = accountInputValue.replaceAll(/[^0-9]/g, "");
+        setInputAccount(accountInputValue); // 숫자가 아닌 모든 문자 제거
 
         const formData = new FormData();
         formData.append('inputBank', inputBank);
-        formData.append('inputAccount', inputAccount);
+        formData.append('inputAccount', accountInputValue);
 
         axios({
             method: "post",
@@ -28,7 +29,7 @@ function GoDutchRightContent(props){
             data: formData
         })
         .then(function(response){
-            console.log(response.data);
+            setValid(response.data);
         })
         .catch(function(error){
             console.log(error);
@@ -49,16 +50,16 @@ function GoDutchRightContent(props){
                 <option value="국민">국민</option>
                 <option value="하나">하나</option>
                 <option value="농협">농협</option>
-                <option value="현대">현대</option>
                 <option value="우리">우리</option>
                 <option value="신한">신한</option>
-                <option value="롯데">롯데</option>
+                <option value="부산">부산</option>
                 <option value="카카오뱅크">카카오뱅크</option>
+                <option value="기타">기타</option>
             </select>
 
             <input className='ducthInputBox' value={inputAccount} onChange={checkAccount}></input>
 
-            {valid ? <div style={{ color: 'green' }}>Valid IBAN</div> : <div style={{ color: 'red' }}>Invalid IBAN</div>}
+            {valid ? <div style={{ color: 'green' }}>Valid Account</div> : <div style={{ color: 'red' }}>Check your account</div>}
         </div> 
     );
 }

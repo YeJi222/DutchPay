@@ -9,32 +9,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ValidationController {
     @PostMapping(value = "/checkValidAccount")
-    public String loginAction(@RequestParam("inputBank") String inputBank, @RequestParam("inputAccount") String inputAccount){
-        System.out.println("inputBank : " + inputBank);
-        System.out.println("inputAccount : " + inputAccount.length());
-        boolean accountLen = false;
+    public boolean loginAction(@RequestParam("inputBank") String inputBank, @RequestParam("inputAccount") String inputAccount){
+//        System.out.println("inputBank : " + inputBank);
+//        System.out.println("inputAccount : " + inputAccount);
+//        System.out.println("inputAccount len : " + inputAccount.length());
 
-        // 계좌번호 길이 : 10 ~ 16자리
-        if(inputAccount.length() < 10 || inputAccount.length() > 16){
-            accountLen = false;
-        } else{
-            accountLen = true;
+        // 은행별 계좌번호 길이 확인
+        if(inputBank.equals("기업")){ // 14
+            if(inputAccount.length() != 14){
+                return false;
+            }
+        } else if(inputBank.equals("국민")){ // 12 or 14
+            if(inputAccount.length() != 12 || inputAccount.length() != 14){
+                return false;
+            }
+        } else if(inputBank.equals("하나")){ // 14
+            if(inputAccount.length() != 14){
+                return false;
+            }
+        } else if(inputBank.equals("농협") || inputBank.equals("우리") ||
+            inputBank.equals("부산") || inputBank.equals("카카오뱅크")){ // 13
+            if(inputAccount.length() != 13){
+                return false;
+            }
+        } else if(inputBank.equals("신한")){ // 11 ~ 14
+            if(inputAccount.length() < 11 || inputAccount.length() > 14){
+                return false;
+            }
+        } else{ // 기타 은행 : 10 ~ 16자리
+            if(inputAccount.length() < 10 || inputAccount.length() > 16){
+                return false;
+            }
         }
 
-        // 은행별 계좌번호 체계 확인
-
-
-
-//        try{ // 이미 등록된 회원인 경우,
-//            UserDTO userInfo = userService.getUser(userId);
-//            // System.out.println(userInfo);
-//
-//            return "existing member";
-//        } catch (Exception e){ // 등록된 회원 정보가 아닐 경우, sign up
-//            userService.saveUser(userId, userPw, phone, bank, account);
-//
-//            return "signUp success";
-//        }
-        return "check valid account";
+        return true;
     }
 }
