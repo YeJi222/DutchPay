@@ -95,6 +95,7 @@ function GoDutch(){
                         inputMoney={inputMoney}
                         setInputMoney={setInputMoney}
                         phoneBoxes={phoneBoxes}
+                        userId={sessionData.userId}
                         // setPhoneBoxes={setPhoneBoxes}
                     /> 
                 </div>

@@ -60,8 +60,10 @@ function GoDutchRightContent(props){
         // console.log(checkContentBlank, checkMoneyBlank);
         // console.log("clickDutchPayBtn", phoneBoxes);
         var phoneBlankCheck = true;
+        var phoneValueList = [];
 
         phoneBoxes.map((box, index) => {
+            phoneValueList.push(JSON.stringify(box.value));
             // console.log(box);
             // console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
             if(JSON.stringify(box.value).length === 2){ // blank
@@ -90,8 +92,39 @@ function GoDutchRightContent(props){
             })
         } else{
             if(checkContentBlank === true && checkMoneyBlank === true){
-                console.log("no blank");
+                
+
+                // db에 저장
+                const formData = new FormData();
+                formData.append('payContent', "");
+                formData.append('totalMoney', "");
+                formData.append('members', phoneValueList);
+                formData.append('userId', props.userId);
+
+                axios({
+                    method: "post",
+                    url: 'http://localhost:8090/createDutchPayGroup',
+                    data: formData
+                })
+                .then(function(response){
+                    setValid(response.data);
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+                
+
+
+
+
+
                 // member별 금액 확인 
+
+
+                
+
+
+
             } else{
                 let timerInterval;
                 Swal.fire({
