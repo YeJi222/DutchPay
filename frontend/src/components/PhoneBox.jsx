@@ -26,7 +26,9 @@ function PhoneBox(props){
 
     return(
         <div className='phoneInputArea'>
-            <input className='phoneInput' onChange={changePhone}>
+            <input className='phoneInput' 
+                onChange={changePhone} 
+                placeholder="'-' 기호 없이 숫자만 입력해주세요">
             </input>
             <div className='deleteMembers' onClick={deletePhoneNumbers}>
                 -

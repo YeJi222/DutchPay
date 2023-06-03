@@ -23,6 +23,9 @@ function GoDutchLeftContent(props){
                 +
             </div>
             <hr className='goDutchHr'></hr>
+            <p className='explainText'>정산할 인원만큼 '+'버튼을 눌러 전화번호 입력란을 추가하세요. 
+                전화번호는 '-' 기호 없이 숫자만 입력해주세요.
+            </p>
 
             <div className='phoneInfoArea'>
                 {phoneBoxes.map((_, index) => (
