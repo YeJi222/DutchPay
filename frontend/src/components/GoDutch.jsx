@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import GoDutchLeftContent from './GoDutchLeftContent';
 import GoDutchRightContent from './GoDutchRightContent';
+import PhoneBox from './PhoneBox';
 
 function GoDutch(){
     const navigate = useNavigate();
@@ -11,10 +12,12 @@ function GoDutch(){
 
     const [userInfo, setUserInfo] = useState(location.state);
     const [inputMoney, setInputMoney] = useState();
+    const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
 
+    // 세션 정보 관리 
     useEffect(() => {
         if(sessionData === null || userInfo === null){
             let timerInterval;
@@ -82,6 +85,8 @@ function GoDutch(){
                     <GoDutchLeftContent
                         inputMoney={inputMoney}
                         setInputMoney={setInputMoney}
+                        phoneBoxes={phoneBoxes}
+                        setPhoneBoxes={setPhoneBoxes}
                     />
     
                     {/* right content */}
@@ -89,6 +94,8 @@ function GoDutch(){
                         userInfo={userInfo}
                         inputMoney={inputMoney}
                         setInputMoney={setInputMoney}
+                        phoneBoxes={phoneBoxes}
+                        // setPhoneBoxes={setPhoneBoxes}
                     /> 
                 </div>
             </div>

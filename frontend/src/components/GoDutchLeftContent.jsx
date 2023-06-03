@@ -4,7 +4,9 @@ import { useNavigate, useLocation  } from "react-router-dom";
 import PhoneBox from './PhoneBox';
 
 function GoDutchLeftContent(props){
-    const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
+    // const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
+    const phoneBoxes = props.phoneBoxes;
+    const setPhoneBoxes = props.setPhoneBoxes;
     
     console.log("phoneBoxes", phoneBoxes);
     const addPhoneNumbers = (e) =>{

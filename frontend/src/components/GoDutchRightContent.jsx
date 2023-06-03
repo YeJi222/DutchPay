@@ -9,6 +9,7 @@ function GoDutchRightContent(props){
     const [valid, setValid] = useState(true);
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
+    const phoneBoxes = props.phoneBoxes;
 
     const changeBank = (e) => {
         const bankInputValue = document.getElementsByClassName('selectBank')[0].value;
@@ -56,17 +57,26 @@ function GoDutchRightContent(props){
     };
 
     const clickDutchPayBtn = (e) => {
-        console.log(checkContentBlank, checkMoneyBlank);
+        // console.log(checkContentBlank, checkMoneyBlank);
+        // console.log("clickDutchPayBtn", phoneBoxes);
+        var phoneBlankCheck = true;
 
-        if(checkContentBlank == true && checkMoneyBlank === true){
-            console.log("no blank");
-            // member별 금액 확인 
-        } else{
+        phoneBoxes.map((box, index) => {
+            // console.log(box);
+            // console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
+            if(JSON.stringify(box.value).length === 2){ // blank
+                // console.log("clickDutchPayBtn", JSON.stringify(box.value));
+                phoneBlankCheck = false;
+            }
+        });
+
+        console.log("phoneBlankCheck", phoneBlankCheck);
+        if(phoneBlankCheck === false){
             let timerInterval;
             Swal.fire({
-                title: '빈칸이 있습니다',
-                html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
-                timer: 1000,
+                title: '전화번호 입력에 빈칸이 있습니다',
+                html: '빈칸이 있는 전화번호 란을 지우거나, 채운 후 입력해주세요 :) ',
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()
@@ -78,7 +88,31 @@ function GoDutchRightContent(props){
                 /* Read more about handling dismissals below */
                 if (result.dismiss === Swal.DismissReason.timer) {}
             })
+        } else{
+            if(checkContentBlank === true && checkMoneyBlank === true){
+                console.log("no blank");
+                // member별 금액 확인 
+            } else{
+                let timerInterval;
+                Swal.fire({
+                    title: '빈칸이 있습니다',
+                    html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
+                    timer: 1000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {}
+                })
+            }
         }
+
+        
     };
 
     return(
