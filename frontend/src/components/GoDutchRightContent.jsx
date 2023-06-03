@@ -67,7 +67,7 @@ function GoDutchRightContent(props){
         var phoneValueList = [];
 
         phoneBoxes.map((box, index) => {
-            phoneValueList.push(JSON.stringify(box.value));
+            phoneValueList.push(JSON.stringify(box.value).substring(1, JSON.stringify(box.value).length - 1)); // 숫자만 들어가게 
             // console.log(box);
             // console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
             if(JSON.stringify(box.value).length === 2){ // blank

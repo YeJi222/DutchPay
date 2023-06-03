@@ -15,7 +15,7 @@ function GoDutchLeftContent(props){
     }
 
     return(
-        <div className='mainLeftPart'>
+        <div className='goDutchLeftPart'>
             <div className='mainLeftTopText'>
                 정산할 인원
             </div>

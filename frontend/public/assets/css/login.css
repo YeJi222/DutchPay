@@ -244,13 +244,21 @@ body {
     height: 80vh;
     border-radius: 20px;
 }
+.goDutchLeftPart{
+    background-color: #FFF6F6;
+    height: inherit;
+    border-radius: 20px;
+    font-family: "DoHyeon";
+    width: 400px;
+    min-width: 400px;
+}
 .mainLeftPart{
     background-color: #FFF6F6;
     height: inherit;
     border-radius: 20px;
     font-family: "DoHyeon";
     width: 300px;
-    min-width: 400px;
+    min-width: 300px;
 }
 .mainLeftTopText{
     text-align: center;

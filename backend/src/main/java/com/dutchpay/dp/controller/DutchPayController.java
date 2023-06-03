@@ -1,5 +1,6 @@
 package com.dutchpay.dp.controller;
 
+import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class DutchPayController {
+    private GroupsService groupsService;
     private SendMessageService sendMessageService;
     @Autowired
-    public DutchPayController(SendMessageService sendMessageService){
+    public DutchPayController(GroupsService groupsService, SendMessageService sendMessageService){
+        this.groupsService = groupsService;
         this.sendMessageService = sendMessageService;
     }
 
@@ -31,6 +34,11 @@ public class DutchPayController {
         System.out.println("userId: " + userId);
         System.out.println("userBank: " + userBank);
         System.out.println("userAccount: " + userAccount);
+
+        for(int i = 0 ; i < members.length ; i++){
+            groupsService.saveGroup("1", members[i], userId, userBank, userAccount, totalMoney, payContent, "off");
+        }
+
 
         return "success";
     }

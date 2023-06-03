@@ -15,12 +15,12 @@ import lombok.ToString;
 @Builder
 public class GroupsDTO {
     private String groupId;
+    private String members;
     private String userId;
     private String userBank;
     private String userAccount;
     private String totalMoney;
     private String payContent;
-    private String members;
     private String state;
 
     public GroupsEntity toEntity(){

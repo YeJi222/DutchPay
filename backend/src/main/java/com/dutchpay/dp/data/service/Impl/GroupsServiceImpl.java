@@ -1,6 +1,7 @@
 package com.dutchpay.dp.data.service.Impl;
 
 import com.dutchpay.dp.data.dto.GroupsDTO;
+import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.handler.GroupsHandler;
 import com.dutchpay.dp.data.service.GroupsService;
@@ -20,6 +21,12 @@ public class GroupsServiceImpl implements GroupsService {
     @Override
     public List<GroupsEntity> getGroupsList(String userId){
         return groupsHandler.getGroupsEntityList(userId);
+    }
+
+    @Override
+    public GroupsDTO saveGroup(String groupId, String members, String userId, String userBank,
+        String userAccount, String totalMoney, String payContent, String state){
+        return groupsHandler.saveGroupEntity(groupId, members, userId, userBank, userAccount, totalMoney, payContent, state);
     }
 
 //    @Override
