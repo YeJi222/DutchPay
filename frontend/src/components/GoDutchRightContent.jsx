@@ -7,6 +7,7 @@ function GoDutchRightContent(props){
     const [inputBank, setInputBank] = useState(props.userInfo.bank);
     const [inputAccount, setInputAccount] = useState(props.userInfo.account);
     const [valid, setValid] = useState(true);
+    const [inputContent, setInputContent] = useState(props.userInfo.account);
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     const phoneBoxes = props.phoneBoxes;
@@ -40,6 +41,8 @@ function GoDutchRightContent(props){
     };
 
     const changeContent = (e) => {
+        setInputContent(e.target.value);
+
         if(e.target.value != ""){
             setCheckContentBlank(true);
         } else{
@@ -116,10 +119,12 @@ function GoDutchRightContent(props){
 
                 // db에 저장
                 const formData = new FormData();
-                formData.append('payContent', "");
-                formData.append('totalMoney', "");
+                formData.append('payContent', inputContent);
+                formData.append('totalMoney', props.inputMoney);
                 formData.append('members', phoneValueList);
                 formData.append('userId', props.userId);
+                formData.append('userBank', inputBank);
+                formData.append('userAccount', inputAccount);
 
                 axios({
                     method: "post",

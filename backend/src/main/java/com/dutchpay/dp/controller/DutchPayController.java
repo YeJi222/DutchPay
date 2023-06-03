@@ -23,12 +23,14 @@ public class DutchPayController {
 
     @PostMapping(value = "/createDutchPayGroup")
     public String createDutchPayGroup(@RequestParam("payContent") String payContent, @RequestParam("totalMoney") String totalMoney,
-        @RequestParam("members") String[] members, @RequestParam("userId") String userId){
+        @RequestParam("members") String[] members, @RequestParam("userId") String userId,
+        @RequestParam("userBank") String userBank,@RequestParam("userAccount") String userAccount){
         System.out.println("payContent: " + payContent);
         System.out.println("totalMoney: " + totalMoney);
         System.out.println("members: " + Arrays.toString(members));
         System.out.println("userId: " + userId);
-
+        System.out.println("userBank: " + userBank);
+        System.out.println("userAccount: " + userAccount);
 
         return "success";
     }
