@@ -302,6 +302,7 @@ body {
     text-align: center;
     font-size: 28px;
     color: white;
+    padding: 10px;
 }
 .middleTitle{
     font-size: 18px;
@@ -421,4 +422,23 @@ hr{
     margin-top: 70px;
     margin-left: 10px;
     margin-right: 10px;
+}
+.dutchTitle{
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.dutchSubTitle{
+    color: #D2CECE;
+    margin-bottom: 5px;
+}
+.ducthInputBox{
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    margin-bottom: 10px;
 }

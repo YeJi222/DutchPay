@@ -9,7 +9,6 @@ function GoDutch(){
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [isMainToggled, setIsMainToggled] = useState("receive");
     const [userInfo, setUserInfo] = useState(location.state);
 
     const storedData = localStorage.getItem('user');
@@ -83,11 +82,7 @@ function GoDutch(){
     
                     {/* right content */}
                     <GoDutchRightContent
-                        toggleTitle="receive"
-                        isToggled={isMainToggled}
-                        onLen={userInfo.onLen}
-                        offLen={userInfo.offLen}
-                        groupsEntityList={userInfo.groupsEntityList}
+                        userInfo={userInfo}
                     /> 
                 </div>
             </div>
