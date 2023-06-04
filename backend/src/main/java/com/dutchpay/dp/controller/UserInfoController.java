@@ -116,7 +116,7 @@ public class UserInfoController {
                 distinctGroupsList.add(groups);
             }
         }
-        System.out.println("distinctGroupsList : " + distinctGroupsList);
+//        System.out.println("distinctGroupsList : " + distinctGroupsList);
 
 
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
@@ -127,13 +127,22 @@ public class UserInfoController {
                 sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
             }
         }
-        System.out.println("onLen : " + Integer.toString(onLen));
-        System.out.println("offLen : " + Integer.toString(offLen));
+//        System.out.println("onLen : " + Integer.toString(onLen));
+//        System.out.println("offLen : " + Integer.toString(offLen));
+
+        // groupId 별로 인원 수 구하기
+        List<String> memberLen = new ArrayList<>();
+        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
+            String groupId = distinctGroupsList.get(i).getCompositeKey().getGroupId();
+            String groupMemberSize = groupsService.getSameGroupMemberLen(groupId);
+            memberLen.add(groupMemberSize);
+        }
 
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
         map.put("sumMoney", Integer.toString(sumMoney));
         map.put("groupsEntityList", distinctGroupsList);
+        map.put("memberLen", memberLen);
 
         return map;
     }

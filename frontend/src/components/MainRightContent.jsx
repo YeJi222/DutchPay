@@ -17,12 +17,14 @@ function RightContent(props){
                 state="on"
                 onLen={props.onLen}
                 groupsEntityList={props.groupsEntityList}
+                memberLen={props.memberLen}
             />
             <ReceivePayBox
                 middleTitle="완료"
                 state="off"
                 offLen={props.offLen}
                 groupsEntityList={props.groupsEntityList}
+                memberLen={props.memberLen}
             />
         </div> 
     );

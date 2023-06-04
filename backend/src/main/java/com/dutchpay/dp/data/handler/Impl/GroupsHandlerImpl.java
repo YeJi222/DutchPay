@@ -30,6 +30,12 @@ public class GroupsHandlerImpl implements GroupsHandler {
     }
 
     @Override
+    public List<GroupsEntity> getSameGroupIdList(String groupId){
+        List<GroupsEntity> groupsEntityList = groupsDAO.getSameGroupIdList(groupId);
+        return groupsEntityList;
+    }
+
+    @Override
     public GroupsDTO saveGroupEntity(String groupId, String members, String userId, String userBank,
         String userAccount, String totalMoney, String payContent, String state){
         GroupsPK compositeKey = new GroupsPK(groupId, members);

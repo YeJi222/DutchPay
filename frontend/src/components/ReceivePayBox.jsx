@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function ReceivePayBox(props){
+    console.log(props.memberLen);
     return(
         <div>
             <div className="middleTitle">
@@ -15,8 +16,8 @@ function ReceivePayBox(props){
                                     {item.payContent}
                                     <hr ></hr>
                                     <div className='payContent'>
-                                        인원 : {} <br></br>
-                                        총 금액 : {item.totalMoney}
+                                        인원 : {props.memberLen[idx]}명<br></br>
+                                        총 금액 : {item.totalMoney}원
                                     </div>
                                     <div className='confirmBtn'>
                                         확인하기 {'>'}

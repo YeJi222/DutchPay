@@ -122,6 +122,7 @@ function Main(){
                             onLen={userInfo.onLen}
                             offLen={userInfo.offLen}
                             groupsEntityList={userInfo.groupsEntityList}
+                            memberLen={userInfo.memberLen}
                         /> 
                     ) : (
                         <MainRightContent

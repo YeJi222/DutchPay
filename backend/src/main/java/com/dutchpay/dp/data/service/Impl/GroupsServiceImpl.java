@@ -57,4 +57,12 @@ public class GroupsServiceImpl implements GroupsService {
 
         return randomGroupIdStr;
     }
+
+    @Override
+    public String getSameGroupMemberLen(String groupId) {
+        List<GroupsEntity> groupsEntityList = groupsHandler.getSameGroupIdList(groupId);
+        // System.out.println("groupsEntityList size : " + groupsEntityList.size());
+
+        return Integer.toString(groupsEntityList.size());
+    }
 }
