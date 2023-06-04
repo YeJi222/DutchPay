@@ -10,4 +10,5 @@ public interface GroupsHandler {
     GroupsDTO saveGroupEntity(String groupId, String members, String userId, String userBank,
         String userAccount, String totalMoney, String payContent, String state);
     // GroupsDTO getGroupsEntity(String groupId, String members);
+    List<String> getGroupIdAll();
 }

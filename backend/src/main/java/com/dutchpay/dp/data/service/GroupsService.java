@@ -10,4 +10,6 @@ public interface GroupsService {
     List<GroupsEntity> getGroupsList(String userId);
     GroupsDTO saveGroup(String groupId, String members, String userId, String userBank, String userAccount,
         String totalMoney, String payContent, String state);
+
+    String createGroupId();
 }

@@ -51,4 +51,9 @@ public class GroupsHandlerImpl implements GroupsHandler {
 //            groupsEntity.getMembers(), groupsEntity.getState());
 //        return groups;
 //    }
+
+    @Override
+    public List<String> getGroupIdAll(){
+        return groupsDAO.getGroupIdAll();
+    }
 }

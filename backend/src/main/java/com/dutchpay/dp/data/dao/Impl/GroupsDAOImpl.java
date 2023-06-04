@@ -4,7 +4,10 @@ import com.dutchpay.dp.data.dao.GroupsDAO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.entity.UserEntity;
 import com.dutchpay.dp.data.repository.GroupsRepository;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +37,11 @@ public class GroupsDAOImpl implements GroupsDAO {
 //        GroupsEntity groupsEntity = groupsRepository.getReferenceById(groupId);
 //        return groupsEntity;
 //    }
+
+    @Override
+    public List<String> getGroupIdAll(){
+        List<String> distinctGroupIdList = groupsRepository.findDistinctGroupId();
+
+        return distinctGroupIdList;
+    }
 }

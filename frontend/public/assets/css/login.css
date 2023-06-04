@@ -458,7 +458,7 @@ hr{
     border: none;
     border-radius: 10px;
     width: 400px;
-    max-width: 45vw;
+    max-width: 30vw;
     margin-bottom: 10px;
 }
 .ducthInputBox::placeholder{

@@ -35,8 +35,11 @@ public class DutchPayController {
         System.out.println("userBank: " + userBank);
         System.out.println("userAccount: " + userAccount);
 
+        String randomGroupId = groupsService.createGroupId();
+        System.out.println("randomGroupId : " + randomGroupId);
+
         for(int i = 0 ; i < members.length ; i++){
-            groupsService.saveGroup("1", members[i], userId, userBank, userAccount, totalMoney, payContent, "off");
+            groupsService.saveGroup(randomGroupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "off");
         }
 
 

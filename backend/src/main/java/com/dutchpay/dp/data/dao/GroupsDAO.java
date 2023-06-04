@@ -8,4 +8,5 @@ public interface GroupsDAO {
     List<GroupsEntity> getGroupsEntityList(String userId);
     GroupsEntity saveGroup(GroupsEntity groupEntity);
     // GroupsEntity getGroups(String groupId, String members);
+    List<String> getGroupIdAll();
 }
