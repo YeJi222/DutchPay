@@ -12,7 +12,7 @@ public class ValidationController {
     public boolean loginAction(@RequestParam("inputBank") String inputBank, @RequestParam("inputAccount") String inputAccount){
 //        System.out.println("inputBank : " + inputBank);
 //        System.out.println("inputAccount : " + inputAccount);
-        System.out.println("inputAccount len : " + inputAccount.length());
+//        System.out.println("inputAccount len : " + inputAccount.length());
 
         // 은행별 계좌번호 길이 확인
         if(inputBank.equals("기업")){ // 14

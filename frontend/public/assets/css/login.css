@@ -374,8 +374,10 @@ hr{
     font-weight: bold;
     font-size: 20px;
     margin-top: -35px;
-    padding-left: 40px;
-    padding-bottom: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    width: 60px;
+    cursor: pointer;
 }
 .addMembers{
     float: right;
@@ -565,4 +567,33 @@ hr{
         width: 255px;
         margin-bottom: 10px;
     }
+}
+
+.phoneInfoBox{
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: rgb(228, 225, 225);
+}
+.individualMoneyBox{
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+.updateBtn{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #FDE1E1;
+    text-align: center;
 }

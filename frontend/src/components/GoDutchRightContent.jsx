@@ -229,42 +229,14 @@ function GoDutchRightContent(props){
 
                 <div className='dutchResult'>
                     <div className="dutchTitle">정산결과</div>
-                    <div className='dutchSubTitle'>정산할 내용</div>
-                    <input className='ducthInputBox' id='goDutchContent' 
-                        onChange={changeContent}
-                        placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-                    ></input>
-
-                    <div className='dutchSubTitle'>정산할 금액</div>
-                    <input className='ducthInputBox' id='goDutchMoney' 
-                        onChange={changeMoney} value={props.inputMoney}
-                        placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                    ></input>
-
-                    <div className='dutchSubTitle'>계좌번호</div>
-                    <select class="selectBank" value={inputBank} onChange={changeBank}>
-                        <option value="기업">기업</option>
-                        <option value="국민">국민</option>
-                        <option value="하나">하나</option>
-                        <option value="농협">농협</option>
-                        <option value="우리">우리</option>
-                        <option value="신한">신한</option>
-                        <option value="부산">부산</option>
-                        <option value="카카오뱅크">카카오뱅크</option>
-                        <option value="기타">기타</option>
-                    </select>
-
-                    <div className='dutchSubTitle'>정산할 금액</div>
-                    <input className='ducthInputBox' id='goDutchMoney' 
-                        onChange={changeMoney} value={props.inputMoney}
-                        placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                    ></input>
-                    <div className='dutchSubTitle'>정산할 금액</div>
-                    <input className='ducthInputBox' id='goDutchMoney' 
-                        onChange={changeMoney} value={props.inputMoney}
-                        placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                    ></input>
-
+                    <div className='dutchSubTitle'>Member 1</div>
+                    <span className='phoneInfoBox'>
+                        010-1111-1111
+                    </span>
+                    <span>
+                        <input className='individualMoneyBox' value={333}></input>
+                    </span>
+                    <span className='updateBtn'>Update</span>
                 </div>
             </div>
         
