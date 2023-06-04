@@ -40,7 +40,7 @@ public class GroupsServiceImpl implements GroupsService {
         int tempRandomGroupId = 0;
         String randomGroupIdStr = "";
         List<String> groupIdList = groupsHandler.getGroupIdAll();
-        System.out.println("groupIdList : " + groupIdList);
+        // System.out.println("groupIdList : " + groupIdList);
 
         int min = 100000, max = 999999;
         Random random = new Random();

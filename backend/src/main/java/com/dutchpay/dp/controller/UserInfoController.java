@@ -4,8 +4,11 @@ import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.UserService;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,23 +92,48 @@ public class UserInfoController {
         map.put("account", userInfo.getAccount());
 
         List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
-        System.out.println("groupsInfo : " + groupsInfo);
-
+        System.out.println("groupsInfo : " + groupsInfo.size());
+        List<GroupsEntity> distinctGroupsList = new ArrayList<>();
         int onLen = 0;
         int offLen = 0;
         int sumMoney = 0;
-        for(int i = 0 ; i < groupsInfo.size() ; i++){
-            if(groupsInfo.get(i).getState().equals("on")){
+
+        for(GroupsEntity groups : groupsInfo){
+            // System.out.println("groups : " + groups);
+            String curGroupId = groups.getCompositeKey().getGroupId();
+            System.out.println("curGroupId : " + curGroupId);
+
+            boolean isDuplicate = false;
+            for(GroupsEntity distinctGroups : distinctGroupsList){
+                System.out.println("distinctGroups : " + distinctGroups.getCompositeKey().getGroupId());
+                if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId)){
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if(!isDuplicate){
+                distinctGroupsList.add(groups);
+            }
+        }
+        System.out.println("distinctGroupsList : " + distinctGroupsList);
+
+
+        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
+            if(distinctGroupsList.get(i).getState().equals("on")){
                 onLen++;
             } else{
                 offLen++;
-                sumMoney += Integer.parseInt(groupsInfo.get(i).getTotalMoney());
+                sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
             }
         }
+        System.out.println("onLen : " + Integer.toString(onLen));
+        System.out.println("offLen : " + Integer.toString(offLen));
+
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
         map.put("sumMoney", Integer.toString(sumMoney));
-        map.put("groupsEntityList", groupsInfo);
+        map.put("groupsEntityList", distinctGroupsList);
 
         return map;
     }
