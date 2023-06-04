@@ -81,9 +81,7 @@ public class UserInfoController {
     @PostMapping(value = "/getUserInfo")
     public HashMap<String, Object> getUserInfo(@RequestParam("sessionUserId") String userId){
         HashMap<String, Object> map = new HashMap<>();
-
         UserDTO userInfo = userService.getUser(userId);
-        // System.out.println("getUserInfo : " + userInfo);
 
         map.put("userId", userInfo.getUserId());
         map.put("userPw", userInfo.getUserPw());
@@ -92,32 +90,21 @@ public class UserInfoController {
         map.put("account", userInfo.getAccount());
 
         List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
-        System.out.println("groupsInfo : " + groupsInfo.size());
         List<GroupsEntity> distinctGroupsList = new ArrayList<>();
-        int onLen = 0;
-        int offLen = 0;
-        int sumMoney = 0;
-
+        int onLen = 0, offLen = 0, sumMoney = 0;
         for(GroupsEntity groups : groupsInfo){
-            // System.out.println("groups : " + groups);
             String curGroupId = groups.getCompositeKey().getGroupId();
-            System.out.println("curGroupId : " + curGroupId);
-
             boolean isDuplicate = false;
             for(GroupsEntity distinctGroups : distinctGroupsList){
-                System.out.println("distinctGroups : " + distinctGroups.getCompositeKey().getGroupId());
                 if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId)){
                     isDuplicate = true;
                     break;
                 }
             }
-
             if(!isDuplicate){
                 distinctGroupsList.add(groups);
             }
         }
-//        System.out.println("distinctGroupsList : " + distinctGroupsList);
-
 
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
             if(distinctGroupsList.get(i).getState().equals("on")){
@@ -127,9 +114,7 @@ public class UserInfoController {
                 sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
             }
         }
-//        System.out.println("onLen : " + Integer.toString(onLen));
-//        System.out.println("offLen : " + Integer.toString(offLen));
-
+        
         // groupId 별로 인원 수 구하기
         List<String> memberLen = new ArrayList<>();
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
