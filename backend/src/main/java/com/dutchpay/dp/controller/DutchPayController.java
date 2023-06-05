@@ -1,6 +1,7 @@
 package com.dutchpay.dp.controller;
 
 import com.dutchpay.dp.data.service.GroupsService;
+import com.dutchpay.dp.data.service.MembersService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DutchPayController {
     private GroupsService groupsService;
+    private MembersService membersService;
     private SendMessageService sendMessageService;
     @Autowired
-    public DutchPayController(GroupsService groupsService, SendMessageService sendMessageService){
+    public DutchPayController(GroupsService groupsService, MembersService membersService, SendMessageService sendMessageService){
         this.groupsService = groupsService;
+        this.membersService = membersService;
         this.sendMessageService = sendMessageService;
     }
 
@@ -46,7 +49,9 @@ public class DutchPayController {
         }
 
         // insert to members table
-
+        for(int i = 0 ; i < members.length ; i++){
+            membersService.saveMembers(randomGroupId, members[i], n_money, "no");
+        }
 
         return "success";
     }
