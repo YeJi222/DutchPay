@@ -1,10 +1,12 @@
 package com.dutchpay.dp.controller;
 
+import com.dutchpay.dp.data.entity.MembersEntity;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.MembersService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -36,21 +38,18 @@ public class DutchPayController {
     }
 
     @PostMapping(value = "/createDutchPayGroup")
-    public String createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("payContent") String payContent,
+    public HashMap<String, Object> createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("payContent") String payContent,
         @RequestParam("totalMoney") String totalMoney, @RequestParam("members") String[] members,
         @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
         @RequestParam("userAccount") String userAccount, @RequestParam("n_money") String n_money){
-        System.out.println("groupId: " + groupId);
-        System.out.println("payContent: " + payContent);
-        System.out.println("totalMoney: " + totalMoney);
-        System.out.println("members: " + Arrays.toString(members));
-        System.out.println("userId: " + userId);
-        System.out.println("userBank: " + userBank);
-        System.out.println("userAccount: " + userAccount);
-        System.out.println("n_money: " + n_money);
-
-//        String randomGroupId = groupsService.createGroupId();
-//        System.out.println("randomGroupId : " + randomGroupId);
+//        System.out.println("groupId: " + groupId);
+//        System.out.println("payContent: " + payContent);
+//        System.out.println("totalMoney: " + totalMoney);
+//        System.out.println("members: " + Arrays.toString(members));
+//        System.out.println("userId: " + userId);
+//        System.out.println("userBank: " + userBank);
+//        System.out.println("userAccount: " + userAccount);
+//        System.out.println("n_money: " + n_money);
 
         // insert to groups table
         for(int i = 0 ; i < members.length ; i++){
@@ -62,7 +61,23 @@ public class DutchPayController {
             membersService.saveMembers(groupId, members[i], n_money, "no");
         }
 
-        return groupId;
+        HashMap<String, Object> map = new HashMap<>();
+        List<String> membersPhone = new ArrayList<>();
+        List<String> membersNmoney = new ArrayList<>();
+        List<MembersEntity> membersInfo = membersService.getMembersList(groupId);
+        System.out.println("membersInfo : " + membersInfo);
+        for(int i = 0 ; i < membersInfo.size() ; i++){
+            membersPhone.add(membersInfo.get(i).getCompositeKey().getPhone());
+            membersNmoney.add(membersInfo.get(i).getNMoney());
+        }
+
+        map.put("membersPhone", membersPhone);
+        map.put("membersNmoney", membersNmoney);
+
+        System.out.println("membersPhone : " + membersPhone);
+        System.out.println("membersNmoney : " + membersNmoney);
+
+        return map;
     }
 
     @PostMapping(value = "/sendMessage")

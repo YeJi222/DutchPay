@@ -7,7 +7,10 @@ import Swal from "sweetalert2";
 function GoDutchResult(props){
     const navigate = useNavigate();
     const location = useLocation();
-    const [memberInfo, setMemberInfo] = useState();
+    const memberInfo = props.resultMembers;
+    
+    console.log("memberInfo", props.inputMoney);
+    // const [memberInfo, setMemberInfo] = useState(props.resultMembers);
     
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -17,7 +20,7 @@ function GoDutchResult(props){
     // console.log("userPw : ", sessionData.userPw);
 
     useEffect(() => {
-        if(sessionData === null || memberInfo === null){
+        if(sessionData === null){
             let timerInterval;
             Swal.fire({
                 title: '세션 정보가 없습니다!',
@@ -35,22 +38,6 @@ function GoDutchResult(props){
                 if (result.dismiss === Swal.DismissReason.timer) {
                     navigate('/');
                 }
-            })
-        } else{
-            const sessionUserId = sessionData.userId;
-            const formData = new FormData();
-            formData.append('sessionUserId', sessionUserId);
-
-            axios({
-                method: "post",
-                url: 'http://localhost:8090/getMembersInfo',
-                data: formData
-            })
-            .then(function(response){
-                // setMemberInfo(response.data);
-            })
-            .catch(function(error){
-                console.log(error);
             })
         }
     }, []);

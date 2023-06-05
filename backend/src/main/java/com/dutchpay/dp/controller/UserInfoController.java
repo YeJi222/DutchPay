@@ -2,7 +2,9 @@ package com.dutchpay.dp.controller;
 
 import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
+import com.dutchpay.dp.data.entity.MembersEntity;
 import com.dutchpay.dp.data.service.GroupsService;
+import com.dutchpay.dp.data.service.MembersService;
 import com.dutchpay.dp.data.service.UserService;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserInfoController {
     private UserService userService;
+    private MembersService membersService;
     private GroupsService groupsService;
     @Autowired
-    public UserInfoController(UserService userService, GroupsService groupsService){
+    public UserInfoController(UserService userService, GroupsService groupsService, MembersService membersService){
         this.userService = userService;
         this.groupsService = groupsService;
+        this.membersService = membersService;
     }
 
     @PostMapping(value = "/signup")
@@ -132,11 +136,20 @@ public class UserInfoController {
         return map;
     }
 
-    @PostMapping(value = "/getMembersInfo")
-    public HashMap<String, Object> getMembersInfo(@RequestParam("sessionUserId") String userId){
+    @PostMapping(value = "/getMembersInfo") // 아직 안씀
+    public HashMap<String, Object> getMembersInfo(@RequestParam("groupId") String groupId){
         HashMap<String, Object> map = new HashMap<>();
+        System.out.println("groupId : " + groupId);
 
         // groupId로 members table에서 불러오기(phone, n_money)
+//        List<String> membersPhone = new ArrayList<>();
+//        List<MembersEntity> membersInfo = membersService.getMembersList(groupId);
+//        System.out.println("membersInfo : " + membersInfo);
+//        for(int i = 0 ; i < membersInfo.size() ; i++){
+//            membersPhone.add(membersInfo.get(i).getCompositeKey().getPhone());
+//        }
+//
+//        System.out.println("membersPhone : " + membersPhone);
 
         /*
         UserDTO userInfo = userService.getUser(userId);

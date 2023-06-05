@@ -140,14 +140,12 @@ function GoDutchRightContent(props){
 
             if(checkContentBlank === true && checkMoneyBlank === true && phoneFormatCheck === true){
                 props.setIsResult(true);
-
-                // members 테이블에 insert
-                // n_money 계산해서 insert 
+                // n_money 계산
                 var totalMoney = props.inputMoney;
                 var members = phoneValueList;
                 var n_money = Math.ceil(totalMoney/members.length);
 
-                // db에 저장
+                // db에 insert
                 const formData = new FormData();
                 formData.append('groupId', groupId);
                 formData.append('payContent', inputContent);
@@ -164,21 +162,14 @@ function GoDutchRightContent(props){
                     data: formData
                 })
                 .then(function(response){
-                    // setValid(response.data);
-                    // setGroupId(response.data);
-                    console.log("groupId", groupId);
+                    // console.log("response", response.data);
+                    props.setResultMembers(response.data);
                 })
                 .catch(function(error){
                     console.log(error);
                 })
-                
-                
-
-                // member별 금액 확인 
             }
         }
-
-        
     };
 
     return(
