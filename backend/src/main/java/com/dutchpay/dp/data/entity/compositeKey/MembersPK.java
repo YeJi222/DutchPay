@@ -15,17 +15,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class GroupsPK implements Serializable {
+public class MembersPK implements Serializable {
     @Column(name = "group_id")
     String groupId;
-    @Column(name = "members")
-    String members;
+    @Column(name = "phone")
+    String phone;
 
     public String getGroupId() {
         return groupId;
     }
 
-    public String getMembers() {
-        return members;
+    public String getPhone() {
+        return phone;
     }
 }

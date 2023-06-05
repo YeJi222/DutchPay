@@ -117,14 +117,21 @@ function GoDutchRightContent(props){
             })
         } else{
             if(checkContentBlank === true && checkMoneyBlank === true){
+                // members 테이블에 insert
+                // n_money 계산해서 insert 
+                var totalMoney = props.inputMoney;
+                var members = phoneValueList;
+                var n_money = Math.ceil(totalMoney/members.length);
+                
                 // db에 저장
                 const formData = new FormData();
                 formData.append('payContent', inputContent);
-                formData.append('totalMoney', props.inputMoney);
-                formData.append('members', phoneValueList);
+                formData.append('totalMoney', totalMoney);
+                formData.append('members', members);
                 formData.append('userId', props.userId);
                 formData.append('userBank', inputBank);
                 formData.append('userAccount', inputAccount);
+                formData.append('n_money', n_money);
 
                 axios({
                     method: "post",
@@ -138,8 +145,8 @@ function GoDutchRightContent(props){
                     console.log(error);
                 })
                 
-                // members 테이블에 insert
-                // n_money 계산해서 insert 
+                
+
 
 
 

@@ -25,22 +25,27 @@ public class DutchPayController {
     }
 
     @PostMapping(value = "/createDutchPayGroup")
-    public String createDutchPayGroup(@RequestParam("payContent") String payContent, @RequestParam("totalMoney") String totalMoney,
-        @RequestParam("members") String[] members, @RequestParam("userId") String userId,
-        @RequestParam("userBank") String userBank,@RequestParam("userAccount") String userAccount){
+    public String createDutchPayGroup(@RequestParam("payContent") String payContent,
+        @RequestParam("totalMoney") String totalMoney, @RequestParam("members") String[] members,
+        @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
+        @RequestParam("userAccount") String userAccount, @RequestParam("n_money") String n_money){
         System.out.println("payContent: " + payContent);
         System.out.println("totalMoney: " + totalMoney);
         System.out.println("members: " + Arrays.toString(members));
         System.out.println("userId: " + userId);
         System.out.println("userBank: " + userBank);
         System.out.println("userAccount: " + userAccount);
+        System.out.println("n_money: " + n_money);
 
         String randomGroupId = groupsService.createGroupId();
         System.out.println("randomGroupId : " + randomGroupId);
 
+        // insert to groups table
         for(int i = 0 ; i < members.length ; i++){
             groupsService.saveGroup(randomGroupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "off");
         }
+
+        // insert to members table
 
 
         return "success";

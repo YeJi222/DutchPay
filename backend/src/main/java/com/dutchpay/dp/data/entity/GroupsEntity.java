@@ -24,16 +24,11 @@ import lombok.ToString;
 public class GroupsEntity {
     @EmbeddedId
     GroupsPK compositeKey;
-//    @Id
-//    String groupId;
-
     String userId;
     String userBank;
     String userAccount;
     String totalMoney;
     String payContent;
-//    @Id
-//    String members;
     String state;
 
     public GroupsDTO toDto(){

@@ -92,7 +92,9 @@ function GoDutch(){
                             setPhoneBoxes={setPhoneBoxes}
                         />
                     ) : (
-                        <GoDutchResult/>
+                        <GoDutchResult
+                            inputMoney={inputMoney}
+                        />
                     )}
                     
                     

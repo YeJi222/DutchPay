@@ -1,6 +1,9 @@
 package com.dutchpay.dp.data.entity;
 
-import com.dutchpay.dp.data.dto.MemberDTO;
+import com.dutchpay.dp.data.dto.MembersDTO;
+import com.dutchpay.dp.data.entity.compositeKey.GroupsPK;
+import com.dutchpay.dp.data.entity.compositeKey.MembersPK;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -19,18 +22,16 @@ import lombok.ToString;
 @Builder
 @ToString
 @Table(name = "Members")
-public class MemberEntity {
-    @Id
-    String groupId;
-    @Id
-    String phone;
+public class MembersEntity {
+    @EmbeddedId
+    MembersPK compositeKey;
     String nMoney;
     String sendState;
 
-    public MemberDTO toDto(){
-        return MemberDTO.builder()
-            .groupId(groupId)
-            .phone(phone)
+    public MembersDTO toDto(){
+        return MembersDTO.builder()
+            .groupId(compositeKey.getGroupId())
+            .phone(compositeKey.getPhone())
             .nMoney(nMoney)
             .sendState(sendState)
             .build();
