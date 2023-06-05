@@ -131,4 +131,64 @@ public class UserInfoController {
 
         return map;
     }
+
+    @PostMapping(value = "/getMemberInfo")
+    public HashMap<String, Object> getMemberInfo(@RequestParam("sessionUserId") String userId){
+        HashMap<String, Object> map = new HashMap<>();
+
+        // groupId로 members table에서 불러오기(phone, n_money)
+
+        /*
+        UserDTO userInfo = userService.getUser(userId);
+
+        map.put("userId", userInfo.getUserId());
+        map.put("userPw", userInfo.getUserPw());
+        map.put("phone", userInfo.getPhone());
+        map.put("bank", userInfo.getBank());
+        map.put("account", userInfo.getAccount());
+
+        List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
+        List<GroupsEntity> distinctGroupsList = new ArrayList<>();
+        int onLen = 0, offLen = 0, sumMoney = 0;
+        for(GroupsEntity groups : groupsInfo){
+            String curGroupId = groups.getCompositeKey().getGroupId();
+            boolean isDuplicate = false;
+            for(GroupsEntity distinctGroups : distinctGroupsList){
+                if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId)){
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if(!isDuplicate){
+                distinctGroupsList.add(groups);
+            }
+        }
+
+        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
+            if(distinctGroupsList.get(i).getState().equals("on")){
+                onLen++;
+            } else{
+                offLen++;
+                sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
+            }
+        }
+
+        // groupId 별로 인원 수 구하기
+        List<String> memberLen = new ArrayList<>();
+        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
+            String groupId = distinctGroupsList.get(i).getCompositeKey().getGroupId();
+            String groupMemberSize = groupsService.getSameGroupMemberLen(groupId);
+            memberLen.add(groupMemberSize);
+        }
+
+        map.put("onLen", Integer.toString(onLen));
+        map.put("offLen", Integer.toString(offLen));
+        map.put("sumMoney", Integer.toString(sumMoney));
+        map.put("groupsEntityList", distinctGroupsList);
+        map.put("memberLen", memberLen);
+
+         */
+
+        return map;
+    }
 }

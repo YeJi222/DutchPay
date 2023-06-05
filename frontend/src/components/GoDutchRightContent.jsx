@@ -138,6 +138,8 @@ function GoDutchRightContent(props){
                     console.log(error);
                 })
                 
+                // members 테이블에 insert
+                // n_money 계산해서 insert 
 
 
 

@@ -452,8 +452,7 @@ hr{
     margin-bottom: 10px;
 }
 .dutchSubTitle{
-    text-align: left;
-    margin-left: 20px;  
+    color: #D2CECE;
     margin-bottom: 5px;
 }
 .ducthInputBox{
@@ -575,6 +574,7 @@ hr{
     }
 }
 
+/* goDutchResult */
 .phoneInfoBox{
     padding: 10px;
     font-size: 15px;
@@ -616,4 +616,9 @@ hr{
     border-radius: 40px;
     font-size: 20px;
     cursor: pointer;
+}
+.resultSubTitle{
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 5px;
 }

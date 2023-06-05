@@ -17,7 +17,6 @@ public class MemberDTO {
     private String groupId;
     private String phone;
     private String nMoney;
-    private String imgData;
     private String sendState;
 
     public MemberEntity toEntity() {
@@ -25,7 +24,6 @@ public class MemberDTO {
             .groupId(groupId)
             .phone(phone)
             .nMoney(nMoney)
-            .imgData(imgData)
             .sendState(sendState)
             .build();
     }
