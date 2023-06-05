@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import GoDutchResult from './GoDutchResult';
 
 function GoDutchRightContent(props){
+    const groupId = props.groupId;
     const [inputBank, setInputBank] = useState(props.userInfo.bank);
     const [inputAccount, setInputAccount] = useState(props.userInfo.account);
     const [valid, setValid] = useState(true);
@@ -12,6 +13,8 @@ function GoDutchRightContent(props){
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     const phoneBoxes = props.phoneBoxes;
+
+    console.log("groupId : ", groupId);
 
     const changeBank = (e) => {
         const bankInputValue = document.getElementsByClassName('selectBank')[0].value;
@@ -116,50 +119,7 @@ function GoDutchRightContent(props){
                 if (result.dismiss === Swal.DismissReason.timer) {}
             })
         } else{
-            if(checkContentBlank === true && checkMoneyBlank === true){
-                // members 테이블에 insert
-                // n_money 계산해서 insert 
-                var totalMoney = props.inputMoney;
-                var members = phoneValueList;
-                var n_money = Math.ceil(totalMoney/members.length);
-                
-                // db에 저장
-                const formData = new FormData();
-                formData.append('payContent', inputContent);
-                formData.append('totalMoney', totalMoney);
-                formData.append('members', members);
-                formData.append('userId', props.userId);
-                formData.append('userBank', inputBank);
-                formData.append('userAccount', inputAccount);
-                formData.append('n_money', n_money);
-
-                axios({
-                    method: "post",
-                    url: 'http://localhost:8090/createDutchPayGroup',
-                    data: formData
-                })
-                .then(function(response){
-                    setValid(response.data);
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
-                
-                
-
-
-
-
-
-
-                // member별 금액 확인 
-
-
-                
-
-
-
-            } else{
+            if(checkContentBlank === false || checkMoneyBlank === false){
                 let timerInterval;
                 Swal.fire({
                     title: '빈칸이 있습니다',
@@ -180,6 +140,41 @@ function GoDutchRightContent(props){
 
             if(checkContentBlank === true && checkMoneyBlank === true && phoneFormatCheck === true){
                 props.setIsResult(true);
+
+                // members 테이블에 insert
+                // n_money 계산해서 insert 
+                var totalMoney = props.inputMoney;
+                var members = phoneValueList;
+                var n_money = Math.ceil(totalMoney/members.length);
+
+                // db에 저장
+                const formData = new FormData();
+                formData.append('groupId', groupId);
+                formData.append('payContent', inputContent);
+                formData.append('totalMoney', totalMoney);
+                formData.append('members', members);
+                formData.append('userId', props.userId);
+                formData.append('userBank', inputBank);
+                formData.append('userAccount', inputAccount);
+                formData.append('n_money', n_money);
+
+                axios({
+                    method: "post",
+                    url: 'http://localhost:8090/createDutchPayGroup',
+                    data: formData
+                })
+                .then(function(response){
+                    // setValid(response.data);
+                    // setGroupId(response.data);
+                    console.log("groupId", groupId);
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+                
+                
+
+                // member별 금액 확인 
             }
         }
 

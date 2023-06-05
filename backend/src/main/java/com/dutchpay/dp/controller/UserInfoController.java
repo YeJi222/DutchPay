@@ -132,8 +132,8 @@ public class UserInfoController {
         return map;
     }
 
-    @PostMapping(value = "/getMemberInfo")
-    public HashMap<String, Object> getMemberInfo(@RequestParam("sessionUserId") String userId){
+    @PostMapping(value = "/getMembersInfo")
+    public HashMap<String, Object> getMembersInfo(@RequestParam("sessionUserId") String userId){
         HashMap<String, Object> map = new HashMap<>();
 
         // groupId로 members table에서 불러오기(phone, n_money)

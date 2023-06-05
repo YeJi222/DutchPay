@@ -27,11 +27,20 @@ public class DutchPayController {
         this.sendMessageService = sendMessageService;
     }
 
+    @PostMapping(value = "/createGroupId")
+    public String createGroupId(){
+        String randomGroupId = groupsService.createGroupId();
+        System.out.println("randomGroupId : " + randomGroupId);
+
+        return randomGroupId;
+    }
+
     @PostMapping(value = "/createDutchPayGroup")
-    public String createDutchPayGroup(@RequestParam("payContent") String payContent,
+    public String createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("payContent") String payContent,
         @RequestParam("totalMoney") String totalMoney, @RequestParam("members") String[] members,
         @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
         @RequestParam("userAccount") String userAccount, @RequestParam("n_money") String n_money){
+        System.out.println("groupId: " + groupId);
         System.out.println("payContent: " + payContent);
         System.out.println("totalMoney: " + totalMoney);
         System.out.println("members: " + Arrays.toString(members));
@@ -40,20 +49,20 @@ public class DutchPayController {
         System.out.println("userAccount: " + userAccount);
         System.out.println("n_money: " + n_money);
 
-        String randomGroupId = groupsService.createGroupId();
-        System.out.println("randomGroupId : " + randomGroupId);
+//        String randomGroupId = groupsService.createGroupId();
+//        System.out.println("randomGroupId : " + randomGroupId);
 
         // insert to groups table
         for(int i = 0 ; i < members.length ; i++){
-            groupsService.saveGroup(randomGroupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "off");
+            groupsService.saveGroup(groupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "on");
         }
 
         // insert to members table
         for(int i = 0 ; i < members.length ; i++){
-            membersService.saveMembers(randomGroupId, members[i], n_money, "no");
+            membersService.saveMembers(groupId, members[i], n_money, "no");
         }
 
-        return "success";
+        return groupId;
     }
 
     @PostMapping(value = "/sendMessage")

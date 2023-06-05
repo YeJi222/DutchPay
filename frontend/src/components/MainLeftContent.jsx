@@ -6,7 +6,26 @@ function MainLeftContent(props){
     const navigate = useNavigate();
 
     const goDucthPay = e =>{
-        navigate('/goDutch', {state: props.userInfo});
+        var groupId = "";
+
+        axios({
+            method: "post",
+            url: 'http://localhost:8090/createGroupId'
+        })
+        .then(function(response){
+            groupId = response.data;
+            console.log("groupId : ", groupId);
+
+            navigate('/goDutch', {
+                state: {
+                    userInfo: props.userInfo,
+                    groupId: groupId
+                }
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
     }
 
     const sendMessage = e => {

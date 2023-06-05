@@ -11,7 +11,8 @@ function GoDutch(){
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [userInfo, setUserInfo] = useState(location.state);
+    const groupId = location.state.groupId;
+    const [userInfo, setUserInfo] = useState(location.state.userInfo);
     const [inputMoney, setInputMoney] = useState();
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
     const [isResult, setIsResult] = useState(false);
@@ -93,6 +94,7 @@ function GoDutch(){
                         />
                     ) : (
                         <GoDutchResult
+                            groupId={groupId}
                             inputMoney={inputMoney}
                         />
                     )}
@@ -102,6 +104,7 @@ function GoDutch(){
     
                     {/* right content */}
                     <GoDutchRightContent
+                        groupId={groupId}
                         userInfo={userInfo}
                         inputMoney={inputMoney}
                         setInputMoney={setInputMoney}

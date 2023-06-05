@@ -43,7 +43,7 @@ function GoDutchResult(props){
 
             axios({
                 method: "post",
-                url: 'http://localhost:8090/getMemberInfo',
+                url: 'http://localhost:8090/getMembersInfo',
                 data: formData
             })
             .then(function(response){
