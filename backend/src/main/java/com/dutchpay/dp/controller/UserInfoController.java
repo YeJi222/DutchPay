@@ -114,7 +114,7 @@ public class UserInfoController {
                 sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
             }
         }
-        
+
         // groupId 별로 인원 수 구하기
         List<String> memberLen = new ArrayList<>();
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){

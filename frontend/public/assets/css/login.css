@@ -444,6 +444,7 @@ hr{
     margin-right: 10px;
 }
 .dutchTitle{
+    display: inline-block;
     text-align: center;
     font-size: 28px;
     color: white;
@@ -451,7 +452,8 @@ hr{
     margin-bottom: 10px;
 }
 .dutchSubTitle{
-    color: #D2CECE;
+    text-align: left;
+    margin-left: 20px;  
     margin-bottom: 5px;
 }
 .ducthInputBox{
@@ -513,11 +515,15 @@ hr{
 }
 .dutchResult{
     flex: 1;
+    text-align: center;
     /* background-color: green; */
     padding-left: 10px;
     padding-right: 10px;
     overflow: scroll;
     max-height: inherit;
+}
+.dutchResult::-webkit-scrollbar{
+    display: none;
 }
 .verticalDirection{
     display: none;
@@ -596,4 +602,18 @@ hr{
     border-radius: 20px;
     background-color: #FDE1E1;
     text-align: center;
+}
+.goDutchTitleArea{
+    text-align: center;
+}
+.addDutchContent{
+    display: inline-block;
+    background-color: #FF7C7C;
+    color: white;
+    padding: 5px;
+    width: 25px;
+    text-align: center;
+    border-radius: 40px;
+    font-size: 20px;
+    cursor: pointer;
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import GoDutchResult from './GoDutchResult';
 
 function GoDutchRightContent(props){
     const [inputBank, setInputBank] = useState(props.userInfo.bank);
@@ -62,9 +63,8 @@ function GoDutchRightContent(props){
     };
 
     const clickDutchPayBtn = (e) => {
-        // console.log(checkContentBlank, checkMoneyBlank);
-        // console.log("clickDutchPayBtn", phoneBoxes);
         var phoneBlankCheck = true;
+        var phoneFormatCheck = true;
         var phoneValueList = [];
 
         phoneBoxes.map((box, index) => {
@@ -77,6 +77,7 @@ function GoDutchRightContent(props){
             }
             console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
             if(JSON.stringify(box.value).length != 13){ // validation(전화번호 : 11자리)
+                phoneFormatCheck = false;
                 let timerInterval;
                 Swal.fire({
                     title: '전화번호 형식이 맞지 않습니다',
@@ -116,8 +117,6 @@ function GoDutchRightContent(props){
             })
         } else{
             if(checkContentBlank === true && checkMoneyBlank === true){
-                
-
                 // db에 저장
                 const formData = new FormData();
                 formData.append('payContent', inputContent);
@@ -169,6 +168,10 @@ function GoDutchRightContent(props){
                     if (result.dismiss === Swal.DismissReason.timer) {}
                 })
             }
+
+            if(checkContentBlank === true && checkMoneyBlank === true && phoneFormatCheck === true){
+                props.setIsResult(true);
+            }
         }
 
         
@@ -176,9 +179,15 @@ function GoDutchRightContent(props){
 
     return(
         <div className='mainRightPart'>
+            <div className='goDutchTitleArea'>
+                <div className="dutchTitle">정산하기</div>
+                <div className='addDutchContent'>
+                    +
+                </div>
+            </div>
+            
             <div className='goDutchRightPart'>
                 <div className='dutchInfo'>
-                    <div className="dutchTitle">정산하기</div>
                     <div className='dutchSubTitle'>정산할 내용</div>
                     <input className='ducthInputBox' id='goDutchContent' 
                         onChange={changeContent}
@@ -227,7 +236,7 @@ function GoDutchRightContent(props){
                     </div>
                 </div>
 
-                <div className='dutchResult'>
+                {/* <div className='dutchResult'>
                     <div className="dutchTitle">정산결과</div>
                     <div className='dutchSubTitle'>Member 1</div>
                     <span className='phoneInfoBox'>
@@ -237,7 +246,9 @@ function GoDutchRightContent(props){
                         <input className='individualMoneyBox' value={333}></input>
                     </span>
                     <span className='updateBtn'>Update</span>
-                </div>
+                </div> */}
+
+                <GoDutchResult/>
             </div>
         
         </div> 

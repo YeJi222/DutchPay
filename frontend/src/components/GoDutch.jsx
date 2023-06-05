@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import GoDutchLeftContent from './GoDutchLeftContent';
 import GoDutchRightContent from './GoDutchRightContent';
 import PhoneBox from './PhoneBox';
+import GoDutchResult from './GoDutchResult';
 
 function GoDutch(){
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ function GoDutch(){
     const [userInfo, setUserInfo] = useState(location.state);
     const [inputMoney, setInputMoney] = useState();
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
+    const [isResult, setIsResult] = useState(false);
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -82,12 +84,19 @@ function GoDutch(){
     
                 <div className='mainCenterWrapper'>
                     {/* left content */}
-                    <GoDutchLeftContent
-                        inputMoney={inputMoney}
-                        setInputMoney={setInputMoney}
-                        phoneBoxes={phoneBoxes}
-                        setPhoneBoxes={setPhoneBoxes}
-                    />
+                    {isResult === false ? (
+                        <GoDutchLeftContent
+                            inputMoney={inputMoney}
+                            setInputMoney={setInputMoney}
+                            phoneBoxes={phoneBoxes}
+                            setPhoneBoxes={setPhoneBoxes}
+                        />
+                    ) : (
+                        <GoDutchResult/>
+                    )}
+                    
+                    
+                    
     
                     {/* right content */}
                     <GoDutchRightContent
@@ -96,6 +105,7 @@ function GoDutch(){
                         setInputMoney={setInputMoney}
                         phoneBoxes={phoneBoxes}
                         userId={sessionData.userId}
+                        setIsResult={setIsResult}
                         // setPhoneBoxes={setPhoneBoxes}
                     /> 
                 </div>
