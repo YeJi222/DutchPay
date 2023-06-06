@@ -110,7 +110,7 @@ function GoDutch(){
                     
     
                     {/* right content */}
-                    {/* {isResult === false ? (
+                    {isResult === false ? (
                         <GoDutchRightContent
                             groupId={groupId}
                             userInfo={userInfo}
@@ -125,8 +125,9 @@ function GoDutch(){
                     ) :
                     (
                         <GoDutchMessage/>
-                    )} */}
-                    <GoDutchMessage/>
+                    )}
+                    
+                    {/* <GoDutchMessage/> */}
                 </div>
             </div>
         )

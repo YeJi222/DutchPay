@@ -461,13 +461,23 @@ hr{
     border: none;
     border-radius: 10px;
     width: 400px;
-    max-width: 27vw;
+    max-width: 370px;
     min-width: 370px;
     margin-bottom: 10px;
 }
 .ducthInputBox::placeholder{
     color: red;
     font-family: "DoHyeon";
+}
+.accountInputBox{
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 255px;
+    max-width: 255px;
+    min-width: 255px;
+    margin-bottom: 10px;
 }
 .selectBank{
     padding: 9px;
@@ -488,7 +498,7 @@ hr{
     width: 140px;
     display: grid;
     grid-template-columns: 70px 70px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .goDutchImg{
     width: 60px;
@@ -511,6 +521,7 @@ hr{
     padding-left: 10px;
     padding-right: 10px;
     max-height: inherit;
+    margin-bottom: 20px;
 }
 .dutchResult{
     flex: 1;
@@ -524,11 +535,13 @@ hr{
 .dutchResult::-webkit-scrollbar{
     display: none;
 }
-.verticalDirection{
-    display: none;
-}
-.alignDirection{
-    display: inline;
+.ducthAccountInputBox{
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 255px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 1300px) { /* 세로 배치 */
@@ -541,31 +554,37 @@ hr{
     }
     .dutchInfo{
         margin: auto;
-        border-bottom: dotted white 2px;
         width: 390px;
+        margin-bottom: 20px;
     }
-    .goDutchRightHr{
-        margin-left: 20px;
-        margin-right: 20px;
-        background:#ffffff;
-        height: 2px;
-        border: 0;
-    }
-    
-    .verticalDirection{
-        display: inline;
-    }
-    .alignDirection{
-        display: none;
-    }
-    .ducthAccountInputBox{
-        padding: 10px;
-        font-size: 15px;
-        border: none;
-        border-radius: 10px;
-        width: 255px;
-        margin-bottom: 10px;
-    }
+}
+.dutchContentList{
+    margin-top: 10px;
+    margin-left: -30px;
+    border: dotted white 3px;
+    padding: 20px;
+    width: 400px;
+    height: 45vh;
+    overflow: scroll;
+}
+.dutchContentList::-webkit-scrollbar{
+    display: none;
+}
+.dutchContentTitle{
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+.deleteDutchContent{
+    display: inline-block;
+    background-color: #a4a2a2;
+    color: white;
+    padding: 5px;
+    width: 55px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 /* goDutchResult */
@@ -599,6 +618,7 @@ hr{
 }
 .goDutchTitleArea{
     text-align: center;
+    margin-bottom: 20px;
 }
 .addDutchContent{
     display: inline-block;

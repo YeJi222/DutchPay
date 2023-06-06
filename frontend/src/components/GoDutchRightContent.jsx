@@ -183,53 +183,94 @@ function GoDutchRightContent(props){
             
             <div className='goDutchRightPart'>
                 <div className='dutchInfo'>
-                    <div className='dutchSubTitle'>정산할 내용</div>
-                    <input className='ducthInputBox' id='goDutchContent' 
-                        onChange={changeContent}
-                        placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-                    ></input>
-
-                    <div className='dutchSubTitle'>정산할 금액</div>
-                    <input className='ducthInputBox' id='goDutchMoney' 
-                        onChange={changeMoney} value={props.inputMoney}
-                        placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                    ></input>
-
-                    <div className='dutchSubTitle'>계좌번호</div>
-                    <select class="selectBank" value={inputBank} onChange={changeBank}>
-                        <option value="기업">기업</option>
-                        <option value="국민">국민</option>
-                        <option value="하나">하나</option>
-                        <option value="농협">농협</option>
-                        <option value="우리">우리</option>
-                        <option value="신한">신한</option>
-                        <option value="부산">부산</option>
-                        <option value="카카오뱅크">카카오뱅크</option>
-                        <option value="기타">기타</option>
-                    </select>
-
-                    <span className='alignDirection'>
-                        {valid 
+                    <span className='dutchSubTitle'>계좌번호</span> &nbsp;
+                    {valid 
                         ? <span style={{ color: 'green' }}>Valid Account</span> 
                         : <span style={{ color: 'red' }}>Check your account</span>}
-                        <div>
-                            <input className='ducthInputBox' value={inputAccount} onChange={checkAccount}></input> 
-                        </div>
-                    </span>
-
-                    <span className='verticalDirection'>
-                        <input className='ducthAccountInputBox' value={inputAccount} onChange={checkAccount}></input>
                         
-                        {valid 
-                        ? <div style={{ color: 'green' }}>Valid Account</div> 
-                        : <div style={{ color: 'red' }}>Check your account</div>}
-                    </span>
+                    <div style={{marginTop: "5px"}}>
+                        <select class="selectBank" value={inputBank} onChange={changeBank}>
+                            <option value="기업">기업</option>
+                            <option value="국민">국민</option>
+                            <option value="하나">하나</option>
+                            <option value="농협">농협</option>
+                            <option value="우리">우리</option>
+                            <option value="신한">신한</option>
+                            <option value="부산">부산</option>
+                            <option value="카카오뱅크">카카오뱅크</option>
+                            <option value="기타">기타</option>
+                        </select>
+
+                        <input className='accountInputBox' value={inputAccount} onChange={checkAccount}></input> 
+                    </div>
+
+                    <div className='dutchContentList'>
+                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
+                            <div className="dutchTitle">정산 1</div>
+                            <div className='deleteDutchContent'>
+                                delete
+                            </div>
+                        </div>
+
+                        <div className='dutchSubTitle'>정산할 내용</div>
+                        <input className='ducthInputBox' id='goDutchContent' 
+                            onChange={changeContent}
+                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+                        ></input>
+
+                        <div className='dutchSubTitle'>정산할 금액</div>
+                        <input className='ducthInputBox' id='goDutchMoney' 
+                            onChange={changeMoney} value={props.inputMoney}
+                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+                        ></input>
+
+                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
+                            <div className="dutchTitle">정산 2</div>
+                            <div className='deleteDutchContent'>
+                                delete
+                            </div>
+                        </div>
+
+                        <div className='dutchSubTitle'>정산할 내용</div>
+                        <input className='ducthInputBox' id='goDutchContent' 
+                            onChange={changeContent}
+                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+                        ></input>
+
+                        <div className='dutchSubTitle'>정산할 금액</div>
+                        <input className='ducthInputBox' id='goDutchMoney' 
+                            onChange={changeMoney} value={props.inputMoney}
+                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+                        ></input>
+
+                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
+                            <div className="dutchTitle">정산 3</div>
+                            <div className='deleteDutchContent'>
+                                delete
+                            </div>
+                        </div>
+
+                        <div className='dutchSubTitle'>정산할 내용</div>
+                        <input className='ducthInputBox' id='goDutchContent' 
+                            onChange={changeContent}
+                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+                        ></input>
+
+                        <div className='dutchSubTitle'>정산할 금액</div>
+                        <input className='ducthInputBox' id='goDutchMoney' 
+                            onChange={changeMoney} value={props.inputMoney}
+                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+                        ></input>
+                    </div>
 
                     <div className='dutchPayBtn' onClick={clickDutchPayBtn}>
                         <img src="/images/goDutch.png" className='goDutchImg'/>
                         <div className='dutchPayText'>정산하기</div>
                     </div>
                 </div>
+
+                
+                    
             </div>
         
         </div> 

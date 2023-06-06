@@ -5,10 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-function GoDutchMessage(props){    
-    const navigate = useNavigate();
-    // console.log(props.groupsEntityList);
-
+function GoDutchMessage(props){ 
     return(
         <div className='mainRightPart'>
             <div className='goDutchTitleArea'>
