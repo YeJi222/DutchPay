@@ -519,7 +519,7 @@ hr{
     padding-left: 10px;
     padding-right: 10px;
     overflow: scroll;
-    max-height: inherit;
+    height: 60vh;
 }
 .dutchResult::-webkit-scrollbar{
     display: none;
@@ -543,12 +543,6 @@ hr{
         margin: auto;
         border-bottom: dotted white 2px;
         width: 390px;
-    }
-    .dutchResult{
-        margin: auto;
-        margin-top: 10px;
-        overflow: scroll;
-        max-height: 300px;
     }
     .goDutchRightHr{
         margin-left: 20px;

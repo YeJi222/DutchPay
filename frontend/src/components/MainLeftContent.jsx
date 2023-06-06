@@ -14,7 +14,7 @@ function MainLeftContent(props){
         })
         .then(function(response){
             groupId = response.data;
-            console.log("groupId : ", groupId);
+            // console.log("groupId : ", groupId);
 
             navigate('/goDutch', {
                 state: {

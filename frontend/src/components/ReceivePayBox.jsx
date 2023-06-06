@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function ReceivePayBox(props){
-    console.log(props.memberLen);
+    // console.log(props.memberLen);
     return(
         <div>
             <div className="middleTitle">

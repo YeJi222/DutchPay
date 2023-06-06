@@ -16,12 +16,13 @@ function GoDutch(){
     const [inputMoney, setInputMoney] = useState();
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
     const [isResult, setIsResult] = useState(false);
-    const [resultMembers, setResultMembers] = useState();
+    // const [resultMembers, setResultMembers] = useState();
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
 
-    console.log("go dutch", resultMembers);
+    // console.log("go dutch", resultMembers);
+    console.log("groupId in GoDutch", groupId);
 
     // 세션 정보 관리 
     useEffect(() => {
@@ -100,7 +101,7 @@ function GoDutch(){
                             groupId={groupId}
                             inputMoney={inputMoney}
                             isResult={isResult}
-                            resultMembers={resultMembers}
+                            // resultMembers={resultMembers}
                         />
                     )}
                     
@@ -116,7 +117,7 @@ function GoDutch(){
                         phoneBoxes={phoneBoxes}
                         userId={sessionData.userId}
                         setIsResult={setIsResult}
-                        setResultMembers={setResultMembers}
+                        // setResultMembers={setResultMembers}
                         // setPhoneBoxes={setPhoneBoxes}
                     /> 
                 </div>

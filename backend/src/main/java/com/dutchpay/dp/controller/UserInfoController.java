@@ -136,10 +136,28 @@ public class UserInfoController {
         return map;
     }
 
-    @PostMapping(value = "/getMembersInfo") // 아직 안씀
+    @PostMapping(value = "/getMembersInfo")
     public HashMap<String, Object> getMembersInfo(@RequestParam("groupId") String groupId){
         HashMap<String, Object> map = new HashMap<>();
-        System.out.println("groupId : " + groupId);
+//        System.out.println("groupId : " + groupId);
+
+        List<String> membersPhone = new ArrayList<>();
+        List<String> membersNmoney = new ArrayList<>();
+        List<MembersEntity> membersInfo = membersService.getMembersList(groupId);
+//        System.out.println("membersInfo : " + membersInfo);
+        for(int i = 0 ; i < membersInfo.size() ; i++){
+            String getPhone = membersInfo.get(i).getCompositeKey().getPhone();
+            String phoneFormat = getPhone.substring(0, 3) + "-" + getPhone.substring(3, 7) + "-" + getPhone.substring(7);
+//            System.out.println("phoneFormat : " + phoneFormat);
+            membersPhone.add(phoneFormat);
+            membersNmoney.add(membersInfo.get(i).getNMoney());
+        }
+
+        map.put("membersPhone", membersPhone);
+        map.put("membersNmoney", membersNmoney);
+
+//        System.out.println("membersPhone : " + membersPhone);
+//        System.out.println("membersNmoney : " + membersNmoney);
 
         // groupId로 members table에서 불러오기(phone, n_money)
 //        List<String> membersPhone = new ArrayList<>();
@@ -150,58 +168,6 @@ public class UserInfoController {
 //        }
 //
 //        System.out.println("membersPhone : " + membersPhone);
-
-        /*
-        UserDTO userInfo = userService.getUser(userId);
-
-        map.put("userId", userInfo.getUserId());
-        map.put("userPw", userInfo.getUserPw());
-        map.put("phone", userInfo.getPhone());
-        map.put("bank", userInfo.getBank());
-        map.put("account", userInfo.getAccount());
-
-        List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
-        List<GroupsEntity> distinctGroupsList = new ArrayList<>();
-        int onLen = 0, offLen = 0, sumMoney = 0;
-        for(GroupsEntity groups : groupsInfo){
-            String curGroupId = groups.getCompositeKey().getGroupId();
-            boolean isDuplicate = false;
-            for(GroupsEntity distinctGroups : distinctGroupsList){
-                if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId)){
-                    isDuplicate = true;
-                    break;
-                }
-            }
-            if(!isDuplicate){
-                distinctGroupsList.add(groups);
-            }
-        }
-
-        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
-            if(distinctGroupsList.get(i).getState().equals("on")){
-                onLen++;
-            } else{
-                offLen++;
-                sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
-            }
-        }
-
-        // groupId 별로 인원 수 구하기
-        List<String> memberLen = new ArrayList<>();
-        for(int i = 0 ; i < distinctGroupsList.size() ; i++){
-            String groupId = distinctGroupsList.get(i).getCompositeKey().getGroupId();
-            String groupMemberSize = groupsService.getSameGroupMemberLen(groupId);
-            memberLen.add(groupMemberSize);
-        }
-
-        map.put("onLen", Integer.toString(onLen));
-        map.put("offLen", Integer.toString(offLen));
-        map.put("sumMoney", Integer.toString(sumMoney));
-        map.put("groupsEntityList", distinctGroupsList);
-        map.put("memberLen", memberLen);
-
-         */
-
         return map;
     }
 }

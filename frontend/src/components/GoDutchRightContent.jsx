@@ -163,7 +163,7 @@ function GoDutchRightContent(props){
                 })
                 .then(function(response){
                     // console.log("response", response.data);
-                    props.setResultMembers(response.data);
+                    // props.setResultMembers(response.data);
                 })
                 .catch(function(error){
                     console.log(error);
