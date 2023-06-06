@@ -616,3 +616,27 @@ hr{
     margin-left: 20px;
     margin-bottom: 5px;
 }
+
+/* message */
+.dutchMessageTitle{
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.messageImg{
+    height: 70vh;
+    margin-right: 190px;
+}
+.textareaCSS{
+    background-color: #67CD5E;
+    width: 180px;
+    height: 350px;
+    border-radius: 20px;
+    margin-left: -422px;
+    margin-bottom: 142px;
+    padding: 10px;
+    /* border: none; */
+}

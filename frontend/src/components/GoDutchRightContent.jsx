@@ -230,20 +230,6 @@ function GoDutchRightContent(props){
                         <div className='dutchPayText'>정산하기</div>
                     </div>
                 </div>
-
-                {/* <div className='dutchResult'>
-                    <div className="dutchTitle">정산결과</div>
-                    <div className='dutchSubTitle'>Member 1</div>
-                    <span className='phoneInfoBox'>
-                        010-1111-1111
-                    </span>
-                    <span>
-                        <input className='individualMoneyBox' value={333}></input>
-                    </span>
-                    <span className='updateBtn'>Update</span>
-                </div> */}
-
-                <GoDutchResult/>
             </div>
         
         </div> 

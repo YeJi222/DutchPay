@@ -80,7 +80,7 @@ function GoDutchResult(props){
                     {
                         memberInfo.membersPhone.map((item, idx) => (
                             <div>
-                                <div className='resultSubTitle'>Member 1</div>
+                                <div className='resultSubTitle'>Member {idx + 1}</div>
                                 <span className='phoneInfoBox'>
                                     {item}
                                 </span>

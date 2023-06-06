@@ -6,6 +6,7 @@ import GoDutchLeftContent from './GoDutchLeftContent';
 import GoDutchRightContent from './GoDutchRightContent';
 import PhoneBox from './PhoneBox';
 import GoDutchResult from './GoDutchResult';
+import GoDutchMessage from './GoDutchMessage';
 
 function GoDutch(){
     const navigate = useNavigate();
@@ -109,17 +110,23 @@ function GoDutch(){
                     
     
                     {/* right content */}
-                    <GoDutchRightContent
-                        groupId={groupId}
-                        userInfo={userInfo}
-                        inputMoney={inputMoney}
-                        setInputMoney={setInputMoney}
-                        phoneBoxes={phoneBoxes}
-                        userId={sessionData.userId}
-                        setIsResult={setIsResult}
-                        // setResultMembers={setResultMembers}
-                        // setPhoneBoxes={setPhoneBoxes}
-                    /> 
+                    {/* {isResult === false ? (
+                        <GoDutchRightContent
+                            groupId={groupId}
+                            userInfo={userInfo}
+                            inputMoney={inputMoney}
+                            setInputMoney={setInputMoney}
+                            phoneBoxes={phoneBoxes}
+                            userId={sessionData.userId}
+                            setIsResult={setIsResult}
+                            // setResultMembers={setResultMembers}
+                            // setPhoneBoxes={setPhoneBoxes}
+                        />
+                    ) :
+                    (
+                        <GoDutchMessage/>
+                    )} */}
+                    <GoDutchMessage/>
                 </div>
             </div>
         )
