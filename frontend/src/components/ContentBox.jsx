@@ -108,6 +108,20 @@ function ContentBox(props){
                 value={JSON.stringify(props.contentBoxes[props.content_id].money).substring(1, JSON.stringify(props.contentBoxes[props.content_id].money).length - 1)} // "" 제거
                 placeHolder={props.checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
             ></input>
+
+            <div className='dutchSubTitle'>정산할 인원 선택</div>
+            <div style={{marginTop: "5px"}}>
+                <select multiple="multiple" class="selectBank">
+                    <option value="국민">국민</option>
+                    <option value="하나">하나</option>
+                    <option value="농협">농협</option>
+                    <option value="우리">우리</option>
+                    <option value="신한">신한</option>
+                    <option value="부산">부산</option>
+                    <option value="카카오뱅크">카카오뱅크</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
         </div>
     );
 }
