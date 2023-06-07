@@ -39,7 +39,7 @@ public class GroupsEntity {
             .userAccount(userAccount)
             .totalMoney(totalMoney)
             .payContent(payContent)
-            .members(compositeKey.getMembers())
+            .contentId(compositeKey.getContentId())
             .state(state)
             .build();
     }

@@ -15,7 +15,7 @@ import lombok.ToString;
 @Builder
 public class GroupsDTO {
     private String groupId;
-    private String members;
+    private String contentId;
     private String userId;
     private String userBank;
     private String userAccount;
@@ -26,7 +26,7 @@ public class GroupsDTO {
     public GroupsEntity toEntity(){
         GroupsPK pk = GroupsPK.builder()
             .groupId(groupId)
-            .members(members)
+            .contentId(contentId)
             .build();
 
         return GroupsEntity.builder()

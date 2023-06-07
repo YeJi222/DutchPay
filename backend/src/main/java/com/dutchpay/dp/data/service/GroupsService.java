@@ -9,7 +9,7 @@ public interface GroupsService {
     // GroupsDTO getGroups(String groupId, String members);
     List<GroupsEntity> getGroupsList(String userId);
     String getSameGroupMemberLen(String groupId);
-    GroupsDTO saveGroup(String groupId, String members, String userId, String userBank, String userAccount,
+    GroupsDTO saveGroup(String groupId, String contentId, String userId, String userBank, String userAccount,
         String totalMoney, String payContent, String state);
 
     String createGroupId();

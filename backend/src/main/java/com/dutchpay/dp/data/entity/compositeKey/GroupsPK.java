@@ -18,14 +18,14 @@ import lombok.ToString;
 public class GroupsPK implements Serializable {
     @Column(name = "group_id")
     String groupId;
-    @Column(name = "members")
-    String members;
+    @Column(name = "content_id")
+    String contentId;
 
     public String getGroupId() {
         return groupId;
     }
 
-    public String getMembers() {
-        return members;
+    public String getContentId() {
+        return contentId;
     }
 }

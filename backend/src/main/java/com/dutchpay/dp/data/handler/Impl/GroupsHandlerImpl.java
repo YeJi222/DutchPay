@@ -41,7 +41,7 @@ public class GroupsHandlerImpl implements GroupsHandler {
         GroupsPK compositeKey = new GroupsPK(groupId, members);
         GroupsEntity groupEntity = new GroupsEntity(compositeKey, userId, userBank, userAccount, totalMoney, payContent, state);
         groupEntity = groupsDAO.saveGroup(groupEntity);
-        GroupsDTO group = new GroupsDTO(groupEntity.getCompositeKey().getGroupId(), groupEntity.getCompositeKey().getMembers(),
+        GroupsDTO group = new GroupsDTO(groupEntity.getCompositeKey().getGroupId(), groupEntity.getCompositeKey().getContentId(),
             groupEntity.getUserId(), groupEntity.getUserBank(), groupEntity.getUserAccount(), groupEntity.getTotalMoney(),
             groupEntity.getPayContent(), groupEntity.getState());
 
