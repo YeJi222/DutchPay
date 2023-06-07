@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import GoDutchResult from './GoDutchResult';
+import ContentBox from './ContentBox';
 
 function GoDutchRightContent(props){
     const groupId = props.groupId;
@@ -13,6 +14,7 @@ function GoDutchRightContent(props){
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     const phoneBoxes = props.phoneBoxes;
+    const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, value: ""}]);
 
     console.log("groupId : ", groupId);
 
@@ -43,26 +45,6 @@ function GoDutchRightContent(props){
         .catch(function(error){
             console.log(error);
         })
-    };
-
-    const changeContent = (e) => {
-        setInputContent(e.target.value);
-
-        if(e.target.value != ""){
-            setCheckContentBlank(true);
-        } else{
-            setCheckContentBlank(false);
-        }
-    };
-
-    const changeMoney = (e) => {
-        props.setInputMoney(e.target.value.replaceAll(/[^0-9]/g, "")); // 숫자형식만 가능
-
-        if(e.target.value != ""){
-            setCheckMoneyBlank(true);
-        } else{
-            setCheckMoneyBlank(false);
-        }
     };
 
     const clickDutchPayBtn = (e) => {
@@ -101,6 +83,8 @@ function GoDutchRightContent(props){
         });
 
         console.log("phoneBlankCheck", phoneBlankCheck);
+        console.log("checkContentBlank", checkContentBlank);
+        console.log("checkMoneyBlank", checkMoneyBlank);
         if(phoneBlankCheck === false){
             let timerInterval;
             Swal.fire({
@@ -205,63 +189,16 @@ function GoDutchRightContent(props){
                     </div>
 
                     <div className='dutchContentList'>
-                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
-                            <div className="dutchTitle">정산 1</div>
-                            <div className='deleteDutchContent'>
-                                delete
-                            </div>
-                        </div>
-
-                        <div className='dutchSubTitle'>정산할 내용</div>
-                        <input className='ducthInputBox' id='goDutchContent' 
-                            onChange={changeContent}
-                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-                        ></input>
-
-                        <div className='dutchSubTitle'>정산할 금액</div>
-                        <input className='ducthInputBox' id='goDutchMoney' 
-                            onChange={changeMoney} value={props.inputMoney}
-                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                        ></input>
-
-                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
-                            <div className="dutchTitle">정산 2</div>
-                            <div className='deleteDutchContent'>
-                                delete
-                            </div>
-                        </div>
-
-                        <div className='dutchSubTitle'>정산할 내용</div>
-                        <input className='ducthInputBox' id='goDutchContent' 
-                            onChange={changeContent}
-                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-                        ></input>
-
-                        <div className='dutchSubTitle'>정산할 금액</div>
-                        <input className='ducthInputBox' id='goDutchMoney' 
-                            onChange={changeMoney} value={props.inputMoney}
-                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                        ></input>
-
-                        <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
-                            <div className="dutchTitle">정산 3</div>
-                            <div className='deleteDutchContent'>
-                                delete
-                            </div>
-                        </div>
-
-                        <div className='dutchSubTitle'>정산할 내용</div>
-                        <input className='ducthInputBox' id='goDutchContent' 
-                            onChange={changeContent}
-                            placeHolder={checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-                        ></input>
-
-                        <div className='dutchSubTitle'>정산할 금액</div>
-                        <input className='ducthInputBox' id='goDutchMoney' 
-                            onChange={changeMoney} value={props.inputMoney}
-                            placeHolder={checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-                        ></input>
+                        <ContentBox
+                            setInputContent={setInputContent}
+                            setInputMoney={props.setInputMoney}
+                            checkContentBlank={checkContentBlank}
+                            setCheckContentBlank={setCheckContentBlank}
+                            setCheckMoneyBlank={setCheckMoneyBlank}
+                            checkMoneyBlank={checkMoneyBlank}
+                        />
                     </div>
+                    
 
                     <div className='dutchPayBtn' onClick={clickDutchPayBtn}>
                         <img src="/images/goDutch.png" className='goDutchImg'/>

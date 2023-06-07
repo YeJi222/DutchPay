@@ -96,7 +96,7 @@ function GoDutchResult(props){
                 </div>
 
                 <div className='goDutchLeftBottomText' style={{marginTop: "-5px"}}>
-                    총 인원 : 명<br></br>
+                    총 인원 : {memberInfo.membersPhone.length}명<br></br>
                     정산 금액 : {props.inputMoney}원
                 </div>
             </div>

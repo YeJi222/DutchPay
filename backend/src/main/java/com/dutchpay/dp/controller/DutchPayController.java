@@ -52,6 +52,8 @@ public class DutchPayController {
 //        System.out.println("n_money: " + n_money);
 
         // insert to groups table
+        // members 말고 contents 넣기
+
         for(int i = 0 ; i < members.length ; i++){
             groupsService.saveGroup(groupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "on");
         }
