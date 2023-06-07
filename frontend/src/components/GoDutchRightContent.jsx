@@ -14,7 +14,7 @@ function GoDutchRightContent(props){
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     const phoneBoxes = props.phoneBoxes;
-    const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, value: ""}]);
+    const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: ""}]);
 
     console.log("groupId : ", groupId);
 
@@ -125,7 +125,7 @@ function GoDutchRightContent(props){
             if(checkContentBlank === true && checkMoneyBlank === true && phoneFormatCheck === true){
                 props.setIsResult(true);
                 // n_money 계산
-                var totalMoney = props.inputMoney;
+                var totalMoney = props.inputMoney; // 수정 필요!!
                 var members = phoneValueList;
                 var n_money = Math.ceil(totalMoney/members.length);
 
@@ -158,7 +158,7 @@ function GoDutchRightContent(props){
 
     const addContentAction = (e) =>{
         console.log("contentBoxes len", contentBoxes.length);
-        setContentBoxes([...contentBoxes, {array: <ContentBox/>, value: ""}]);
+        setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: ""}]);
     }
 
     return(
@@ -202,7 +202,7 @@ function GoDutchRightContent(props){
                                 content_id={idx}
 
                                 setInputContent={setInputContent}
-                                setInputMoney={props.setInputMoney}
+                                // setInputMoney={props.setInputMoney}
                                 checkContentBlank={checkContentBlank}
                                 setCheckContentBlank={setCheckContentBlank}
                                 setCheckMoneyBlank={setCheckMoneyBlank}
