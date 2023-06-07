@@ -156,11 +156,16 @@ function GoDutchRightContent(props){
         }
     };
 
+    const addContentAction = (e) =>{
+        console.log("contentBoxes len", contentBoxes.length);
+        setContentBoxes([...contentBoxes, {array: <ContentBox/>, value: ""}]);
+    }
+
     return(
         <div className='mainRightPart'>
             <div className='goDutchTitleArea'>
                 <div className="dutchTitle">정산하기</div>
-                <div className='addDutchContent'>
+                <div className='addDutchContent' onClick={addContentAction}>
                     +
                 </div>
             </div>
@@ -189,14 +194,21 @@ function GoDutchRightContent(props){
                     </div>
 
                     <div className='dutchContentList'>
-                        <ContentBox
-                            setInputContent={setInputContent}
-                            setInputMoney={props.setInputMoney}
-                            checkContentBlank={checkContentBlank}
-                            setCheckContentBlank={setCheckContentBlank}
-                            setCheckMoneyBlank={setCheckMoneyBlank}
-                            checkMoneyBlank={checkMoneyBlank}
-                        />
+                        {contentBoxes.map((_, idx) => (
+                            <ContentBox
+                                key={idx}
+                                contentBoxes={contentBoxes}
+                                setContentBoxes={setContentBoxes}
+                                content_id={idx}
+
+                                setInputContent={setInputContent}
+                                setInputMoney={props.setInputMoney}
+                                checkContentBlank={checkContentBlank}
+                                setCheckContentBlank={setCheckContentBlank}
+                                setCheckMoneyBlank={setCheckMoneyBlank}
+                                checkMoneyBlank={checkMoneyBlank}
+                            />
+                        ))};
                     </div>
                     
 

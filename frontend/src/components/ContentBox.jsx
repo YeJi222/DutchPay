@@ -3,13 +3,18 @@ import React, { useState, useEffect } from 'react';
 function ContentBox(props){
     // const [inputPhone, setInputPhone] = useState();
 
-    // const deletePhoneNumbers = (e) => {
-    //     console.log("delete box key : ", props.phone_id);
-    //     console.log(props.phoneBoxes);
+    const deleteContents = (e) => {
+        console.log("delete box key : ", props.content_id);
+        console.log(props.deleteContents);
 
-    //     // 해당 phone_id 제외한 배열 새로 만들어서 set
-    //     props.setPhoneBoxes(prevPhoneBoxes => prevPhoneBoxes.filter((_, i) => i !== props.phone_id));
-    // }
+        // 해당 content_id 제외한 배열 새로 만들어서 set
+        props.setContentBoxes(prevContentBoxes => prevContentBoxes.filter((_, i) => {
+            if(i !== props.content_id){
+                console.log(i, props.content_id);
+            }
+            return i !== props.content_id
+        }));
+    }
 
     // const changePhone = (e) => {
     //     const changePhoneBoxes = props.phoneBoxes.map((box, index) => {
@@ -60,8 +65,8 @@ function ContentBox(props){
 
         <div>
             <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
-                <div className="dutchTitle">정산 1</div>
-                <div className='deleteDutchContent'>
+                <div className="dutchTitle">정산 {props.content_id + 1}</div>
+                <div className='deleteDutchContent' onClick={deleteContents}>
                     delete
                 </div>
             </div>
