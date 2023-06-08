@@ -75,6 +75,37 @@ function ContentBox(props){
         props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     };
 
+    const selectAll = (e) => {
+        const selectAllBox = document.getElementById('selectAll');
+        const checkboxes = document.getElementsByName('phoneNumbers');
+        const selectedList = [];
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAllBox.checked;
+            if(checkbox.checked && checkbox.value != "selectall"){
+                selectedList.push(checkbox.value);
+            }
+        })
+
+        console.log(selectedList);
+    }
+
+    const checkAction = (e) => {
+        const selectAllBox = document.getElementById('selectAll');
+        const checkboxes = document.getElementsByName('phoneNumbers');
+        const selectedList = [];
+
+        checkboxes.forEach((checkbox) => {
+            if(checkbox.checked && checkbox.value != "selectall"){
+                selectedList.push(checkbox.value);
+            }
+        })
+        if(selectedList.length === 0){
+            console.log(checkboxes[0].checked = false);
+        }
+        console.log(selectedList);
+    }
+
     return(
         // <div className='phoneInputArea'>
         //     <input className='phoneInput' 
@@ -111,7 +142,7 @@ function ContentBox(props){
 
             <div className='dutchSubTitle'>정산할 인원 선택</div>
             <div style={{marginTop: "5px"}}>
-                <select multiple="multiple" class="selectBank">
+                <select multiple="multiple" id="selectPeople" class="selectBank">
                     <option value="국민">국민</option>
                     <option value="하나">하나</option>
                     <option value="농협">농협</option>
@@ -122,6 +153,56 @@ function ContentBox(props){
                     <option value="기타">기타</option>
                 </select>
             </div>
+
+            <div class="selectBank" style={{marginTop: "5px"}}>
+                <input type='checkbox'
+                    name='phoneNumbers' 
+                    value='selectall'
+                    id='selectAll'
+                    onChange={selectAll}
+                /> <b>Select All</b>
+                <br />
+                <input type='checkbox'
+                    name='phoneNumbers' 
+                    value='010-1111-1111'
+                    onChange={checkAction}
+                /> 010-1111-1111
+                <br />
+                <input type='checkbox' 
+                    name='phoneNumbers' 
+                    value='010-2222-2222' 
+                    onChange={checkAction}
+                /> 010-2222-2222
+                <br />
+                <input type='checkbox' 
+                    name='phoneNumbers' 
+                    value='010-3333-3333'
+                    onChange={checkAction}
+                /> 010-3333-3333
+            </div>
+                
+            
+            
+
+            {/* <form id="myForm" action="/submit" method="post">
+                <div class="dropdown">
+                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    체크박스 선택
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <label class="dropdown-item">
+                        <input type="checkbox" name="option" value="option1"> 옵션 1</input>
+                    </label>
+                    <label class="dropdown-item">
+                        <input type="checkbox" name="option" value="option2"> 옵션 2</input>
+                    </label>
+                    <label class="dropdown-item">
+                        <input type="checkbox" name="option" value="option3"> 옵션 3</input>
+                    </label>
+                    </div>
+                </div>
+                <button type="submit">전송</button>
+            </form> */}
         </div>
     );
 }

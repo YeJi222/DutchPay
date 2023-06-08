@@ -27,7 +27,7 @@ function GoDutch(){
 
     // 세션 정보 관리 
     useEffect(() => {
-        if(sessionData === null || userInfo === null){
+        if(sessionData === null || userInfo === null || groupId === null){
             let timerInterval;
             Swal.fire({
                 title: '세션 정보가 없습니다!',
@@ -126,7 +126,7 @@ function GoDutch(){
                     (
                         <GoDutchMessage/>
                     )}
-                    
+
                     {/* <GoDutchMessage/> */}
                 </div>
             </div>

@@ -208,7 +208,7 @@ function GoDutchRightContent(props){
                                 setCheckMoneyBlank={setCheckMoneyBlank}
                                 checkMoneyBlank={checkMoneyBlank}
                             />
-                        ))};
+                        ))}
                     </div>
                     
 
