@@ -14,7 +14,7 @@ function GoDutchRightContent(props){
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     const phoneBoxes = props.phoneBoxes;
-    const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: ""}]);
+    const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: "", phones: []}]);
 
     console.log("groupId : ", groupId);
 
@@ -158,7 +158,7 @@ function GoDutchRightContent(props){
 
     const addContentAction = (e) =>{
         console.log("contentBoxes len", contentBoxes.length);
-        setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: ""}]);
+        setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: "", phones: []}]);
     }
 
     return(

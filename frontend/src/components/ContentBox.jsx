@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 function ContentBox(props){
     // const [inputPhone, setInputPhone] = useState();
+    const selectAllName = `selectAll_${props.content_id}`;
+    const checkboxName = `phoneNumbers_${props.content_id}`;
     console.log(props.contentBoxes);
 
     const deleteContents = (e) => {
@@ -76,23 +78,41 @@ function ContentBox(props){
     };
 
     const selectAll = (e) => {
-        const selectAllBox = document.getElementById('selectAll');
-        const checkboxes = document.getElementsByName('phoneNumbers');
+        // console.log("e", e.name);
+        console.log("name", e.target.name);
+        console.log("id", e.target.id);
+        const selectAllBox = document.getElementById(e.target.id);
+        const checkboxes = document.getElementsByName(e.target.name);
         const selectedList = [];
 
+        
+
         checkboxes.forEach((checkbox) => {
+            // console.log("test", checkbox.value);
             checkbox.checked = selectAllBox.checked;
             if(checkbox.checked && checkbox.value != "selectall"){
                 selectedList.push(checkbox.value);
             }
         })
-
         console.log(selectedList);
+
+        const changeContentBoxes = props.contentBoxes.map((box, idx) => {
+            if(idx === props.content_id){
+                console.log("idx", idx);
+
+                // ...box : box의 모든 속성을 새로운 객체에 복사하고, 원하는 속성의 값을 변경할 수 있다
+                return { ...box, phones: selectedList};
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+        props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     }
 
     const checkAction = (e) => {
-        const selectAllBox = document.getElementById('selectAll');
-        const checkboxes = document.getElementsByName('phoneNumbers');
+        console.log("name", e.target.name);
+        console.log("id", e.target.id);
+        const selectAllBox = document.getElementById(e.target.id);
+        const checkboxes = document.getElementsByName(e.target.name);
         const selectedList = [];
 
         checkboxes.forEach((checkbox) => {
@@ -100,10 +120,23 @@ function ContentBox(props){
                 selectedList.push(checkbox.value);
             }
         })
-        if(selectedList.length === 0){
+        if(selectedList.length != 3){
             console.log(checkboxes[0].checked = false);
+        } else{
+            checkboxes[0].checked = true;
         }
-        console.log(selectedList);
+        console.log("selectedList", selectedList);
+
+        const changeContentBoxes = props.contentBoxes.map((box, idx) => {
+            if(idx === props.content_id){
+                console.log("idx", idx);
+
+                // ...box : box의 모든 속성을 새로운 객체에 복사하고, 원하는 속성의 값을 변경할 수 있다
+                return { ...box, phones: selectedList};
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+        props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     }
 
     return(
@@ -141,7 +174,7 @@ function ContentBox(props){
             ></input>
 
             <div className='dutchSubTitle'>정산할 인원 선택</div>
-            <div style={{marginTop: "5px"}}>
+            {/* <div style={{marginTop: "5px"}}>
                 <select multiple="multiple" id="selectPeople" class="selectBank">
                     <option value="국민">국민</option>
                     <option value="하나">하나</option>
@@ -152,30 +185,30 @@ function ContentBox(props){
                     <option value="카카오뱅크">카카오뱅크</option>
                     <option value="기타">기타</option>
                 </select>
-            </div>
+            </div> */}
 
             <div class="selectBank" style={{marginTop: "5px"}}>
                 <input type='checkbox'
-                    name='phoneNumbers' 
+                    name={checkboxName}
                     value='selectall'
-                    id='selectAll'
+                    id={selectAllName}
                     onChange={selectAll}
                 /> <b>Select All</b>
                 <br />
                 <input type='checkbox'
-                    name='phoneNumbers' 
+                    name={checkboxName}
                     value='010-1111-1111'
                     onChange={checkAction}
                 /> 010-1111-1111
                 <br />
                 <input type='checkbox' 
-                    name='phoneNumbers' 
+                    name={checkboxName}
                     value='010-2222-2222' 
                     onChange={checkAction}
                 /> 010-2222-2222
                 <br />
                 <input type='checkbox' 
-                    name='phoneNumbers' 
+                    name={checkboxName}
                     value='010-3333-3333'
                     onChange={checkAction}
                 /> 010-3333-3333
