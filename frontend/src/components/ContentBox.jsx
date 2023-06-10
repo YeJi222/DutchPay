@@ -139,6 +139,19 @@ function ContentBox(props){
         props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     }
 
+    const clickSelectPhones = (e) => {
+        console.log(e.target.className);
+        if(e.target.className === "selectPhones"){
+            e.target.className = "selectPhonesOpen";
+        } else{
+            e.target.className = "selectPhones";
+        }
+        
+        // var area = document.getElementById('selectPhonesArea');
+        // area.style.backgroundColor = "yellow";
+        // area.style.color
+    }
+
     return(
         // <div className='phoneInputArea'>
         //     <input className='phoneInput' 
@@ -187,13 +200,14 @@ function ContentBox(props){
                 </select>
             </div> */}
 
-            <div class="selectBank" style={{marginTop: "5px"}}>
+            <div className="selectPhones" style={{marginTop: "5px"}} onClick={clickSelectPhones} id="selectPhonesArea">
+                정산할 전화번호를 선택하세요 <br/>
                 <input type='checkbox'
                     name={checkboxName}
                     value='selectall'
                     id={selectAllName}
                     onChange={selectAll}
-                /> <b>Select All</b>
+                /> Select All
                 <br />
                 <input type='checkbox'
                     name={checkboxName}

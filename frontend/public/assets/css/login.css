@@ -636,6 +636,30 @@ hr{
     margin-left: 20px;
     margin-bottom: 5px;
 }
+.selectPhones{
+    height: 16px;
+    width: 200px;
+    padding: 9px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: "DoHyeon";
+    font-size: 17px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.selectPhonesOpen{
+    background-color: #FDE1E1;
+    width: 200px;
+    padding: 9px;
+    border: none;
+    border-radius: 10px;
+    font-family: "DoHyeon";
+    font-size: 17px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
 
 /* message */
 .dutchMessageTitle{
