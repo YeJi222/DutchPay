@@ -18,6 +18,7 @@ function GoDutch(){
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
     const [isResult, setIsResult] = useState(false);
     const [insertPhones, setInsertPhones] = useState(false);
+    const [memberInfo, setMemberInfo] = useState();
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -74,6 +75,84 @@ function GoDutch(){
         navigate('/main', {state: userInfo})
     };
 
+    const clickNextBtn = (e) => {
+        var phoneBlankCheck = true;
+        var phoneFormatCheck = true;
+        var phoneValueList = [];
+
+        phoneBoxes.map((box, index) => {
+            phoneValueList.push(JSON.stringify(box.value).substring(1, JSON.stringify(box.value).length - 1)); // 숫자만 들어가게 
+            // console.log(box);
+            // console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
+            if(JSON.stringify(box.value).length === 2){ // blank
+                // console.log("clickDutchPayBtn", JSON.stringify(box.value));
+                phoneBlankCheck = false;
+            }
+            console.log("clickNextBtn", JSON.stringify(box.value).length);
+            if(JSON.stringify(box.value).length != 13){ // validation(전화번호 : 11자리)
+                phoneFormatCheck = false;
+                let timerInterval;
+                Swal.fire({
+                    title: '전화번호 형식이 맞지 않습니다',
+                    html: '입력한 전화번호를 다시 한 번 확인해주세요 :) ',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {}
+                })
+            }
+        });
+
+        console.log("phoneBlankCheck", phoneBlankCheck);
+        if(phoneBlankCheck === false){
+            let timerInterval;
+            Swal.fire({
+                title: '전화번호 입력에 빈칸이 있습니다',
+                html: '빈칸이 있는 전화번호 란을 지우거나, 채운 후 입력해주세요 :) ',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {}
+            })
+        } else{
+            if(phoneFormatCheck === true){
+                var members = phoneValueList;
+
+                // db에 insert
+                const formData = new FormData();
+                formData.append('groupId', groupId);
+                formData.append('members', members);
+
+                axios({
+                    method: "post",
+                    url: 'http://localhost:8090/createMembers',
+                    data: formData
+                })
+                .then(function(response){
+                    setInsertPhones(true);
+                    // console.log("response", response.data);
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+            }
+        }
+    }
+
     if(sessionData != null && userInfo != null && groupId != null){
         return(
             <div className='page'>
@@ -102,6 +181,9 @@ function GoDutch(){
                     ) : (
                         <GoDutchResult
                             groupId={groupId}
+                            memberInfo={memberInfo}
+                            insertPhones={insertPhones}
+                            setMemberInfo={setMemberInfo}
                             inputMoney={inputMoney}
                             isResult={isResult}
                             // resultMembers={resultMembers}
@@ -126,7 +208,9 @@ function GoDutch(){
                             <GoDutchMessage/>
                         )
                         ) : (
-                            <div></div>
+                            <div className='nextBtn' onClick={clickNextBtn}>
+                                Next {'>'}
+                            </div>
                         )
                     }
                     

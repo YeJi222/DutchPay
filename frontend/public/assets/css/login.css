@@ -380,7 +380,7 @@ hr{
     cursor: pointer;
 }
 .addMembers{
-    float: left;
+    float: right;
     background-color: #FF7C7C;
     color: white;
     padding: 5px;
@@ -389,20 +389,21 @@ hr{
     border-radius: 40px;
     font-size: 20px;
     margin-top: -50px;
-    margin-left: 85px;
+    margin-right: 85px;
     cursor: pointer;
 }
 .nextBtn{
-    float: right;
-    background-color: #333333;
-    color: white;
+    font-family: "DoHyeon";
+    background-color: white;
+    color: #333333;
     padding: 5px;
-    width: 65px;
+    width: 75px;
+    height: 25px;
     text-align: center;
-    border-radius: 40px;
+    border-radius: 30px;
     font-size: 20px;
-    margin-top: -50px;
-    margin-right: 20px;
+    margin-top: 25px;
+    margin-left: 20px;
     cursor: pointer;
 }
 .deleteMembers{
@@ -602,11 +603,12 @@ hr{
 
 /* goDutchResult */
 .phoneInfoBox{
+    display: inline-block;
     padding: 10px;
     font-size: 15px;
     border: none;
     border-radius: 10px;
-    width: 100px;
+    width: 115px;
     text-align: center;
     margin-right: 5px;
     margin-bottom: 10px;
@@ -617,7 +619,7 @@ hr{
     font-size: 15px;
     border: none;
     border-radius: 10px;
-    width: 150px;
+    width: 130px;
     text-align: center;
     margin-right: 5px;
     margin-bottom: 10px;

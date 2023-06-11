@@ -7,11 +7,11 @@ import Swal from "sweetalert2";
 function GoDutchResult(props){
     const navigate = useNavigate();
     const location = useLocation();
-    // const memberInfo = props.resultMembers;
+    const memberInfo = props.memberInfo;
     const groupId = props.groupId;
 
     // console.log("memberInfo", props.inputMoney);
-    const [memberInfo, setMemberInfo] = useState();
+    // const [memberInfo, setMemberInfo] = useState();
     
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -21,6 +21,7 @@ function GoDutchResult(props){
     // console.log("userPw : ", sessionData.userPw);
 
     useEffect(() => {
+        console.log("memberInfo", memberInfo);
         if(sessionData === null){
             let timerInterval;
             Swal.fire({
@@ -42,7 +43,7 @@ function GoDutchResult(props){
             })
         } else{
             if(groupId != undefined){
-                console.log("groupId in GoDutchResult", props.groupId);
+                // console.log("groupId in GoDutchResult", groupId);
 
                 const formData = new FormData();
                 formData.append('groupId', groupId);
@@ -53,7 +54,7 @@ function GoDutchResult(props){
                     data: formData
                 })
                 .then(function(response){
-                    setMemberInfo(response.data);
+                    props.setMemberInfo(response.data);
                     // console.log("memberInfo", memberInfo.membersPhone);
                 })
                 .catch(function(error){
@@ -62,7 +63,7 @@ function GoDutchResult(props){
             }
             
         }
-    }, [memberInfo]);
+    }, []);
 
     return(
         memberInfo != undefined ? (
