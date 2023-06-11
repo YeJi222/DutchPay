@@ -195,6 +195,7 @@ function GoDutch(){
                             <GoDutchRightContent
                                 groupId={groupId}
                                 userInfo={userInfo}
+                                memberInfo={memberInfo}
                                 inputMoney={inputMoney}
                                 setInputMoney={setInputMoney}
                                 // phoneBoxes={phoneBoxes}

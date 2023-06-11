@@ -57,7 +57,7 @@ function ContentBox(props){
 
     const changeMoney = (e) => {
         console.log("money", e.target.value);
-        
+
         if(e.target.value != ""){
             props.setCheckMoneyBlank(true);
         } else{
@@ -152,68 +152,69 @@ function ContentBox(props){
     }
 
     return(
-        // <div className='phoneInputArea'>
-        //     <input className='phoneInput' 
-        //         onChange={changePhone} 
-        //         value={JSON.stringify(props.phoneBoxes[props.phone_id].value).substring(1, JSON.stringify(props.phoneBoxes[props.phone_id].value).length - 1)} // "" 제거
-        //         placeholder="'-' 기호 없이 숫자만 입력해주세요">
-        //     </input>
-        //     <div className='deleteMembers' onClick={deletePhoneNumbers}>
-        //         -
-        //     </div>
-        // </div>
+        props.memberInfo != undefined ? (
+            // <div className='phoneInputArea'>
+            //     <input className='phoneInput' 
+            //         onChange={changePhone} 
+            //         value={JSON.stringify(props.phoneBoxes[props.phone_id].value).substring(1, JSON.stringify(props.phoneBoxes[props.phone_id].value).length - 1)} // "" 제거
+            //         placeholder="'-' 기호 없이 숫자만 입력해주세요">
+            //     </input>
+            //     <div className='deleteMembers' onClick={deletePhoneNumbers}>
+            //         -
+            //     </div>
+            // </div>
 
-        <div>
-            <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
-                <div className="dutchTitle">정산 {props.content_id + 1}</div>
-                <div className='deleteDutchContent' onClick={deleteContents}>
-                    delete
+            <div>
+                <div className='goDutchTitleArea' style={{marginBottom: "-10px"}}>
+                    <div className="dutchTitle">정산 {props.content_id + 1}</div>
+                    <div className='deleteDutchContent' onClick={deleteContents}>
+                        delete
+                    </div>
+                </div>
+
+                <div className='dutchSubTitle'>정산할 내용</div>
+                <input className='ducthInputBox' id='goDutchContent' 
+                    onChange={changeContent}
+                    value={JSON.stringify(props.contentBoxes[props.content_id].content).substring(1, JSON.stringify(props.contentBoxes[props.content_id].content).length - 1)} // "" 제거
+                    placeHolder={props.checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+                ></input>
+
+                <div className='dutchSubTitle'>정산할 금액</div>
+                <input className='ducthInputBox' id='goDutchMoney' 
+                    onChange={changeMoney} 
+                    value={JSON.stringify(props.contentBoxes[props.content_id].money).substring(1, JSON.stringify(props.contentBoxes[props.content_id].money).length - 1)} // "" 제거
+                    placeHolder={props.checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+                ></input>
+
+                <div className='dutchSubTitle'>정산할 인원 선택</div>
+                <div className="selectPhones" style={{marginTop: "5px"}} onClick={clickSelectPhones} id="selectPhonesArea">
+                    정산할 전화번호를 선택하세요 <br/>
+                    <input type='checkbox'
+                        name={checkboxName}
+                        value='selectall'
+                        id={selectAllName}
+                        onChange={selectAll}
+                    /> Select All
+                    <br />
+                    {
+                        props.memberInfo.membersPhone.map((item, idx) => (
+                            // <React.Fragment> : React에서 여러 요소를 하나의 부모 요소로 그룹화하기 위해 사용되는 특수한 컴포넌트
+                            <React.Fragment key={idx}>
+                                <input
+                                    type='checkbox'
+                                    name={checkboxName}
+                                    value={item}
+                                    onChange={checkAction}
+                                /> {item}
+                                <br/>
+                            </React.Fragment>
+                        ))
+                    }
                 </div>
             </div>
-
-            <div className='dutchSubTitle'>정산할 내용</div>
-            <input className='ducthInputBox' id='goDutchContent' 
-                onChange={changeContent}
-                value={JSON.stringify(props.contentBoxes[props.content_id].content).substring(1, JSON.stringify(props.contentBoxes[props.content_id].content).length - 1)} // "" 제거
-                placeHolder={props.checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
-            ></input>
-
-            <div className='dutchSubTitle'>정산할 금액</div>
-            <input className='ducthInputBox' id='goDutchMoney' 
-                onChange={changeMoney} 
-                value={JSON.stringify(props.contentBoxes[props.content_id].money).substring(1, JSON.stringify(props.contentBoxes[props.content_id].money).length - 1)} // "" 제거
-                placeHolder={props.checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
-            ></input>
-
-            <div className='dutchSubTitle'>정산할 인원 선택</div>
-            <div className="selectPhones" style={{marginTop: "5px"}} onClick={clickSelectPhones} id="selectPhonesArea">
-                정산할 전화번호를 선택하세요 <br/>
-                <input type='checkbox'
-                    name={checkboxName}
-                    value='selectall'
-                    id={selectAllName}
-                    onChange={selectAll}
-                /> Select All
-                <br />
-                <input type='checkbox'
-                    name={checkboxName}
-                    value='010-1111-1111'
-                    onChange={checkAction}
-                /> 010-1111-1111
-                <br />
-                <input type='checkbox' 
-                    name={checkboxName}
-                    value='010-2222-2222' 
-                    onChange={checkAction}
-                /> 010-2222-2222
-                <br />
-                <input type='checkbox' 
-                    name={checkboxName}
-                    value='010-3333-3333'
-                    onChange={checkAction}
-                /> 010-3333-3333
-            </div>
-        </div>
+        ) : (
+            <div></div>
+        )
     );
 }
 

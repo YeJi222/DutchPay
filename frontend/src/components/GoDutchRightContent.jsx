@@ -205,6 +205,7 @@ function GoDutchRightContent(props){
                                 contentBoxes={contentBoxes}
                                 setContentBoxes={setContentBoxes}
                                 content_id={idx}
+                                memberInfo={props.memberInfo}
                                 // inputMoney={props.inputMoney}
                                 // setInputMoney={props.setInputMoney}
                                 setInputContent={setInputContent}
@@ -223,9 +224,6 @@ function GoDutchRightContent(props){
                         <div className='dutchPayText'>정산하기</div>
                     </div>
                 </div>
-
-                
-                    
             </div>
         
         </div> 
