@@ -638,7 +638,7 @@ hr{
 }
 .selectPhones{
     height: 16px;
-    width: 200px;
+    /* width: 200px; */
     padding: 9px;
     border: none;
     border-radius: 10px;
@@ -651,7 +651,7 @@ hr{
 }
 .selectPhonesOpen{
     background-color: #FDE1E1;
-    width: 200px;
+    /* width: 200px; */
     padding: 9px;
     border: none;
     border-radius: 10px;

@@ -74,7 +74,7 @@ function GoDutch(){
         navigate('/main', {state: userInfo})
     };
 
-    if(sessionData != null && userInfo != null){
+    if(sessionData != null && userInfo != null && groupId != null){
         return(
             <div className='page'>
                 <header>

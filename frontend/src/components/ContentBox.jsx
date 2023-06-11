@@ -94,7 +94,7 @@ function ContentBox(props){
                 selectedList.push(checkbox.value);
             }
         })
-        console.log(selectedList);
+        // console.log(selectedList);
 
         const changeContentBoxes = props.contentBoxes.map((box, idx) => {
             if(idx === props.content_id){
@@ -125,7 +125,6 @@ function ContentBox(props){
         } else{
             checkboxes[0].checked = true;
         }
-        console.log("selectedList", selectedList);
 
         const changeContentBoxes = props.contentBoxes.map((box, idx) => {
             if(idx === props.content_id){
@@ -138,6 +137,7 @@ function ContentBox(props){
         });
         props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     }
+    console.log("selectedList", props.contentBoxes);
 
     const clickSelectPhones = (e) => {
         console.log(e.target.className);
