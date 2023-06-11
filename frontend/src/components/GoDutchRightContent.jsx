@@ -13,7 +13,7 @@ function GoDutchRightContent(props){
     const [inputContent, setInputContent] = useState(props.userInfo.account);
     const [checkContentBlank, setCheckContentBlank] = useState(false);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
-    const phoneBoxes = props.phoneBoxes;
+    // const phoneBoxes = props.phoneBoxes;
     const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: "", phones: []}]);
 
     console.log("groupId : ", groupId);
@@ -48,49 +48,43 @@ function GoDutchRightContent(props){
     };
 
     const clickDutchPayBtn = (e) => {
-        var phoneBlankCheck = true;
-        var phoneFormatCheck = true;
-        var phoneValueList = [];
-
-        phoneBoxes.map((box, index) => {
-            phoneValueList.push(JSON.stringify(box.value).substring(1, JSON.stringify(box.value).length - 1)); // 숫자만 들어가게 
-            // console.log(box);
-            // console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
-            if(JSON.stringify(box.value).length === 2){ // blank
-                // console.log("clickDutchPayBtn", JSON.stringify(box.value));
-                phoneBlankCheck = false;
-            }
-            console.log("clickDutchPayBtn", JSON.stringify(box.value).length);
-            if(JSON.stringify(box.value).length != 13){ // validation(전화번호 : 11자리)
-                phoneFormatCheck = false;
-                let timerInterval;
-                Swal.fire({
-                    title: '전화번호 형식이 맞지 않습니다',
-                    html: '입력한 전화번호를 다시 한 번 확인해주세요 :) ',
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                    }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {}
-                })
-            }
-        });
-
-        console.log("phoneBlankCheck", phoneBlankCheck);
+        console.log("contentBoxes", contentBoxes);
         console.log("checkContentBlank", checkContentBlank);
         console.log("checkMoneyBlank", checkMoneyBlank);
-        if(phoneBlankCheck === false){
+
+        var contentBlank = false;
+        var moneyBlank = false;
+        var phonesBlank = false;
+        var totalMoney = 0;
+
+        for(var i = 0 ; i < contentBoxes.length ; i++){
+            console.log("content", contentBoxes[i].content);
+            console.log("money", contentBoxes[i].money);
+            console.log("phones", contentBoxes[i].phones);
+
+            totalMoney += Number(contentBoxes[i].money);
+            props.setInputMoney(totalMoney);
+
+            if(contentBoxes[i].content === ''){
+                contentBlank = true; // blank 있음
+            }
+            if(contentBoxes[i].money === ''){
+                moneyBlank = true; // blank 있음
+            }
+            if(contentBoxes[i].phones.length === 0){
+                phonesBlank = true; // blank 있음
+            }
+        }
+        console.log("contentBlank", contentBlank);
+        console.log("moneyBlank", moneyBlank);
+        console.log("phonesBlank", phonesBlank);
+
+        if(contentBlank === true || moneyBlank === true || phonesBlank === true){
             let timerInterval;
             Swal.fire({
-                title: '전화번호 입력에 빈칸이 있습니다',
-                html: '빈칸이 있는 전화번호 란을 지우거나, 채운 후 입력해주세요 :) ',
-                timer: 2000,
+                title: '빈칸이 있습니다',
+                html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
+                timer: 1000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()
@@ -103,57 +97,68 @@ function GoDutchRightContent(props){
                 if (result.dismiss === Swal.DismissReason.timer) {}
             })
         } else{
-            if(checkContentBlank === false || checkMoneyBlank === false){
-                let timerInterval;
-                Swal.fire({
-                    title: '빈칸이 있습니다',
-                    html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
-                    timer: 1000,
-                    timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                    }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {}
-                })
-            }
+            // total money 계산
 
-            if(checkContentBlank === true && checkMoneyBlank === true && phoneFormatCheck === true){
+            // n_money 계산
+            // var totalMoney = props.inputMoney;
+            // var members = phoneValueList;
+            // var n_money = Math.ceil(totalMoney/members.length);
+
+            // db에 insert
+            const formData = new FormData();
+            // formData.append('groupId', groupId);
+            // formData.append('payContent', inputContent);
+            // formData.append('totalMoney', totalMoney);
+            // formData.append('userId', props.userId);
+            // formData.append('userBank', inputBank);
+            // formData.append('userAccount', inputAccount);
+            // formData.append('n_money', n_money);
+
+            axios({
+                method: "post",
+                url: 'http://localhost:8090/createDutchPayGroup',
+                data: formData
+            })
+            .then(function(response){
                 props.setIsResult(true);
-                // n_money 계산
-                var totalMoney = props.inputMoney; // 수정 필요!!
-                var members = phoneValueList;
-                var n_money = Math.ceil(totalMoney/members.length);
-
-                // db에 insert
-                const formData = new FormData();
-                formData.append('groupId', groupId);
-                formData.append('payContent', inputContent);
-                formData.append('totalMoney', totalMoney);
-                formData.append('members', members);
-                formData.append('userId', props.userId);
-                formData.append('userBank', inputBank);
-                formData.append('userAccount', inputAccount);
-                formData.append('n_money', n_money);
-
-                axios({
-                    method: "post",
-                    url: 'http://localhost:8090/createDutchPayGroup',
-                    data: formData
-                })
-                .then(function(response){
-                    // console.log("response", response.data);
-                    // props.setResultMembers(response.data);
-                })
-                .catch(function(error){
-                    console.log(error);
-                })
-            }
+                // console.log("response", response.data);
+                // props.setResultMembers(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
         }
+
+        // if(checkContentBlank === true && checkMoneyBlank === true){
+        //     props.setIsResult(true);
+        //     // n_money 계산
+        //     var totalMoney = props.inputMoney; // 수정 필요!!
+        //     // var members = phoneValueList;
+        //     // var n_money = Math.ceil(totalMoney/members.length);
+
+        //     // db에 insert
+        //     const formData = new FormData();
+        //     formData.append('groupId', groupId);
+        //     formData.append('payContent', inputContent);
+        //     formData.append('totalMoney', totalMoney);
+        //     formData.append('userId', props.userId);
+        //     formData.append('userBank', inputBank);
+        //     formData.append('userAccount', inputAccount);
+        //     // formData.append('n_money', n_money);
+
+        //     axios({
+        //         method: "post",
+        //         url: 'http://localhost:8090/createDutchPayGroup',
+        //         data: formData
+        //     })
+        //     .then(function(response){
+        //         // console.log("response", response.data);
+        //         // props.setResultMembers(response.data);
+        //     })
+        //     .catch(function(error){
+        //         console.log(error);
+        //     })
+        // }
     };
 
     const addContentAction = (e) =>{
@@ -200,9 +205,10 @@ function GoDutchRightContent(props){
                                 contentBoxes={contentBoxes}
                                 setContentBoxes={setContentBoxes}
                                 content_id={idx}
-
-                                setInputContent={setInputContent}
+                                // inputMoney={props.inputMoney}
                                 // setInputMoney={props.setInputMoney}
+                                setInputContent={setInputContent}
+                                
                                 checkContentBlank={checkContentBlank}
                                 setCheckContentBlank={setCheckContentBlank}
                                 setCheckMoneyBlank={setCheckMoneyBlank}

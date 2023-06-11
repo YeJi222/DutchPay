@@ -56,9 +56,8 @@ function ContentBox(props){
     };
 
     const changeMoney = (e) => {
-        console.log(e.target.value);
-        // props.setInputMoney(e.target.value.replaceAll(/[^0-9]/g, "")); // 숫자형식만 가능
-
+        console.log("money", e.target.value);
+        
         if(e.target.value != ""){
             props.setCheckMoneyBlank(true);
         } else{
@@ -187,19 +186,6 @@ function ContentBox(props){
             ></input>
 
             <div className='dutchSubTitle'>정산할 인원 선택</div>
-            {/* <div style={{marginTop: "5px"}}>
-                <select multiple="multiple" id="selectPeople" class="selectBank">
-                    <option value="국민">국민</option>
-                    <option value="하나">하나</option>
-                    <option value="농협">농협</option>
-                    <option value="우리">우리</option>
-                    <option value="신한">신한</option>
-                    <option value="부산">부산</option>
-                    <option value="카카오뱅크">카카오뱅크</option>
-                    <option value="기타">기타</option>
-                </select>
-            </div> */}
-
             <div className="selectPhones" style={{marginTop: "5px"}} onClick={clickSelectPhones} id="selectPhonesArea">
                 정산할 전화번호를 선택하세요 <br/>
                 <input type='checkbox'
@@ -227,29 +213,6 @@ function ContentBox(props){
                     onChange={checkAction}
                 /> 010-3333-3333
             </div>
-                
-            
-            
-
-            {/* <form id="myForm" action="/submit" method="post">
-                <div class="dropdown">
-                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    체크박스 선택
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <label class="dropdown-item">
-                        <input type="checkbox" name="option" value="option1"> 옵션 1</input>
-                    </label>
-                    <label class="dropdown-item">
-                        <input type="checkbox" name="option" value="option2"> 옵션 2</input>
-                    </label>
-                    <label class="dropdown-item">
-                        <input type="checkbox" name="option" value="option3"> 옵션 3</input>
-                    </label>
-                    </div>
-                </div>
-                <button type="submit">전송</button>
-            </form> */}
         </div>
     );
 }

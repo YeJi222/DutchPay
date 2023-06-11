@@ -16,7 +16,7 @@ function GoDutch(){
     const [userInfo, setUserInfo] = useState(location.state.userInfo);
     const [inputMoney, setInputMoney] = useState();
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
-    const [isResult, setIsResult] = useState(false);
+    const [isResult, setIsResult] = useState(false); // 정산하기 버튼 누르기 전,후
     const [insertPhones, setInsertPhones] = useState(false);
     const [memberInfo, setMemberInfo] = useState();
 
@@ -197,7 +197,7 @@ function GoDutch(){
                                 userInfo={userInfo}
                                 inputMoney={inputMoney}
                                 setInputMoney={setInputMoney}
-                                phoneBoxes={phoneBoxes}
+                                // phoneBoxes={phoneBoxes}
                                 userId={sessionData.userId}
                                 setIsResult={setIsResult}
                                 // setResultMembers={setResultMembers}
