@@ -37,6 +37,19 @@ public class DutchPayController {
         return randomGroupId;
     }
 
+    @PostMapping(value = "/createMembers")
+    public String createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("members") String[] members){
+        System.out.println("groupId: " + groupId);
+        System.out.println("members: " + Arrays.toString(members));
+
+        // insert to members table
+        for(int i = 0 ; i < members.length ; i++){
+            membersService.saveMembers(groupId, members[i], null, "no");
+        }
+
+        return "success to insert";
+    }
+
     @PostMapping(value = "/createDutchPayGroup")
     public String createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("payContent") String payContent,
         @RequestParam("totalMoney") String totalMoney, @RequestParam("members") String[] members,

@@ -17,7 +17,7 @@ function GoDutch(){
     const [inputMoney, setInputMoney] = useState();
     const [phoneBoxes, setPhoneBoxes] = useState([{array: <PhoneBox phone_id="0"/>, value: ""}]);
     const [isResult, setIsResult] = useState(false);
-    // const [resultMembers, setResultMembers] = useState();
+    const [insertPhones, setInsertPhones] = useState(false);
 
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
@@ -90,12 +90,14 @@ function GoDutch(){
     
                 <div className='mainCenterWrapper'>
                     {/* left content */}
-                    {isResult === false ? (
+                    {insertPhones === false ? (
                         <GoDutchLeftContent
+                            groupId={groupId}
                             inputMoney={inputMoney}
                             setInputMoney={setInputMoney}
                             phoneBoxes={phoneBoxes}
                             setPhoneBoxes={setPhoneBoxes}
+                            setInsertPhones={setInsertPhones}
                         />
                     ) : (
                         <GoDutchResult
@@ -105,12 +107,34 @@ function GoDutch(){
                             // resultMembers={resultMembers}
                         />
                     )}
+
+                    {insertPhones === true ? (
+                        isResult === false ? (
+                            <GoDutchRightContent
+                                groupId={groupId}
+                                userInfo={userInfo}
+                                inputMoney={inputMoney}
+                                setInputMoney={setInputMoney}
+                                phoneBoxes={phoneBoxes}
+                                userId={sessionData.userId}
+                                setIsResult={setIsResult}
+                                // setResultMembers={setResultMembers}
+                                // setPhoneBoxes={setPhoneBoxes}
+                            />
+                        ) :
+                        (
+                            <GoDutchMessage/>
+                        )
+                        ) : (
+                            <div></div>
+                        )
+                    }
                     
                     
                     
     
                     {/* right content */}
-                    {isResult === false ? (
+                    {/* {isResult === false ? (
                         <GoDutchRightContent
                             groupId={groupId}
                             userInfo={userInfo}
@@ -125,7 +149,7 @@ function GoDutch(){
                     ) :
                     (
                         <GoDutchMessage/>
-                    )}
+                    )} */}
 
                     {/* <GoDutchMessage/> */}
                 </div>
