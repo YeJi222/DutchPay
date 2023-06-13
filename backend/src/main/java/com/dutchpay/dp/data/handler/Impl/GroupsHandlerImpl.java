@@ -37,12 +37,12 @@ public class GroupsHandlerImpl implements GroupsHandler {
 
     @Override
     public GroupsDTO saveGroupEntity(String groupId, String members, String userId, String userBank,
-        String userAccount, String totalMoney, String payContent, String state){
+        String userAccount, String dutchMoney, String payContent, String state){
         GroupsPK compositeKey = new GroupsPK(groupId, members);
-        GroupsEntity groupEntity = new GroupsEntity(compositeKey, userId, userBank, userAccount, totalMoney, payContent, state);
+        GroupsEntity groupEntity = new GroupsEntity(compositeKey, userId, userBank, userAccount, dutchMoney, payContent, state);
         groupEntity = groupsDAO.saveGroup(groupEntity);
         GroupsDTO group = new GroupsDTO(groupEntity.getCompositeKey().getGroupId(), groupEntity.getCompositeKey().getContentId(),
-            groupEntity.getUserId(), groupEntity.getUserBank(), groupEntity.getUserAccount(), groupEntity.getTotalMoney(),
+            groupEntity.getUserId(), groupEntity.getUserBank(), groupEntity.getUserAccount(), groupEntity.getDutchMoney(),
             groupEntity.getPayContent(), groupEntity.getState());
 
         return group;

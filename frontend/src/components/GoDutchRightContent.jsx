@@ -48,10 +48,6 @@ function GoDutchRightContent(props){
     };
 
     const clickDutchPayBtn = (e) => {
-        console.log("contentBoxes", contentBoxes);
-        console.log("checkContentBlank", checkContentBlank);
-        console.log("checkMoneyBlank", checkMoneyBlank);
-
         var contentBlank = false;
         var moneyBlank = false;
         var phonesBlank = false;
@@ -79,11 +75,28 @@ function GoDutchRightContent(props){
         console.log("moneyBlank", moneyBlank);
         console.log("phonesBlank", phonesBlank);
 
-        if(contentBlank === true || moneyBlank === true || phonesBlank === true){
+        if(contentBlank === true || moneyBlank === true){
             let timerInterval;
             Swal.fire({
                 title: '빈칸이 있습니다',
-                html: '모두 입력한 후 정산하기 버튼을 눌러주세요 :) ',
+                html: '빈칸을 모두 입력한 후, 정산하기 버튼을 눌러주세요 :) ',
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+                }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {}
+            })
+        } else if(phonesBlank === true){
+            let timerInterval;
+            Swal.fire({
+                title: '전화번호를 선택하지 않았습니다',
+                html: '전화번호를 선택한 후, 정산하기 버튼을 눌러주세요 :) ',
                 timer: 1000,
                 timerProgressBar: true,
                 didOpen: () => {
@@ -97,6 +110,16 @@ function GoDutchRightContent(props){
                 if (result.dismiss === Swal.DismissReason.timer) {}
             })
         } else{
+            var contentList = [];
+            var dutchMoneyList = [];
+
+            console.log("after click dutchBtn - contentBoxes", contentBoxes);
+            for(var i = 0 ; i < contentBoxes.length ; i++){
+                contentList.push(contentBoxes[i].content);
+                dutchMoneyList.push(contentBoxes[i].money);
+            }
+
+
             // total money 계산
 
             // n_money 계산
@@ -106,13 +129,13 @@ function GoDutchRightContent(props){
 
             // db에 insert
             const formData = new FormData();
-            // formData.append('groupId', groupId);
-            // formData.append('payContent', inputContent);
-            // formData.append('totalMoney', totalMoney);
-            // formData.append('userId', props.userId);
-            // formData.append('userBank', inputBank);
-            // formData.append('userAccount', inputAccount);
-            // formData.append('n_money', n_money);
+            formData.append('groupId', groupId);
+            formData.append('payContent', contentList);
+            formData.append('dutchMoney', dutchMoneyList);
+            formData.append('userId', props.userId);
+            formData.append('userBank', inputBank);
+            formData.append('userAccount', inputAccount);
+            formData.append('n_money', "n_money"); // test
 
             axios({
                 method: "post",
@@ -120,7 +143,13 @@ function GoDutchRightContent(props){
                 data: formData
             })
             .then(function(response){
-                props.setIsResult(true);
+                // props.setIsResult(true); 메시지 페이지로 넘어가려면 주석 제거하기
+
+
+
+
+
+
                 // console.log("response", response.data);
                 // props.setResultMembers(response.data);
             })
@@ -166,7 +195,6 @@ function GoDutchRightContent(props){
         setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: "", phones: []}]);
         setCheckContentBlank([...checkContentBlank, false]);
         setCheckMoneyBlank([...checkMoneyBlank, false]);
-        // console.log("$$$test", props.checkContentBlank);
     }
 
     return(

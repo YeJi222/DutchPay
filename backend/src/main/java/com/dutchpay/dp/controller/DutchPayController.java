@@ -51,30 +51,30 @@ public class DutchPayController {
     }
 
     @PostMapping(value = "/createDutchPayGroup")
-    public String createDutchPayGroup(@RequestParam("groupId") String groupId, @RequestParam("payContent") String payContent,
-        @RequestParam("totalMoney") String totalMoney, @RequestParam("members") String[] members,
+    public String createDutchPayGroup(@RequestParam("groupId") String groupId,
+        @RequestParam("payContent") String payContent, @RequestParam("dutchMoney") String dutchMoney,
         @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
         @RequestParam("userAccount") String userAccount, @RequestParam("n_money") String n_money){
-//        System.out.println("groupId: " + groupId);
-//        System.out.println("payContent: " + payContent);
-//        System.out.println("totalMoney: " + totalMoney);
-//        System.out.println("members: " + Arrays.toString(members));
-//        System.out.println("userId: " + userId);
-//        System.out.println("userBank: " + userBank);
-//        System.out.println("userAccount: " + userAccount);
-//        System.out.println("n_money: " + n_money);
+
+        System.out.println("groupId: " + groupId);
+        System.out.println("payContent: " + payContent);
+        System.out.println("dutchMoney: " + dutchMoney);
+        System.out.println("userId: " + userId);
+        System.out.println("userBank: " + userBank);
+        System.out.println("userAccount: " + userAccount);
+        System.out.println("n_money: " + n_money);
 
         // insert to groups table
         // members 말고 contents 넣기
 
-        for(int i = 0 ; i < members.length ; i++){
-            groupsService.saveGroup(groupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "on");
-        }
-
-        // insert to members table
-        for(int i = 0 ; i < members.length ; i++){
-            membersService.saveMembers(groupId, members[i], n_money, "no");
-        }
+//        for(int i = 0 ; i < members.length ; i++){
+//            groupsService.saveGroup(groupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "on");
+//        }
+//
+//        // insert to members table
+//        for(int i = 0 ; i < members.length ; i++){
+//            membersService.saveMembers(groupId, members[i], n_money, "no");
+//        }
 
         /*
         HashMap<String, Object> map = new HashMap<>();

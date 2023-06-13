@@ -9,7 +9,7 @@ public interface GroupsHandler {
     List<GroupsEntity>  getGroupsEntityList(String userId);
     List<GroupsEntity> getSameGroupIdList(String groupId);
     GroupsDTO saveGroupEntity(String groupId, String contentId, String userId, String userBank,
-        String userAccount, String totalMoney, String payContent, String state);
+        String userAccount, String dutchMoney, String payContent, String state);
     // GroupsDTO getGroupsEntity(String groupId, String members);
     List<String> getGroupIdAll();
 }

@@ -27,7 +27,7 @@ public class GroupsEntity {
     String userId;
     String userBank;
     String userAccount;
-    String totalMoney;
+    String dutchMoney;
     String payContent;
     String state;
 
@@ -37,7 +37,7 @@ public class GroupsEntity {
             .userId(userId)
             .userBank(userBank)
             .userAccount(userAccount)
-            .totalMoney(totalMoney)
+            .totalMoney(dutchMoney)
             .payContent(payContent)
             .contentId(compositeKey.getContentId())
             .state(state)

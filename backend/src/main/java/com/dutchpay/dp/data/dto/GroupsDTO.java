@@ -19,7 +19,7 @@ public class GroupsDTO {
     private String userId;
     private String userBank;
     private String userAccount;
-    private String totalMoney;
+    private String dutchMoney;
     private String payContent;
     private String state;
 
@@ -34,7 +34,7 @@ public class GroupsDTO {
             .userId(userId)
             .userBank(userBank)
             .userAccount(userAccount)
-            .totalMoney(totalMoney)
+            .dutchMoney(dutchMoney)
             .payContent(payContent)
             .state(state)
             .build();
