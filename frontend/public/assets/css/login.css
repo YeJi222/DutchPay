@@ -530,11 +530,13 @@ hr{
     display: flex;
 }
 .dutchInfo{
-    flex: 1;
-    /* background-color: yellow; */
+    /* flex: 1;
     padding-left: 10px;
     padding-right: 10px;
     max-height: inherit;
+    margin-bottom: 20px; */
+    margin: auto;
+    width: 430px;
     margin-bottom: 20px;
 }
 .dutchResult{
@@ -558,23 +560,11 @@ hr{
     margin-bottom: 10px;
 }
 
-@media (max-width: 1300px) { /* 세로 배치 */
-    .dutchPayBtn{
-        margin-top: 20px;
-    }
-    .goDutchRightPart {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .dutchInfo{
-        margin: auto;
-        width: 390px;
-        margin-bottom: 20px;
-    }
+.accountArea{
+    margin-left: 30px;
 }
 .dutchContentList{
     margin-top: 10px;
-    margin-left: -30px;
     border: dotted white 3px;
     padding: 20px;
     width: 400px;
@@ -599,6 +589,20 @@ hr{
     border-radius: 10px;
     font-size: 15px;
     cursor: pointer;
+}
+@media (max-width: 1300px) { /* 세로 배치 */
+    .dutchPayBtn{
+        margin-top: 20px;
+    }
+    .goDutchRightPart {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    /* .dutchInfo{
+        margin: auto;
+        width: 390px;
+        margin-bottom: 20px;
+    } */
 }
 
 /* goDutchResult */

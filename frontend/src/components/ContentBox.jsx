@@ -17,6 +17,10 @@ function ContentBox(props){
             }
             return i !== props.content_id
         }));
+
+        props.setCheckContentBlank(prevContentBlank => prevContentBlank.filter((_, i) => {
+            return i !== props.content_id
+        }));
     }
 
     // const changePhone = (e) => {
@@ -33,14 +37,34 @@ function ContentBox(props){
     //     props.setPhoneBoxes(changePhoneBoxes); // 변경한 새 배열을 set
     // }
 
+    console.log("$$$", props.checkContentBlank);
+
     const changeContent = (e) => {
         console.log(e.target.value);
         props.setInputContent(e.target.value);
 
+        console.log("###", props.checkContentBlank);
+        const trueCheckContentBlank = props.checkContentBlank.map((box, idx) => {
+            if(idx === props.content_id){
+                console.log("checkContentBlank idx", idx);
+
+                return true; // 특정 인덱스 요소의 value를 변경
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+        const falseCheckContentBlank = props.checkContentBlank.map((box, idx) => {
+            if(idx === props.content_id){
+                console.log("checkContentBlank idx", idx);
+
+                return false; // 특정 인덱스 요소의 value를 변경
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+
         if(e.target.value != ""){
-            props.setCheckContentBlank(true);
+            props.setCheckContentBlank(trueCheckContentBlank);
         } else{
-            props.setCheckContentBlank(false);
+            props.setCheckContentBlank(falseCheckContentBlank);
         }
 
         const changeContentBoxes = props.contentBoxes.map((box, idx) => {
@@ -176,7 +200,7 @@ function ContentBox(props){
                 <input className='ducthInputBox' id='goDutchContent' 
                     onChange={changeContent}
                     value={JSON.stringify(props.contentBoxes[props.content_id].content).substring(1, JSON.stringify(props.contentBoxes[props.content_id].content).length - 1)} // "" 제거
-                    placeHolder={props.checkContentBlank === false ? "정산할 내용을 입력해주세요!" : ""}
+                    placeHolder={props.checkContentBlank[props.content_id] === false ? "정산할 내용을 입력해주세요!" : ""}
                 ></input>
 
                 <div className='dutchSubTitle'>정산할 금액</div>
@@ -198,8 +222,9 @@ function ContentBox(props){
                     <br />
                     {
                         props.memberInfo.membersPhone.map((item, idx) => (
-                            // <React.Fragment> : React에서 여러 요소를 하나의 부모 요소로 그룹화하기 위해 사용되는 특수한 컴포넌트
-                            <React.Fragment key={idx}>
+                            // <React.Fragment> : React에서 여러 요소를 하나의 부모 요소로 그룹화하기 위해 
+                            // 사용되는 특수한 컴포넌트(고유한 key 필요)
+                            <React.Fragment key={idx}> 
                                 <input
                                     type='checkbox'
                                     name={checkboxName}

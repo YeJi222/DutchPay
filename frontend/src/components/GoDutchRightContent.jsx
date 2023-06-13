@@ -11,7 +11,7 @@ function GoDutchRightContent(props){
     const [inputAccount, setInputAccount] = useState(props.userInfo.account);
     const [valid, setValid] = useState(true);
     const [inputContent, setInputContent] = useState(props.userInfo.account);
-    const [checkContentBlank, setCheckContentBlank] = useState(false);
+    const [checkContentBlank, setCheckContentBlank] = useState([false, ]);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
     // const phoneBoxes = props.phoneBoxes;
     const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: "", phones: []}]);
@@ -164,6 +164,8 @@ function GoDutchRightContent(props){
     const addContentAction = (e) =>{
         console.log("contentBoxes len", contentBoxes.length);
         setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: "", phones: []}]);
+        setCheckContentBlank([...checkContentBlank, false]);
+        // console.log("$$$test", props.checkContentBlank);
     }
 
     return(
@@ -177,26 +179,29 @@ function GoDutchRightContent(props){
             
             <div className='goDutchRightPart'>
                 <div className='dutchInfo'>
-                    <span className='dutchSubTitle'>계좌번호</span> &nbsp;
-                    {valid 
-                        ? <span style={{ color: 'green' }}>Valid Account</span> 
-                        : <span style={{ color: 'red' }}>Check your account</span>}
-                        
-                    <div style={{marginTop: "5px"}}>
-                        <select class="selectBank" value={inputBank} onChange={changeBank}>
-                            <option value="기업">기업</option>
-                            <option value="국민">국민</option>
-                            <option value="하나">하나</option>
-                            <option value="농협">농협</option>
-                            <option value="우리">우리</option>
-                            <option value="신한">신한</option>
-                            <option value="부산">부산</option>
-                            <option value="카카오뱅크">카카오뱅크</option>
-                            <option value="기타">기타</option>
-                        </select>
+                    <div className='accountArea'>
+                        <span className='dutchSubTitle'>계좌번호</span> &nbsp;
+                        {valid 
+                            ? <span style={{ color: 'green' }}>Valid Account</span> 
+                            : <span style={{ color: 'red' }}>Check your account</span>}
+                            
+                        <div style={{marginTop: "5px"}}>
+                            <select class="selectBank" value={inputBank} onChange={changeBank}>
+                                <option value="기업">기업</option>
+                                <option value="국민">국민</option>
+                                <option value="하나">하나</option>
+                                <option value="농협">농협</option>
+                                <option value="우리">우리</option>
+                                <option value="신한">신한</option>
+                                <option value="부산">부산</option>
+                                <option value="카카오뱅크">카카오뱅크</option>
+                                <option value="기타">기타</option>
+                            </select>
 
-                        <input className='accountInputBox' value={inputAccount} onChange={checkAccount}></input> 
+                            <input className='accountInputBox' value={inputAccount} onChange={checkAccount}></input> 
+                        </div>
                     </div>
+                    
 
                     <div className='dutchContentList'>
                         {contentBoxes.map((_, idx) => (

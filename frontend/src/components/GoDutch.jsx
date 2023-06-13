@@ -95,7 +95,7 @@ function GoDutch(){
                 Swal.fire({
                     title: '전화번호 형식이 맞지 않습니다',
                     html: '입력한 전화번호를 다시 한 번 확인해주세요 :) ',
-                    timer: 2000,
+                    timer: 1500,
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading()
@@ -116,7 +116,7 @@ function GoDutch(){
             Swal.fire({
                 title: '전화번호 입력에 빈칸이 있습니다',
                 html: '빈칸이 있는 전화번호 란을 지우거나, 채운 후 입력해주세요 :) ',
-                timer: 2000,
+                timer: 1500,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()
