@@ -12,7 +12,7 @@ function GoDutchRightContent(props){
     const [valid, setValid] = useState(true);
     const [inputContent, setInputContent] = useState(props.userInfo.account);
     const [checkContentBlank, setCheckContentBlank] = useState([false, ]);
-    const [checkMoneyBlank, setCheckMoneyBlank] = useState(false);
+    const [checkMoneyBlank, setCheckMoneyBlank] = useState([false, ]);
     // const phoneBoxes = props.phoneBoxes;
     const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: "", phones: []}]);
 
@@ -165,6 +165,7 @@ function GoDutchRightContent(props){
         console.log("contentBoxes len", contentBoxes.length);
         setContentBoxes([...contentBoxes, {array: <ContentBox/>, content: "", money: "", phones: []}]);
         setCheckContentBlank([...checkContentBlank, false]);
+        setCheckMoneyBlank([...checkMoneyBlank, false]);
         // console.log("$$$test", props.checkContentBlank);
     }
 

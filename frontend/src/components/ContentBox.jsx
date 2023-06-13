@@ -21,29 +21,16 @@ function ContentBox(props){
         props.setCheckContentBlank(prevContentBlank => prevContentBlank.filter((_, i) => {
             return i !== props.content_id
         }));
+
+        props.setCheckMoneyBlank(prevContentBlank => prevContentBlank.filter((_, i) => {
+            return i !== props.content_id
+        }));
     }
-
-    // const changePhone = (e) => {
-    //     const changePhoneBoxes = props.phoneBoxes.map((box, index) => {
-    //         if(index === props.phone_id){
-    //             console.log("index", index);
-
-    //             // ...box : box의 모든 속성을 새로운 객체에 복사하고, 원하는 속성의 값을 변경할 수 있다
-    //             var validValue = e.target.value.replaceAll(/[^0-9]/g, "");
-    //             return { ...box, value: validValue }; // 특정 인덱스 요소의 value 변경
-    //         }
-    //         return box; // 나머지 요소는 그대로 유지
-    //     });
-    //     props.setPhoneBoxes(changePhoneBoxes); // 변경한 새 배열을 set
-    // }
-
-    console.log("$$$", props.checkContentBlank);
 
     const changeContent = (e) => {
         console.log(e.target.value);
         props.setInputContent(e.target.value);
 
-        console.log("###", props.checkContentBlank);
         const trueCheckContentBlank = props.checkContentBlank.map((box, idx) => {
             if(idx === props.content_id){
                 console.log("checkContentBlank idx", idx);
@@ -82,10 +69,23 @@ function ContentBox(props){
     const changeMoney = (e) => {
         console.log("money", e.target.value);
 
+        const trueCheckMoneyBlank = props.checkMoneyBlank.map((box, idx) => {
+            if(idx === props.content_id){
+                return true; // 특정 인덱스 요소의 value를 변경
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+        const falseCheckMoneyBlank = props.checkMoneyBlank.map((box, idx) => {
+            if(idx === props.content_id){
+                return false; // 특정 인덱스 요소의 value를 변경
+            }
+            return box; // 나머지 요소는 그대로 유지
+        });
+
         if(e.target.value != ""){
-            props.setCheckMoneyBlank(true);
+            props.setCheckMoneyBlank(trueCheckMoneyBlank);
         } else{
-            props.setCheckMoneyBlank(false);
+            props.setCheckMoneyBlank(falseCheckMoneyBlank);
         }
 
         const changeContentBoxes = props.contentBoxes.map((box, idx) => {
@@ -207,7 +207,7 @@ function ContentBox(props){
                 <input className='ducthInputBox' id='goDutchMoney' 
                     onChange={changeMoney} 
                     value={JSON.stringify(props.contentBoxes[props.content_id].money).substring(1, JSON.stringify(props.contentBoxes[props.content_id].money).length - 1)} // "" 제거
-                    placeHolder={props.checkMoneyBlank === false ? "정산할 금액을 입력해주세요!" : ""}
+                    placeHolder={props.checkMoneyBlank[props.content_id] === false ? "정산할 금액을 입력해주세요!" : ""}
                 ></input>
 
                 <div className='dutchSubTitle'>정산할 인원 선택</div>
