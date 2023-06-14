@@ -115,7 +115,7 @@ public class UserInfoController {
                 onLen++;
             } else{
                 offLen++;
-                sumMoney += Integer.parseInt(distinctGroupsList.get(i).getTotalMoney());
+                sumMoney += Integer.parseInt(distinctGroupsList.get(i).getDutchMoney());
             }
         }
 

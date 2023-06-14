@@ -1,10 +1,13 @@
 package com.dutchpay.dp.controller;
 
+import com.dutchpay.dp.data.dto.GroupsDTO;
 import com.dutchpay.dp.data.entity.MembersEntity;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.MembersService;
 import com.dutchpay.dp.data.service.SendMessageService;
 import com.dutchpay.dp.data.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,24 +55,23 @@ public class DutchPayController {
 
     @PostMapping(value = "/createDutchPayGroup")
     public String createDutchPayGroup(@RequestParam("groupId") String groupId,
-        @RequestParam("payContent") String payContent, @RequestParam("dutchMoney") String dutchMoney,
+        @RequestParam("payContent") String[] payContent, @RequestParam("dutchMoney") String[] dutchMoney,
+        @RequestParam("phones") String phones,
         @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
-        @RequestParam("userAccount") String userAccount, @RequestParam("n_money") String n_money){
+        @RequestParam("userAccount") String userAccount){
 
         System.out.println("groupId: " + groupId);
         System.out.println("payContent: " + payContent);
         System.out.println("dutchMoney: " + dutchMoney);
+        System.out.println("phones: " + phones);
         System.out.println("userId: " + userId);
         System.out.println("userBank: " + userBank);
         System.out.println("userAccount: " + userAccount);
-        System.out.println("n_money: " + n_money);
 
         // insert to groups table
-        // members 말고 contents 넣기
-
-//        for(int i = 0 ; i < members.length ; i++){
-//            groupsService.saveGroup(groupId, members[i], userId, userBank, userAccount, totalMoney, payContent, "on");
-//        }
+        for(int i = 0 ; i < payContent.length ; i++){
+            groupsService.saveGroup(groupId, String.valueOf(i+1), userId, userBank, userAccount, dutchMoney[i], payContent[i], "on");
+        }
 //
 //        // insert to members table
 //        for(int i = 0 ; i < members.length ; i++){

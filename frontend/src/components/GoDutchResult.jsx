@@ -10,7 +10,6 @@ function GoDutchResult(props){
     const memberInfo = props.memberInfo;
     const groupId = props.groupId;
 
-    // console.log("memberInfo", props.inputMoney);
     // const [memberInfo, setMemberInfo] = useState();
     
     const storedData = localStorage.getItem('user');

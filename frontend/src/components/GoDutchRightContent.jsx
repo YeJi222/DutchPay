@@ -13,6 +13,7 @@ function GoDutchRightContent(props){
     const [inputContent, setInputContent] = useState(props.userInfo.account);
     const [checkContentBlank, setCheckContentBlank] = useState([false, ]);
     const [checkMoneyBlank, setCheckMoneyBlank] = useState([false, ]);
+    const [calculateNmoney, setCalculateNmoney] = useState();
     // const phoneBoxes = props.phoneBoxes;
     const [contentBoxes, setContentBoxes] = useState([{array: <ContentBox content_id="0"/>, content: "", money: "", phones: []}]);
 
@@ -112,12 +113,39 @@ function GoDutchRightContent(props){
         } else{
             var contentList = [];
             var dutchMoneyList = [];
+            var phonesList = [];
+            var memberPhoneList = [];
+            // var calculateNmoney;
+
+            for(var i = 0 ; i < props.memberInfo.membersPhone.length ; i++){
+                console.log("phoneBoxes", props.memberInfo.membersPhone[i]);
+                memberPhoneList.push({phone: props.memberInfo.membersPhone[i], n_money: ""});
+            }
+            console.log("memberPhoneList", memberPhoneList);
 
             console.log("after click dutchBtn - contentBoxes", contentBoxes);
             for(var i = 0 ; i < contentBoxes.length ; i++){
                 contentList.push(contentBoxes[i].content);
                 dutchMoneyList.push(contentBoxes[i].money);
+                phonesList.push(contentBoxes[i].phones);
+
+                var n_money = Math.ceil(contentBoxes[i].money/phonesList[i].length);
+                console.log("========= ", i);
+                    var getNmoney = memberPhoneList.map((member, idx) => {
+                        for(var j = 0 ; j < phonesList[i].length ; j++){
+                            if (member.phone === phonesList[i][j]) {
+                                return { ...member, n_money: Number(member.n_money) + Number(n_money) }; // 특정 인덱스 요소의 value 변경
+                            }
+                        }
+                        return member; // 나머지 요소는 그대로 유지
+                    });
+                    memberPhoneList = getNmoney;
+                    // props.setCalculateNmoney(memberPhoneList);
+                    console.log("calculateNmoney", memberPhoneList);
+                
             }
+
+            
 
 
             // total money 계산
@@ -132,10 +160,12 @@ function GoDutchRightContent(props){
             formData.append('groupId', groupId);
             formData.append('payContent', contentList);
             formData.append('dutchMoney', dutchMoneyList);
+            formData.append('phones', phonesList);
             formData.append('userId', props.userId);
             formData.append('userBank', inputBank);
             formData.append('userAccount', inputAccount);
-            formData.append('n_money', "n_money"); // test
+            // formData.append('memberPhoneList', memberPhoneList); // test
+            // formData.append('n_money', "n_money"); // test
 
             axios({
                 method: "post",

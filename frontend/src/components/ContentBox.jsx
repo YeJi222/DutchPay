@@ -4,7 +4,7 @@ function ContentBox(props){
     // const [inputPhone, setInputPhone] = useState();
     const selectAllName = `selectAll_${props.content_id}`;
     const checkboxName = `phoneNumbers_${props.content_id}`;
-    console.log(props.contentBoxes);
+    // console.log(props.contentBoxes);
 
     const deleteContents = (e) => {
         console.log("delete box key : ", props.content_id);
@@ -160,7 +160,7 @@ function ContentBox(props){
         });
         props.setContentBoxes(changeContentBoxes); // 변경한 새 배열을 set
     }
-    console.log("selectedList", props.contentBoxes);
+    // console.log("selectedList", props.contentBoxes);
 
     const clickSelectPhones = (e) => {
         console.log(e.target.className);
