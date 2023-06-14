@@ -173,6 +173,8 @@ function GoDutchRightContent(props){
                 data: formData
             })
             .then(function(response){
+                console.log(response.data);
+                
                 // props.setIsResult(true); 메시지 페이지로 넘어가려면 주석 제거하기
 
 

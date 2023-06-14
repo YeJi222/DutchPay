@@ -30,10 +30,10 @@ public class GroupsServiceImpl implements GroupsService {
         return groupsHandler.saveGroupEntity(groupId, contentId, userId, userBank, userAccount, dutchMoney, payContent, state);
     }
 
-//    @Override
-//    public GroupsDTO getGroups(String groupId){
-//        return groupsHandler.getGroupsEntity(groupId);
-//    }
+    @Override
+    public GroupsDTO getGroup(String groupId){
+        return groupsHandler.getGroupEntity(groupId);
+    }
 
     @Override
     public String createGroupId(){ // random한 groupId 생성

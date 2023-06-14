@@ -10,6 +10,6 @@ public interface GroupsHandler {
     List<GroupsEntity> getSameGroupIdList(String groupId);
     GroupsDTO saveGroupEntity(String groupId, String contentId, String userId, String userBank,
         String userAccount, String dutchMoney, String payContent, String state);
-    // GroupsDTO getGroupsEntity(String groupId, String members);
+     GroupsDTO getGroupEntity(String groupId);
     List<String> getGroupIdAll();
 }

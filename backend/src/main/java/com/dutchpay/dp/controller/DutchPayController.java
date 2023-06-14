@@ -68,10 +68,17 @@ public class DutchPayController {
         System.out.println("userBank: " + userBank);
         System.out.println("userAccount: " + userAccount);
 
-        // insert to groups table
-        for(int i = 0 ; i < payContent.length ; i++){
-            groupsService.saveGroup(groupId, String.valueOf(i+1), userId, userBank, userAccount, dutchMoney[i], payContent[i], "on");
+        try{
+            GroupsDTO groupsDTO = groupsService.getGroup(groupId);
+            return "already exist";
+        } catch (Exception e){
+            for(int i = 0 ; i < payContent.length ; i++){
+                groupsService.saveGroup(groupId, String.valueOf(i+1), userId, userBank, userAccount, dutchMoney[i], payContent[i], "on");
+            }
+            return "success to insert";
         }
+
+
 //
 //        // insert to members table
 //        for(int i = 0 ; i < members.length ; i++){
@@ -96,8 +103,6 @@ public class DutchPayController {
 //        System.out.println("membersNmoney : " + membersNmoney);
 
          */
-
-        return "success to insert";
     }
 
     @PostMapping(value = "/sendMessage")

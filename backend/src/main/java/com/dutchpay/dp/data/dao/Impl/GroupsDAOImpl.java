@@ -38,11 +38,12 @@ public class GroupsDAOImpl implements GroupsDAO {
         return groupEntity;
     }
 
-//    @Override
-//    public GroupsEntity getGroups(String groupId){
-//        GroupsEntity groupsEntity = groupsRepository.getReferenceById(groupId);
-//        return groupsEntity;
-//    }
+    @Override
+    public GroupsEntity getGroups(String groupId){
+        List<GroupsEntity> groupsEntity = groupsRepository.findByCompositeKeyGroupId(groupId);
+        GroupsEntity groupEntity = groupsEntity.get(0);
+        return groupEntity;
+    }
 
     @Override
     public List<String> getGroupIdAll(){

@@ -48,15 +48,14 @@ public class GroupsHandlerImpl implements GroupsHandler {
         return group;
     }
 
-//    @Override
-//    public GroupsDTO getGroupsEntity(String groupId){
-//        GroupsEntity groupsEntity = groupsDAO.getGroups(groupId);
-//        GroupsDTO groups = new GroupsDTO(groupsEntity.getGroupId(), groupsEntity.getUserId(),
-//            groupsEntity.getUserBank(), groupsEntity.getUserAccount(),
-//            groupsEntity.getTotalMoney(), groupsEntity.getPayContent(),
-//            groupsEntity.getMembers(), groupsEntity.getState());
-//        return groups;
-//    }
+    @Override
+    public GroupsDTO getGroupEntity(String groupId){
+        GroupsEntity groupEntity = groupsDAO.getGroups(groupId);
+        GroupsDTO group = new GroupsDTO(groupEntity.getCompositeKey().getGroupId(), groupEntity.getCompositeKey().getContentId(),
+            groupEntity.getUserId(), groupEntity.getUserBank(), groupEntity.getUserAccount(), groupEntity.getDutchMoney(),
+            groupEntity.getPayContent(), groupEntity.getState());
+        return group;
+    }
 
     @Override
     public List<String> getGroupIdAll(){
