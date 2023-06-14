@@ -164,8 +164,6 @@ function GoDutchRightContent(props){
             formData.append('userId', props.userId);
             formData.append('userBank', inputBank);
             formData.append('userAccount', inputAccount);
-            // formData.append('memberPhoneList', memberPhoneList); // test
-            // formData.append('n_money', "n_money"); // test
 
             axios({
                 method: "post",
@@ -179,6 +177,22 @@ function GoDutchRightContent(props){
 
 
 
+                // console.log("response", response.data);
+                // props.setResultMembers(response.data);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            
+            axios({
+                method: "post",
+                url: 'http://localhost:8090/get_nMoney',
+                data: memberPhoneList
+            })
+            .then(function(response){
+                console.log(response.data);
+                
+                // props.setIsResult(true); 메시지 페이지로 넘어가려면 주석 제거하기
 
 
 

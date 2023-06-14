@@ -9,13 +9,16 @@ import com.dutchpay.dp.data.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -103,6 +106,18 @@ public class DutchPayController {
 //        System.out.println("membersNmoney : " + membersNmoney);
 
          */
+    }
+
+    @PostMapping(value = "/get_nMoney")
+    public String createDutchPayGroup(@RequestBody Object memberPhoneList) {
+
+        System.out.println("memberPhoneList: " + memberPhoneList);
+        List phoneList = new ArrayList<>();
+        List nMoneyList = new ArrayList<>();
+        String memberPhoneListStr = memberPhoneList.toString();
+
+
+        return "success to update";
     }
 
     @PostMapping(value = "/sendMessage")
