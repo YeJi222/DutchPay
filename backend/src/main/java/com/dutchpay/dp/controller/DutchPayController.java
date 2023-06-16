@@ -109,12 +109,19 @@ public class DutchPayController {
     }
 
     @PostMapping(value = "/get_nMoney")
-    public String createDutchPayGroup(@RequestBody Object memberPhoneList) {
+    public String createDutchPayGroup(@RequestBody List<Map<String, Object>> memberPhoneList) {
 
-        System.out.println("memberPhoneList: " + memberPhoneList);
+        System.out.println("memberPhoneList: " + memberPhoneList.size());
         List phoneList = new ArrayList<>();
         List nMoneyList = new ArrayList<>();
-        String memberPhoneListStr = memberPhoneList.toString();
+
+        for(int i = 0 ; i < memberPhoneList.size() ; i++){
+            phoneList.add(memberPhoneList.get(i).get("phone"));
+            nMoneyList.add(memberPhoneList.get(i).get("n_money"));
+        }
+
+        System.out.println(phoneList);
+        System.out.println(nMoneyList);
 
 
         return "success to update";
