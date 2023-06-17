@@ -66,15 +66,36 @@ function GoDutchResult(props){
         }
     }, [updateFlag]);
 
-    const changeMoney = (e) => {
-        console.log("target",e.target.value);
-        var updateBlank = document.getElementById("updateBlank");
+    const changeMoney = (idx) => {
+        console.log(idx);
+        var updateBlank = document.getElementById("updateBlank_" + idx);
         console.log(updateBlank.value);
-        updateBlank.value = "";
-        console.log("memberInfo", memberInfo);
-        // setMemberInfo.membersNmoney[2](e.target.value);
-        // console.log(e.target.value);
+    }
+
+    const updateNmoney = (idx, item) => {
+        console.log(item);
+        var updateBlank = document.getElementById("updateBlank_" + idx);
         console.log(updateBlank.value);
+
+        const phone = item;
+        const updateNmoney = updateBlank.value;
+        const formData = new FormData();
+        formData.append('groupId', groupId);
+        formData.append('phone', phone);
+        formData.append('updateNmoney', updateNmoney);
+
+        axios({
+            method: "post",
+            url: 'http://localhost:8090/changeNmoney',
+            data: formData
+        })
+        .then(function(response){
+            console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
     }
 
     return(
@@ -98,12 +119,16 @@ function GoDutchResult(props){
                                     {item}
                                 </span>
                                 <span>
-                                    <input className='individualMoneyBox' id="updateBlank"
-                                        value={memberInfo.membersNmoney[idx]}
-                                        onChange={changeMoney}>
+                                    <input className='individualMoneyBox' id={"updateBlank_" + idx}
+                                        placeholder={memberInfo.membersNmoney[idx]}
+                                        onChange={() => changeMoney(idx)}>
                                     </input>
                                 </span>
-                                <span className='updateBtn'>Update</span>
+                                <span className='updateBtn'
+                                    onClick={() => updateNmoney(idx, item)}
+                                >
+                                    Update
+                                </span>
                             </div>
                             
                         ))

@@ -116,6 +116,23 @@ public class DutchPayController {
         }
     }
 
+    @PostMapping(value = "/changeNmoney")
+    public String changeNmoney(@RequestParam("groupId") String groupId,
+        @RequestParam("phone") String phone, @RequestParam("updateNmoney") String updateNmoney){
+
+        phone = phone.replace("-", "");
+        System.out.println(phone + " " + updateNmoney);
+
+        // update
+        int result = membersService.updateNmoney(groupId, phone, updateNmoney);
+
+        if(result == 1){
+            return "success to update";
+        } else{
+            return "fail to update";
+        }
+    }
+
     @PostMapping(value = "/sendMessage")
     public String sendMessageAction(){
         String phone = "01012345678";
