@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface MembersRepository extends JpaRepository<MembersEntity, String> {
     List<MembersEntity> findByCompositeKeyGroupId(String groupId);
     @Modifying
-    @Query(value = "UPDATE members SET n_money = :nMoney_value WHERE groupId = :groupId AND phone = :phone", nativeQuery = true)
+    @Query(value = "UPDATE members SET n_money = :nMoney_value WHERE group_id = :groupId AND phone = :phone", nativeQuery = true)
     int updateNmoney(@Param("groupId")String groupId, @Param("phone")String phone, @Param("nMoney_value")String nMoney);
 }

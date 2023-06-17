@@ -86,22 +86,22 @@ public class DutchPayController {
     public String createDutchPayGroup(@RequestBody List<Map<String, Object>> memberPhoneList) {
 
         System.out.println("memberPhoneList: " + memberPhoneList.size());
-        List phoneList = new ArrayList<>();
-        List nMoneyList = new ArrayList<>();
+        List<String> phoneList = new ArrayList<>();
+        List<String> nMoneyList = new ArrayList<>();
 
         String groupId = memberPhoneList.get(0).get("groupId").toString();
         System.out.println("group id : " + groupId);
 
         for(int i = 1 ; i < memberPhoneList.size() ; i++){
-            phoneList.add(memberPhoneList.get(i).get("phone"));
-            nMoneyList.add(memberPhoneList.get(i).get("n_money"));
+            phoneList.add(memberPhoneList.get(i).get("phone").toString().replaceAll("-", ""));
+            nMoneyList.add(memberPhoneList.get(i).get("n_money").toString());
         }
         System.out.println(phoneList);
         System.out.println(nMoneyList);
 
         // update
         for(int i = 0 ; i < phoneList.size() ; i++){
-            // membersService.updateNmoney();
+            membersService.updateNmoney(groupId, phoneList.get(i), nMoneyList.get(i));
         }
 
 
