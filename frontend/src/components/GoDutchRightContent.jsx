@@ -114,7 +114,7 @@ function GoDutchRightContent(props){
             var contentList = [];
             var dutchMoneyList = [];
             var phonesList = [];
-            var memberPhoneList = [];
+            var memberPhoneList = [{groupId: groupId}];
             // var calculateNmoney;
 
             for(var i = 0 ; i < props.memberInfo.membersPhone.length ; i++){
@@ -183,6 +183,8 @@ function GoDutchRightContent(props){
             .catch(function(error){
                 console.log(error);
             })
+
+            console.log("memberPhoneList", memberPhoneList);
             
             axios({
                 method: "post",

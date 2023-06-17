@@ -26,4 +26,9 @@ public class MembersServiceImpl implements MembersService {
     public MembersDTO saveMembers(String groupId, String phone, String nMoney, String sendState){
         return membersHandler.saveMembersEntity(groupId, phone, nMoney, sendState);
     }
+
+    @Override
+    public int updateNmoney(String groupId, String phone, String nMoney){
+        return membersHandler.updateNmoney(groupId, phone, nMoney);
+    }
 }

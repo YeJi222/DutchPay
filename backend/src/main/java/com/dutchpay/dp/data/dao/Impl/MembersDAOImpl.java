@@ -29,4 +29,10 @@ public class MembersDAOImpl implements MembersDAO {
         membersRepository.save(membersEntity);
         return membersEntity;
     }
+
+    @Override
+    public int updateNmoney(String groupId, String phone, String nMoney){
+        int result = membersRepository.updateNmoney(groupId, phone, nMoney);
+        return result;
+    }
 }

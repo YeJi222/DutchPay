@@ -63,13 +63,13 @@ public class DutchPayController {
         @RequestParam("userId") String userId, @RequestParam("userBank") String userBank,
         @RequestParam("userAccount") String userAccount){
 
-        System.out.println("groupId: " + groupId);
-        System.out.println("payContent: " + payContent);
-        System.out.println("dutchMoney: " + dutchMoney);
-        System.out.println("phones: " + phones);
-        System.out.println("userId: " + userId);
-        System.out.println("userBank: " + userBank);
-        System.out.println("userAccount: " + userAccount);
+//        System.out.println("groupId: " + groupId);
+//        System.out.println("payContent: " + payContent);
+//        System.out.println("dutchMoney: " + dutchMoney);
+//        System.out.println("phones: " + phones);
+//        System.out.println("userId: " + userId);
+//        System.out.println("userBank: " + userBank);
+//        System.out.println("userAccount: " + userAccount);
 
         try{
             GroupsDTO groupsDTO = groupsService.getGroup(groupId);
@@ -80,32 +80,6 @@ public class DutchPayController {
             }
             return "success to insert";
         }
-
-
-//
-//        // insert to members table
-//        for(int i = 0 ; i < members.length ; i++){
-//            membersService.saveMembers(groupId, members[i], n_money, "no");
-//        }
-
-        /*
-        HashMap<String, Object> map = new HashMap<>();
-        List<String> membersPhone = new ArrayList<>();
-        List<String> membersNmoney = new ArrayList<>();
-        List<MembersEntity> membersInfo = membersService.getMembersList(groupId);
-//        System.out.println("membersInfo : " + membersInfo);
-        for(int i = 0 ; i < membersInfo.size() ; i++){
-            membersPhone.add(membersInfo.get(i).getCompositeKey().getPhone());
-            membersNmoney.add(membersInfo.get(i).getNMoney());
-        }
-
-        map.put("membersPhone", membersPhone);
-        map.put("membersNmoney", membersNmoney);
-
-//        System.out.println("membersPhone : " + membersPhone);
-//        System.out.println("membersNmoney : " + membersNmoney);
-
-         */
     }
 
     @PostMapping(value = "/get_nMoney")
@@ -115,13 +89,20 @@ public class DutchPayController {
         List phoneList = new ArrayList<>();
         List nMoneyList = new ArrayList<>();
 
-        for(int i = 0 ; i < memberPhoneList.size() ; i++){
+        String groupId = memberPhoneList.get(0).get("groupId").toString();
+        System.out.println("group id : " + groupId);
+
+        for(int i = 1 ; i < memberPhoneList.size() ; i++){
             phoneList.add(memberPhoneList.get(i).get("phone"));
             nMoneyList.add(memberPhoneList.get(i).get("n_money"));
         }
-
         System.out.println(phoneList);
         System.out.println(nMoneyList);
+
+        // update
+        for(int i = 0 ; i < phoneList.size() ; i++){
+            // membersService.updateNmoney();
+        }
 
 
         return "success to update";

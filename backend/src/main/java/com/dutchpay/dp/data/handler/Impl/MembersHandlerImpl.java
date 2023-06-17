@@ -40,4 +40,9 @@ public class MembersHandlerImpl implements MembersHandler {
 
         return members;
     }
+
+    @Override
+    public int updateNmoney(String groupId, String phone, String nMoney){
+        return membersDAO.updateNmoney(groupId, phone, nMoney);
+    }
 }

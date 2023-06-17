@@ -7,4 +7,5 @@ import java.util.List;
 public interface MembersService {
     List<MembersEntity> getMembersList(String groupId);
     MembersDTO saveMembers(String groupId, String phone, String nMoney, String sendState);
+    int updateNmoney(String groupId, String phone, String nMoney);
 }
