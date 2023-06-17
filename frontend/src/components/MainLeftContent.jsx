@@ -5,7 +5,7 @@ import { useNavigate, useLocation  } from "react-router-dom";
 function MainLeftContent(props){
     const navigate = useNavigate();
 
-    const goDucthPay = e =>{
+    const goDucthPay = e => {
         var groupId = "";
 
         axios({

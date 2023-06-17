@@ -145,9 +145,7 @@ function GoDutchRightContent(props){
                 
             }
 
-            
-
-
+        
             // total money 계산
 
             // n_money 계산
@@ -172,8 +170,7 @@ function GoDutchRightContent(props){
             })
             .then(function(response){
                 console.log(response.data);
-                
-                // props.setIsResult(true); 메시지 페이지로 넘어가려면 주석 제거하기
+                props.setIsResult(true); // 메시지 페이지로 넘어가려면 주석 제거하기
 
 
 

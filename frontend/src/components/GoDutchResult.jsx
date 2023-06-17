@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 function GoDutchResult(props){
     const navigate = useNavigate();
     const location = useLocation();
+    const setMemberInfo = props.setMemberInfo;
     const memberInfo = props.memberInfo;
     const groupId = props.groupId;
     const updateFlag = props.updateFlag;
@@ -65,6 +66,17 @@ function GoDutchResult(props){
         }
     }, [updateFlag]);
 
+    const changeMoney = (e) => {
+        console.log("target",e.target.value);
+        var updateBlank = document.getElementById("updateBlank");
+        console.log(updateBlank.value);
+        updateBlank.value = "";
+        console.log("memberInfo", memberInfo);
+        // setMemberInfo.membersNmoney[2](e.target.value);
+        // console.log(e.target.value);
+        console.log(updateBlank.value);
+    }
+
     return(
         memberInfo != undefined ? (
             <div className='goDutchLeftPart'>
@@ -86,7 +98,10 @@ function GoDutchResult(props){
                                     {item}
                                 </span>
                                 <span>
-                                    <input className='individualMoneyBox' value={memberInfo.membersNmoney[idx]}></input>
+                                    <input className='individualMoneyBox' id="updateBlank"
+                                        value={memberInfo.membersNmoney[idx]}
+                                        onChange={changeMoney}>
+                                    </input>
                                 </span>
                                 <span className='updateBtn'>Update</span>
                             </div>
