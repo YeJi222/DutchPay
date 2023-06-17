@@ -100,12 +100,20 @@ public class DutchPayController {
         System.out.println(nMoneyList);
 
         // update
+        boolean success = true;
         for(int i = 0 ; i < phoneList.size() ; i++){
-            membersService.updateNmoney(groupId, phoneList.get(i), nMoneyList.get(i));
+            int result = membersService.updateNmoney(groupId, phoneList.get(i), nMoneyList.get(i));
+            System.out.println("result : " + result);
+            if(result != 1){
+                success = false;
+            }
         }
 
-
-        return "success to update";
+        if(success == true){
+            return "success to update";
+        } else{
+            return "fail to update";
+        }
     }
 
     @PostMapping(value = "/sendMessage")

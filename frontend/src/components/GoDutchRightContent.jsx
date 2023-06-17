@@ -192,7 +192,12 @@ function GoDutchRightContent(props){
                 data: memberPhoneList
             })
             .then(function(response){
-                console.log(response.data);
+                if(response.data === "success to update"){
+                    console.log("update");
+                    props.setUpdateFlag(!props.updateFlag);
+                } else{
+                    console.log("not update");
+                }
                 
                 // props.setIsResult(true); 메시지 페이지로 넘어가려면 주석 제거하기
 
@@ -205,37 +210,6 @@ function GoDutchRightContent(props){
                 console.log(error);
             })
         }
-
-        // if(checkContentBlank === true && checkMoneyBlank === true){
-        //     props.setIsResult(true);
-        //     // n_money 계산
-        //     var totalMoney = props.inputMoney; // 수정 필요!!
-        //     // var members = phoneValueList;
-        //     // var n_money = Math.ceil(totalMoney/members.length);
-
-        //     // db에 insert
-        //     const formData = new FormData();
-        //     formData.append('groupId', groupId);
-        //     formData.append('payContent', inputContent);
-        //     formData.append('totalMoney', totalMoney);
-        //     formData.append('userId', props.userId);
-        //     formData.append('userBank', inputBank);
-        //     formData.append('userAccount', inputAccount);
-        //     // formData.append('n_money', n_money);
-
-        //     axios({
-        //         method: "post",
-        //         url: 'http://localhost:8090/createDutchPayGroup',
-        //         data: formData
-        //     })
-        //     .then(function(response){
-        //         // console.log("response", response.data);
-        //         // props.setResultMembers(response.data);
-        //     })
-        //     .catch(function(error){
-        //         console.log(error);
-        //     })
-        // }
     };
 
     const addContentAction = (e) =>{

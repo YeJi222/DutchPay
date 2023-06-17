@@ -9,6 +9,7 @@ function GoDutchResult(props){
     const location = useLocation();
     const memberInfo = props.memberInfo;
     const groupId = props.groupId;
+    const updateFlag = props.updateFlag;
 
     // const [memberInfo, setMemberInfo] = useState();
     
@@ -62,7 +63,7 @@ function GoDutchResult(props){
             }
             
         }
-    }, []);
+    }, [updateFlag]);
 
     return(
         memberInfo != undefined ? (
