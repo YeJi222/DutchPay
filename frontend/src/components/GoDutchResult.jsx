@@ -90,7 +90,13 @@ function GoDutchResult(props){
             data: formData
         })
         .then(function(response){
-            console.log(response.data);
+            if(response.data === "success to update"){
+                console.log("update");
+                props.setUpdateFlag(!props.updateFlag);
+                // updateBlank.value = "";
+            } else{
+                console.log("not update");
+            }
         })
         .catch(function(error){
             console.log(error);

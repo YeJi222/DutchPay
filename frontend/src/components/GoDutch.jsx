@@ -189,6 +189,7 @@ function GoDutch(){
                             inputMoney={inputMoney}
                             isResult={isResult}
                             updateFlag={updateFlag}
+                            setUpdateFlag={setUpdateFlag}
                             // resultMembers={resultMembers}
                         />
                     )}

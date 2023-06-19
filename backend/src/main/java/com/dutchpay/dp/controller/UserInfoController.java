@@ -97,20 +97,29 @@ public class UserInfoController {
         List<GroupsEntity> distinctGroupsList = new ArrayList<>();
         int onLen = 0, offLen = 0, sumMoney = 0;
         for(GroupsEntity groups : groupsInfo){
+
             String curGroupId = groups.getCompositeKey().getGroupId();
+            String curPayContent = groups.getPayContent();
             boolean isDuplicate = false;
             for(GroupsEntity distinctGroups : distinctGroupsList){
-                if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId)){
+                if(distinctGroups.getCompositeKey().getGroupId().equals(curGroupId) &&
+                    distinctGroups.getPayContent().equals(curPayContent)){
                     isDuplicate = true;
                     break;
                 }
             }
             if(!isDuplicate){
+                System.out.println("groups : " + groups);
                 distinctGroupsList.add(groups);
             }
         }
-
+        String setTitle = "";
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
+            setTitle += distinctGroupsList.get(i).getPayContent();
+            if(i != distinctGroupsList.size() - 1) {
+                setTitle += ", ";
+            }
+
             if(distinctGroupsList.get(i).getState().equals("on")){
                 onLen++;
             } else{
@@ -118,6 +127,8 @@ public class UserInfoController {
                 sumMoney += Integer.parseInt(distinctGroupsList.get(i).getDutchMoney());
             }
         }
+        System.out.println("setTitle : " + setTitle);
+        System.out.println("distinctGroupsList : " + distinctGroupsList);
 
         // groupId 별로 인원 수 구하기
         List<String> memberLen = new ArrayList<>();
@@ -129,6 +140,7 @@ public class UserInfoController {
 
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
+        map.put("setTitle", setTitle);
         map.put("sumMoney", Integer.toString(sumMoney));
         map.put("groupsEntityList", distinctGroupsList);
         map.put("memberLen", memberLen);

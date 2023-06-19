@@ -13,10 +13,11 @@ function ReceivePayBox(props){
                         item.state === props.state ? (
                             <div className='payBox'>
                                 <div className='payName'>
-                                    {item.payContent}
+                                    {props.title} <br></br>
+                                    <p style={{fontSize: "12px;", marginTop: "-5px", marginBottom: "-8px"}}>(2022.02.22)</p>
                                     <hr ></hr>
                                     <div className='payContent'>
-                                        인원 : {props.memberLen[idx]}명<br></br>
+                                        총 인원 : {props.memberLen[idx]}명<br></br>
                                         총 금액 : {item.totalMoney}원
                                     </div>
                                     <div className='confirmBtn'>

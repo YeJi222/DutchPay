@@ -54,6 +54,7 @@ function Main(){
             })
             .then(function(response){
                 setUserInfo(response.data);
+                console.log("axios", userInfo);
             })
             .catch(function(error){
                 console.log(error);
@@ -123,6 +124,7 @@ function Main(){
                             offLen={userInfo.offLen}
                             groupsEntityList={userInfo.groupsEntityList}
                             memberLen={userInfo.memberLen}
+                            title={userInfo.setTitle}
                         /> 
                     ) : (
                         <MainRightContent
