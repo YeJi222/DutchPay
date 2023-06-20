@@ -338,26 +338,37 @@ body {
 }
 .payName{
     text-align: center;
-    padding-top: 10px;
-    width: 150px;
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 135px;
     height: 150px;
+    font-size: 12px;
+}
+.payTitleName{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 18px;
     font-size: 18px;
 }
 hr{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background:#9A9494;
     height: 1.5px;
     border: 0;
 }
 .payContent{
     text-align: left;
-    padding-left: 15px;
+    padding-left: 5px;
     font-size: 15px;
 }
 .confirmBtn{
     background-color: white;
-    width: 90px;
+    width: 110px;
     padding: 7px;
     text-align: center;
     margin: auto;

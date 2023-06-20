@@ -13,7 +13,7 @@ function ReceivePayBox(props){
                         item.state === props.state ? (
                             <div className='payBox'>
                                 <div className='payName'>
-                                    {props.title} <br></br>
+                                    <p className='payTitleName'>{props.title}</p>
                                     <p style={{fontSize: "12px;", marginTop: "-5px", marginBottom: "-8px"}}>(2022.02.22)</p>
                                     <hr ></hr>
                                     <div className='payContent'>

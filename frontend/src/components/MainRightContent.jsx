@@ -9,6 +9,8 @@ function RightContent(props){
     const navigate = useNavigate();
     // console.log(props.groupsEntityList);
 
+    // console.log(props.title);
+
     return(
         <div className='mainRightPart'>
             <div className="receiveTitle">정산 List</div>
@@ -18,6 +20,7 @@ function RightContent(props){
                 onLen={props.onLen}
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
+                title={props.title}
             />
             <ReceivePayBox
                 middleTitle="완료"
@@ -25,6 +28,7 @@ function RightContent(props){
                 offLen={props.offLen}
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
+                title={props.title}
             />
         </div> 
     );
