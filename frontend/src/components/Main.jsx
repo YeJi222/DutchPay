@@ -53,6 +53,7 @@ function Main(){
                 data: formData
             })
             .then(function(response){
+                console.log(response.data.setTitleList);
                 setUserInfo(response.data);
                 console.log("axios", userInfo);
             })
@@ -124,7 +125,7 @@ function Main(){
                             offLen={userInfo.offLen}
                             groupsEntityList={userInfo.groupsEntityList}
                             memberLen={userInfo.memberLen}
-                            title={userInfo.setTitle}
+                            titleList={userInfo.setTitleList}
                         /> 
                     ) : (
                         <MainRightContent

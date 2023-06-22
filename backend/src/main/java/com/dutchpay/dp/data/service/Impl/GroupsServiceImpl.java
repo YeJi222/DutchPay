@@ -26,6 +26,11 @@ public class GroupsServiceImpl implements GroupsService {
     }
 
     @Override
+    public List<GroupsEntity> getContentsList(String groupId){
+        return groupsHandler.getContentsEntityList(groupId);
+    }
+
+    @Override
     public GroupsDTO saveGroup(String groupId, String contentId, String userId, String userBank,
         String userAccount, String dutchMoney, String payContent, String state, Timestamp timestamp){
         return groupsHandler.saveGroupEntity(groupId, contentId, userId, userBank, userAccount, dutchMoney, payContent, state, timestamp);

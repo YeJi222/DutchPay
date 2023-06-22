@@ -20,7 +20,7 @@ function RightContent(props){
                 onLen={props.onLen}
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
-                title={props.title}
+                titleList={props.titleList}
             />
             <ReceivePayBox
                 middleTitle="완료"
@@ -28,7 +28,7 @@ function RightContent(props){
                 offLen={props.offLen}
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
-                title={props.title}
+                titleList={props.titleList}
             />
         </div> 
     );

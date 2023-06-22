@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface GroupsHandler {
     List<GroupsEntity>  getGroupsEntityList(String userId);
+    List<GroupsEntity> getContentsEntityList(String groupId);
     List<GroupsEntity> getSameGroupIdList(String groupId);
     GroupsDTO saveGroupEntity(String groupId, String contentId, String userId, String userBank,
         String userAccount, String dutchMoney, String payContent, String state, Timestamp timestamp);

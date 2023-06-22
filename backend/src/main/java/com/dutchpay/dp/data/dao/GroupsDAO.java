@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface GroupsDAO {
     List<GroupsEntity> getGroupsEntityList(String userId);
+    List<GroupsEntity> getContentsEntityList(String groupId);
     List<GroupsEntity> getSameGroupIdList(String groupId);
     GroupsEntity saveGroup(GroupsEntity groupEntity);
     GroupsEntity getGroups(String groupId);

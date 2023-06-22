@@ -27,6 +27,12 @@ public class GroupsDAOImpl implements GroupsDAO {
     }
 
     @Override
+    public List<GroupsEntity> getContentsEntityList(String groupId){
+        List<GroupsEntity> groupsEntityList = groupsRepository.findByCompositeKeyGroupId(groupId);
+        return groupsEntityList;
+    }
+
+    @Override
     public List<GroupsEntity> getSameGroupIdList(String groupId){
         List<GroupsEntity> groupsEntityList = groupsRepository.findByCompositeKeyGroupId(groupId);
         return groupsEntityList;

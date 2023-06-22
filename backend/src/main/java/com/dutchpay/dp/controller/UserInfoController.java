@@ -93,10 +93,38 @@ public class UserInfoController {
         map.put("bank", userInfo.getBank());
         map.put("account", userInfo.getAccount());
 
+        // 모든 groupId 구해서 그걸로 setTitle 지정
         List<GroupsEntity> groupsInfo = groupsService.getGroupsList(userId);
+        System.out.println("group len : " + groupsInfo.size());
+
+        List<GroupsEntity> distinctGroupsList = new ArrayList<>();
+        List<String> setTitleList = new ArrayList<>();
+        int onLen = 0, offLen = 0, sumMoney = 0;
+        for(int i = 0 ; i < groupsInfo.size() ; i++){
+            List<GroupsEntity> contentsInfo = groupsService.getContentsList(groupsInfo.get(i).getCompositeKey().getGroupId());
+            System.out.println(i + " ## group ID : " + groupsInfo.get(i).getCompositeKey().getGroupId());
+
+            String setTitle = "";
+            for(int j = 0 ; j < contentsInfo.size() ; j++){
+                String curPayContent = contentsInfo.get(j).getPayContent();
+                setTitle += curPayContent;
+
+                if(j != contentsInfo.size() - 1) {
+                    setTitle += ", ";
+                }
+            }
+            System.out.println("setTitle : " + setTitle);
+            setTitleList.add(setTitle);
+
+
+            distinctGroupsList.add(groupsInfo.get(i));
+        }
+
+        /*
+        List<GroupsEntity> contentsInfo = groupsService.getContentsList("79308");
         List<GroupsEntity> distinctGroupsList = new ArrayList<>();
         int onLen = 0, offLen = 0, sumMoney = 0;
-        for(GroupsEntity groups : groupsInfo){
+        for(GroupsEntity groups : contentsInfo){
 
             String curGroupId = groups.getCompositeKey().getGroupId();
             String curPayContent = groups.getPayContent();
@@ -113,6 +141,7 @@ public class UserInfoController {
                 distinctGroupsList.add(groups);
             }
         }
+
         String setTitle = "";
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
             setTitle += distinctGroupsList.get(i).getPayContent();
@@ -127,7 +156,10 @@ public class UserInfoController {
                 sumMoney += Integer.parseInt(distinctGroupsList.get(i).getDutchMoney());
             }
         }
-        System.out.println("setTitle : " + setTitle);
+
+         */
+
+        System.out.println("setTitleList : " + setTitleList);
         System.out.println("distinctGroupsList : " + distinctGroupsList);
 
         // groupId 별로 인원 수 구하기
@@ -140,7 +172,7 @@ public class UserInfoController {
 
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
-        map.put("setTitle", setTitle);
+        map.put("setTitleList", setTitleList);
         map.put("sumMoney", Integer.toString(sumMoney));
         map.put("groupsEntityList", distinctGroupsList);
         map.put("memberLen", memberLen);

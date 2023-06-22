@@ -31,6 +31,12 @@ public class GroupsHandlerImpl implements GroupsHandler {
     }
 
     @Override
+    public List<GroupsEntity> getContentsEntityList(String groupId){
+        List<GroupsEntity> groupsEntityList = groupsDAO.getContentsEntityList(groupId);
+        return groupsEntityList;
+    }
+
+    @Override
     public List<GroupsEntity> getSameGroupIdList(String groupId){
         List<GroupsEntity> groupsEntityList = groupsDAO.getSameGroupIdList(groupId);
         return groupsEntityList;
