@@ -102,7 +102,10 @@ public class UserInfoController {
         int onLen = 0, offLen = 0, sumMoney = 0;
         for(int i = 0 ; i < groupsInfo.size() ; i++){
             List<GroupsEntity> contentsInfo = groupsService.getContentsList(groupsInfo.get(i).getCompositeKey().getGroupId());
-            System.out.println(i + " ## group ID : " + groupsInfo.get(i).getCompositeKey().getGroupId());
+            String groupId = groupsInfo.get(i).getCompositeKey().getGroupId();
+            System.out.println(i + " ## group ID : " + groupId);
+
+
 
             String setTitle = "";
             for(int j = 0 ; j < contentsInfo.size() ; j++){
@@ -113,10 +116,12 @@ public class UserInfoController {
                     setTitle += ", ";
                 }
             }
+
+            // groupId와 content 같은거 모두 중복 제거 필요
+
+            
             System.out.println("setTitle : " + setTitle);
             setTitleList.add(setTitle);
-
-
             distinctGroupsList.add(groupsInfo.get(i));
         }
 
