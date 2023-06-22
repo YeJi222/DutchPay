@@ -14,7 +14,7 @@ function ReceivePayBox(props){
                             <div className='payBox'>
                                 <div className='payName'>
                                     <p className='payTitleName'>{props.title}</p>
-                                    <p style={{fontSize: "12px;", marginTop: "-5px", marginBottom: "-8px"}}>(2022.02.22)</p>
+                                    <p style={{fontSize: "12px;", marginTop: "-5px", marginBottom: "-8px"}}>({item.timestamp.substring(0, 10)})</p>
                                     <hr ></hr>
                                     <div className='payContent'>
                                         총 인원 : {props.memberLen[idx]}명<br></br>

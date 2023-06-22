@@ -5,6 +5,7 @@ import com.dutchpay.dp.data.dto.UserDTO;
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.handler.GroupsHandler;
 import com.dutchpay.dp.data.service.GroupsService;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class GroupsServiceImpl implements GroupsService {
 
     @Override
     public GroupsDTO saveGroup(String groupId, String contentId, String userId, String userBank,
-        String userAccount, String dutchMoney, String payContent, String state){
-        return groupsHandler.saveGroupEntity(groupId, contentId, userId, userBank, userAccount, dutchMoney, payContent, state);
+        String userAccount, String dutchMoney, String payContent, String state, Timestamp timestamp){
+        return groupsHandler.saveGroupEntity(groupId, contentId, userId, userBank, userAccount, dutchMoney, payContent, state, timestamp);
     }
 
     @Override

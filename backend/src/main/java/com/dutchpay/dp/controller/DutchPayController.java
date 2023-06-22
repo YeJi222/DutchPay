@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.sql.Array;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,7 +78,9 @@ public class DutchPayController {
             return "already exist";
         } catch (Exception e){
             for(int i = 0 ; i < payContent.length ; i++){
-                groupsService.saveGroup(groupId, String.valueOf(i+1), userId, userBank, userAccount, dutchMoney[i], payContent[i], "on");
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                System.out.println("Timestamp : " + timestamp);
+                groupsService.saveGroup(groupId, String.valueOf(i+1), userId, userBank, userAccount, dutchMoney[i], payContent[i], "on", timestamp);
             }
             return "success to insert";
         }

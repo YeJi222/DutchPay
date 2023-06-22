@@ -2,6 +2,7 @@ package com.dutchpay.dp.data.dto;
 
 import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.entity.compositeKey.GroupsPK;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class GroupsDTO {
     private String dutchMoney;
     private String payContent;
     private String state;
+    private Timestamp timestamp;
 
     public GroupsEntity toEntity(){
         GroupsPK pk = GroupsPK.builder()
@@ -37,6 +39,7 @@ public class GroupsDTO {
             .dutchMoney(dutchMoney)
             .payContent(payContent)
             .state(state)
+            .timestamp(timestamp)
             .build();
     }
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class GroupsEntity {
     String dutchMoney;
     String payContent;
     String state;
+    Timestamp timestamp;
 
     public GroupsDTO toDto(){
         return GroupsDTO.builder()
@@ -41,6 +43,7 @@ public class GroupsEntity {
             .payContent(payContent)
             .contentId(compositeKey.getContentId())
             .state(state)
+            .timestamp(timestamp)
             .build();
     }
 }
