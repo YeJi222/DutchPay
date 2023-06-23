@@ -65,7 +65,7 @@ public class GroupsServiceImpl implements GroupsService {
     }
 
     @Override
-    public String getSameGroupMemberLen(String groupId) {
+    public String getSameGroupContentsLen(String groupId) {
         List<GroupsEntity> groupsEntityList = groupsHandler.getSameGroupIdList(groupId);
         // System.out.println("groupsEntityList size : " + groupsEntityList.size());
 

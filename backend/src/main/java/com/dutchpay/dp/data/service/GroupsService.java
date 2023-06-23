@@ -9,7 +9,7 @@ import java.util.List;
 public interface GroupsService {
     List<GroupsEntity> getGroupsList(String userId);
     List<GroupsEntity> getContentsList(String groupId);
-    String getSameGroupMemberLen(String groupId);
+    String getSameGroupContentsLen(String groupId);
     GroupsDTO saveGroup(String groupId, String contentId, String userId, String userBank, String userAccount,
         String dutchMoney, String payContent, String state, Timestamp timestamp);
     GroupsDTO getGroup(String groupId);

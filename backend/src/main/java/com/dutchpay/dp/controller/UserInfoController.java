@@ -184,7 +184,7 @@ public class UserInfoController {
         List<String> memberLen = new ArrayList<>();
         for(int i = 0 ; i < distinctGroupsList.size() ; i++){
             String groupId = distinctGroupsList.get(i).getCompositeKey().getGroupId();
-            String groupMemberSize = groupsService.getSameGroupMemberLen(groupId);
+            String groupMemberSize = String.valueOf(membersService.getMembersList(groupId).size());
             memberLen.add(groupMemberSize);
         }
 
