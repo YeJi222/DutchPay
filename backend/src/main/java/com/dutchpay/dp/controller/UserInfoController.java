@@ -105,7 +105,16 @@ public class UserInfoController {
             String groupId = groupsInfo.get(i).getCompositeKey().getGroupId();
             System.out.println(i + " ## group ID : " + groupId);
 
-
+            boolean isDuplicate = false;
+            for(GroupsEntity distinctGroups : distinctGroupsList){
+                if(distinctGroups.getCompositeKey().getGroupId().equals(groupId)){
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if(isDuplicate){
+                break;
+            }
 
             String setTitle = "";
             for(int j = 0 ; j < contentsInfo.size() ; j++){
@@ -119,7 +128,7 @@ public class UserInfoController {
 
             // groupId와 content 같은거 모두 중복 제거 필요
 
-            
+
             System.out.println("setTitle : " + setTitle);
             setTitleList.add(setTitle);
             distinctGroupsList.add(groupsInfo.get(i));
