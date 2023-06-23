@@ -18,7 +18,7 @@ function ReceivePayBox(props){
                                     <hr ></hr>
                                     <div className='payContent'>
                                         총 인원 : {props.memberLen[idx]}명<br></br>
-                                        총 금액 : {item.totalMoney}원
+                                        총 금액 : {props.dutchMoneyList[idx]}원
                                     </div>
                                     <div className='confirmBtn'>
                                         확인하기 {'>'}

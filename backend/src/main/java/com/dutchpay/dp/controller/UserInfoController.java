@@ -99,12 +99,14 @@ public class UserInfoController {
 
         List<GroupsEntity> distinctGroupsList = new ArrayList<>();
         List<String> setTitleList = new ArrayList<>();
+        List<String> dutchMoneyList = new ArrayList<>();
         int onLen = 0, offLen = 0, sumMoney = 0;
         for(int i = 0 ; i < groupsInfo.size() ; i++){
             List<GroupsEntity> contentsInfo = groupsService.getContentsList(groupsInfo.get(i).getCompositeKey().getGroupId());
             String groupId = groupsInfo.get(i).getCompositeKey().getGroupId();
             System.out.println(i + " ## group ID : " + groupId);
 
+            // groupId 중복 제거
             boolean isDuplicate = false;
             for(GroupsEntity distinctGroups : distinctGroupsList){
                 if(distinctGroups.getCompositeKey().getGroupId().equals(groupId)){
@@ -117,20 +119,21 @@ public class UserInfoController {
             }
 
             String setTitle = "";
+            int dutchMoeny = 0;
             for(int j = 0 ; j < contentsInfo.size() ; j++){
                 String curPayContent = contentsInfo.get(j).getPayContent();
+                int money = Integer.parseInt(contentsInfo.get(j).getDutchMoney());
                 setTitle += curPayContent;
+                dutchMoeny += money;
 
                 if(j != contentsInfo.size() - 1) {
                     setTitle += ", ";
                 }
             }
-
-            // groupId와 content 같은거 모두 중복 제거 필요
-
-
             System.out.println("setTitle : " + setTitle);
+            System.out.println("dutchMoeny : " + dutchMoeny);
             setTitleList.add(setTitle);
+            dutchMoneyList.add(String.valueOf(dutchMoeny));
             distinctGroupsList.add(groupsInfo.get(i));
         }
 
@@ -174,6 +177,7 @@ public class UserInfoController {
          */
 
         System.out.println("setTitleList : " + setTitleList);
+        System.out.println("dutchMoneyList : " + dutchMoneyList);
         System.out.println("distinctGroupsList : " + distinctGroupsList);
 
         // groupId 별로 인원 수 구하기
@@ -187,6 +191,7 @@ public class UserInfoController {
         map.put("onLen", Integer.toString(onLen));
         map.put("offLen", Integer.toString(offLen));
         map.put("setTitleList", setTitleList);
+        map.put("dutchMoneyList", dutchMoneyList);
         map.put("sumMoney", Integer.toString(sumMoney));
         map.put("groupsEntityList", distinctGroupsList);
         map.put("memberLen", memberLen);

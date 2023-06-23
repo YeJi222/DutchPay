@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function RightContent(props){    
     const navigate = useNavigate();
-    // console.log(props.groupsEntityList);
+    console.log("%%", props.dutchMoneyList);
 
     // console.log(props.title);
 
@@ -21,6 +21,7 @@ function RightContent(props){
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
                 titleList={props.titleList}
+                dutchMoneyList={props.dutchMoneyList}
             />
             <ReceivePayBox
                 middleTitle="완료"
@@ -29,6 +30,7 @@ function RightContent(props){
                 groupsEntityList={props.groupsEntityList}
                 memberLen={props.memberLen}
                 titleList={props.titleList}
+                dutchMoneyList={props.dutchMoneyList}
             />
         </div> 
     );

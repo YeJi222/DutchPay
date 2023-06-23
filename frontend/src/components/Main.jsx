@@ -53,9 +53,9 @@ function Main(){
                 data: formData
             })
             .then(function(response){
-                console.log(response.data.setTitleList);
+                // console.log(response.data.dutchMoneyList);
                 setUserInfo(response.data);
-                console.log("axios", userInfo);
+                // console.log("axios", userInfo.dutchMoneyList);
             })
             .catch(function(error){
                 console.log(error);
@@ -72,7 +72,7 @@ function Main(){
         navigate('/');
     };
 
-    if(sessionData != null && userInfo != null){
+    if(sessionData != null && userInfo != null && userInfo.dutchMoneyList != undefined){
         return(
             <div className='page' style={{ backgroundImage: isMainToggled === "receive" ? "url('/assets/svg/wave.svg')" : "url('/assets/svg/wave2.svg')" }}>
                 <header>
@@ -126,6 +126,7 @@ function Main(){
                             groupsEntityList={userInfo.groupsEntityList}
                             memberLen={userInfo.memberLen}
                             titleList={userInfo.setTitleList}
+                            dutchMoneyList={userInfo.dutchMoneyList}
                         /> 
                     ) : (
                         <MainRightContent
