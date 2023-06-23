@@ -1,7 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 function ReceivePayBox(props){
+    const navigate = useNavigate();
+    
     // console.log(props.memberLen);
+    const confirmBtnAction = (e) => {
+        var groupId = e;
+        var path = '/confirm/' + groupId;
+        console.log("path : ", path);
+
+        navigate(path, {
+            state: {
+                userInfo: props.userInfo,
+                groupId: groupId
+            }
+        });
+    }
+
     return(
         <div>
             <div className="middleTitle">
@@ -20,7 +36,8 @@ function ReceivePayBox(props){
                                         총 인원 : {props.memberLen[idx]}명<br></br>
                                         총 금액 : {props.dutchMoneyList[idx]}원
                                     </div>
-                                    <div className='confirmBtn'>
+                                    <div className='confirmBtn' onClick={(e) => confirmBtnAction(item.compositeKey.groupId)}> 
+                                    {/* (item.compositeKey.groupId) */}
                                         확인하기 {'>'}
                                     </div>
                                 </div>

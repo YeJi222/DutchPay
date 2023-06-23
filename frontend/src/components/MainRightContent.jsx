@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function RightContent(props){    
     const navigate = useNavigate();
-    console.log("%%", props.dutchMoneyList);
+    // console.log("%%", props.dutchMoneyList);
 
     // console.log(props.title);
 

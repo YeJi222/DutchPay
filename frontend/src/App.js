@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />}> </Route>
         <Route path="/main" element={<Main />}></Route>
-        <Route path="/goDutch" element={<GoDutch />}></Route>
+        <Route path="/confirm:id" element={<GoDutch />}></Route> {/* /goDutch:id에서 :id는 동적으로 변하는 부분 */}
       </Routes>
     </BrowserRouter>
 

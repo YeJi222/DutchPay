@@ -55,7 +55,7 @@ function Main(){
             .then(function(response){
                 // console.log(response.data.dutchMoneyList);
                 setUserInfo(response.data);
-                // console.log("axios", userInfo.dutchMoneyList);
+                console.log("axios", userInfo);
             })
             .catch(function(error){
                 console.log(error);
