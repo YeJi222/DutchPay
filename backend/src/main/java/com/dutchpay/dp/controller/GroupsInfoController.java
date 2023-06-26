@@ -4,6 +4,8 @@ import com.dutchpay.dp.data.dto.GroupsDTO;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.MembersService;
 import com.dutchpay.dp.data.service.UserService;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,11 +30,15 @@ public class GroupsInfoController {
         GroupsDTO groupInfo = groupsService.getGroup(groupId);
 
         // timestamp
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        String timestamp = simpleDateFormat.format(groupInfo.getTimestamp());
+
         // dutch money
 
         map.put("userId", groupInfo.getUserId());
         map.put("userBank", groupInfo.getUserBank());
         map.put("userAccount", groupInfo.getUserAccount());
+        map.put("timestamp", timestamp);
 //        map.put("bank", groupInfo.getBank());
 //        map.put("account", groupInfo.getAccount());
 

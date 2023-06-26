@@ -58,11 +58,11 @@ function ConfirmLeftContent(props){
     if(groupInfo != undefined){
         return(
             <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
-                <div className='mainLeftTopText'>
-                    정산 현황 확인
+                <div className='confirmLeftTopText'>
+                    정산 일자 : {groupInfo.timestamp}
                 </div>
                 <div className='userInfo'>
-                    받는 계좌 정보 <br></br>
+                    (받는 계좌 정보) <br></br>
                     Bank : {groupInfo.userBank}<br></br>
                     Account : {groupInfo.userAccount}<br></br>
                 </div>
