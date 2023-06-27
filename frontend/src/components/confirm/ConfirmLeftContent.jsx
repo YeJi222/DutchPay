@@ -70,7 +70,7 @@ function ConfirmLeftContent(props){
                     정산 미완료: {props.onLen}명<br></br>
                     정산 완료 : {props.offLen}명<br></br>
                     <br></br>
-                    총 받을 금액 : {props.sumMoney}원<br></br>
+                    총 받을 금액 : {groupInfo.totalMoney}원<br></br>
                     받은 금액 : {props.sumMoney}원<br></br>
                     남은 금액 : {props.sumMoney}원<br></br>
                 </div>
