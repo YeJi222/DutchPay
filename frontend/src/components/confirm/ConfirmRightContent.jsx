@@ -5,16 +5,26 @@ import { useNavigate } from "react-router-dom";
 
 function ConfirmRightContent(props){    
     const navigate = useNavigate();
-    // console.log("%%", props.dutchMoneyList);
+    const groupInfo = props.groupInfo;
 
-    // console.log(props.title);
-
-    return(
-        <div className='mainRightPart'>
-            <div className="receiveTitle">정산 현황 확인하기</div>
-            
-        </div> 
-    );
+    if(groupInfo != undefined){
+        return(
+            <div className='mainRightPart'>
+                <div className="receiveTitle">정산 현황 확인하기</div>
+                <div>
+                {
+                    groupInfo.membersInfo.map((members, idx) => {
+                        <div>{members.compositeKey.phone}</div>
+                        // console.log(members.compositeKey.phone);
+                    })
+                }
+                
+                </div>
+                
+                
+            </div> 
+        );
+    }
 }
 
 export default ConfirmRightContent;

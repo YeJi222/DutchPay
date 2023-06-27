@@ -15,6 +15,9 @@ function Confirm(){
     const [isMainToggled, setIsMainToggled] = useState("receive");
     const [userInfo, setUserInfo] = useState(location.state);
 
+    const groupId = location.state.groupId;
+    const [groupInfo, setGroupInfo] = useState(location.state.userInfo);
+
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
 
@@ -43,23 +46,24 @@ function Confirm(){
                 }
             })
         } else{
-            // const sessionUserId = sessionData.userId;
-            // const formData = new FormData();
-            // formData.append('sessionUserId', sessionUserId);
+            const sessionUserId = sessionData.userId;
+            const formData = new FormData();
+            formData.append('sessionUserId', sessionUserId);
+            formData.append('groupId', groupId);
 
-            // axios({
-            //     method: "post",
-            //     url: 'http://localhost:8090/getUserInfo',
-            //     data: formData
-            // })
-            // .then(function(response){
-            //     // console.log(response.data.dutchMoneyList);
-            //     setUserInfo(response.data);
-            //     console.log("axios", userInfo);
-            // })
-            // .catch(function(error){
-            //     console.log(error);
-            // })
+            axios({
+                method: "post",
+                url: 'http://localhost:8090/getGroupUserInfo',
+                data: formData
+            })
+            .then(function(response){
+                console.log(response.data);
+                setGroupInfo(response.data);
+                console.log("group Info", groupInfo);
+            })
+            .catch(function(error){
+                console.log(error);
+            })
         }
     }, []);
 
@@ -92,28 +96,14 @@ function Confirm(){
             <div className='mainCenterWrapper'>
                 {/* left content */}
                 <ConfirmLeftContent
-                    userInfo={userInfo}
-                    isToggled={isMainToggled}
-                    userId={userInfo.userId}
-                    userPw={userInfo.userPw}
-                    phone={userInfo.phone}
-                    bank={userInfo.bank}
-                    account={userInfo.account}
-                    onLen={userInfo.onLen}
-                    offLen={userInfo.offLen}
-                    sumMoney={userInfo.sumMoney}
+                    isToggled={isMainToggled}   
+                    groupInfo={groupInfo}
                 />
 
                 {/* right content */}
                 <ConfirmRightContent
-                    toggleTitle="receive"
                     isToggled={isMainToggled}
-                    onLen={userInfo.onLen}
-                    offLen={userInfo.offLen}
-                    groupsEntityList={userInfo.groupsEntityList}
-                    memberLen={userInfo.memberLen}
-                    titleList={userInfo.setTitleList}
-                    dutchMoneyList={userInfo.dutchMoneyList}
+                    groupInfo={groupInfo}
                 /> 
             </div>
         </div>

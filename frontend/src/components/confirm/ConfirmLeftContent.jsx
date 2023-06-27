@@ -7,11 +7,10 @@ function ConfirmLeftContent(props){
     const navigate = useNavigate();
     const location = useLocation();
 
-    const groupId = location.state.groupId;
-    const [groupInfo, setGroupInfo] = useState(location.state.userInfo);
-
     const storedData = localStorage.getItem('user');
     const sessionData = JSON.parse(storedData);
+
+    const groupInfo = props.groupInfo;
 
     useEffect(() => {
         if(sessionData === null){
@@ -34,24 +33,24 @@ function ConfirmLeftContent(props){
                 }
             })
         } else{
-            const sessionUserId = sessionData.userId;
-            const formData = new FormData();
-            formData.append('sessionUserId', sessionUserId);
-            formData.append('groupId', groupId);
+            // const sessionUserId = sessionData.userId;
+            // const formData = new FormData();
+            // formData.append('sessionUserId', sessionUserId);
+            // formData.append('groupId', groupId);
 
-            axios({
-                method: "post",
-                url: 'http://localhost:8090/getGroupUserInfo',
-                data: formData
-            })
-            .then(function(response){
-                console.log(response.data);
-                setGroupInfo(response.data);
-                console.log("group Info", groupInfo);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+            // axios({
+            //     method: "post",
+            //     url: 'http://localhost:8090/getGroupUserInfo',
+            //     data: formData
+            // })
+            // .then(function(response){
+            //     console.log(response.data);
+            //     setGroupInfo(response.data);
+            //     console.log("group Info", groupInfo);
+            // })
+            // .catch(function(error){
+            //     console.log(error);
+            // })
         }
     }, []);
 
