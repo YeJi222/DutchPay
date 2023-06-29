@@ -12,14 +12,26 @@ function ConfirmRightContent(props){
             <div className='mainRightPart'>
                 <div className="receiveTitle">정산 현황 확인하기</div>
                 <div>
-                {
-                    groupInfo.membersInfo.map((members, idx) => {
-                        <div>{members.compositeKey.phone}</div>
-                        // console.log(members.compositeKey.phone);
-                    })
-                }
-                
+                    <table className='confirmTable'>
+                        <thead>
+                            <tr>
+                                <th>정산 Members</th>
+                                <th>ON/OFF</th>
+                                <th>N money</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {groupInfo.membersInfo.map((member, idx) => (
+                                <tr>
+                                    <td>{member.compositeKey.phone}</td>
+                                    <td>{member.sendState}</td>
+                                    <td>{member.nmoney}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
+
                 
                 
             </div> 
