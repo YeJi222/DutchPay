@@ -43,8 +43,9 @@ public class GroupsInfoController {
         for(int i = 0 ; i < groupList.size() ; i++){
             int dutchMoney = Integer.parseInt(groupList.get(i).getDutchMoney());
             totalMoney += dutchMoney;
+
+            System.out.println("content-money : " + groupList.get(i).getPayContent() + " - " + groupList.get(i).getDutchMoney());
         }
-        System.out.println("totalMoney : " + totalMoney);
 
         // 멤버별 확인
         List<MembersEntity> memberList = membersService.getMembersList(groupId);

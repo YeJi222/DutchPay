@@ -12,6 +12,7 @@ function ConfirmRightContent(props){
             <div className='mainRightPart'>
                 <div className="receiveTitle">정산 현황 확인하기</div>
                 <div>
+                    
                     <table className='confirmTable'>
                         <thead>
                             <tr>
