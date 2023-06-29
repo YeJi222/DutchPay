@@ -24,7 +24,16 @@ function ConfirmRightContent(props){
                             {groupInfo.membersInfo.map((member, idx) => (
                                 <tr>
                                     <td>{member.compositeKey.phone}</td>
-                                    <td>{member.sendState}</td>
+                                    <td>
+                                        {
+                                            member.sendState === 'no' ? (
+                                                <img className='stateBtn' src='/images/redBtn.png'></img>
+                                            ) : (
+                                                <img className='stateBtn' src='/images/greenBtn.png'></img>
+                                            )
+                                        }
+                                        
+                                    </td>
                                     <td>{member.nmoney}</td>
                                 </tr>
                             ))}

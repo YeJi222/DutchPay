@@ -4,3 +4,17 @@
     padding: 10px;
     margin-top: 10px;
 }
+
+.confirmTable{
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    margin-top: 30px;
+}
+td{
+    padding: 10px 20px 10px 20px;
+}
+.stateBtn{
+    width: 40px;
+}
