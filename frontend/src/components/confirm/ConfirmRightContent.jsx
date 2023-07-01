@@ -6,6 +6,30 @@ import { useNavigate } from "react-router-dom";
 function ConfirmRightContent(props){    
     const navigate = useNavigate();
     const groupInfo = props.groupInfo;
+    const groupId = props.groupId;
+
+    const clickState = (color, phone) => {
+        // console.log('color', color);
+        // console.log('phone', phone);
+
+        const formData = new FormData();
+        formData.append('groupId', groupId);
+        formData.append('phone', phone);
+        formData.append('state', color);
+
+        axios({
+            method: "post",
+            url: 'http://localhost:8090/changeState',
+            data: formData
+        })
+        .then(function(response){
+            props.setStateFlag(!props.stateFlag);
+            console.log(response.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
 
     if(groupInfo != undefined){
         return(
@@ -48,9 +72,9 @@ function ConfirmRightContent(props){
                                     <td>
                                         {
                                             member.sendState === 'no' ? (
-                                                <img className='stateBtn' src='/images/redBtn.png'></img>
+                                                <img onClick={(color, phone) => clickState('redBtn', member.compositeKey.phone)} className='stateBtn' src='/images/redBtn.png'></img>
                                             ) : (
-                                                <img className='stateBtn' src='/images/greenBtn.png'></img>
+                                                <img onClick={(color, phone) => clickState('greenBtn', member.compositeKey.phone)} className='stateBtn' src='/images/greenBtn.png'></img>
                                             )
                                         }
                                         

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function ReceivePayBox(props){
     const navigate = useNavigate();
+    const [stateFlag, setStateFlag] = useState(false);
     
     // console.log(props.memberLen);
     const confirmBtnAction = (e) => {
@@ -13,7 +14,8 @@ function ReceivePayBox(props){
         navigate(path, {
             state: {
                 userInfo: props.userInfo,
-                groupId: groupId
+                groupId: groupId,
+                stateFlag: stateFlag
             }
         });
     }

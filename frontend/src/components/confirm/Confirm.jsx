@@ -9,6 +9,7 @@ import { useNavigate, useLocation  } from "react-router-dom";
 function Confirm(){
     const navigate = useNavigate();
     const location = useLocation();
+    const [stateFlag, setStateFlag] = useState(location.state.stateFlag);
 
     console.log("state: ", location.state);
 
@@ -65,7 +66,7 @@ function Confirm(){
                 console.log(error);
             })
         }
-    }, []);
+    }, [stateFlag]);
 
     const backAction = () => {
         navigate('/main', {state: userInfo})
@@ -104,6 +105,9 @@ function Confirm(){
                 <ConfirmRightContent
                     isToggled={isMainToggled}
                     groupInfo={groupInfo}
+                    groupId={groupId}
+                    stateFlag={stateFlag}
+                    setStateFlag={setStateFlag}
                 /> 
             </div>
         </div>

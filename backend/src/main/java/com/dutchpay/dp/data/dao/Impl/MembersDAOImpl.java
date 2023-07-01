@@ -35,4 +35,10 @@ public class MembersDAOImpl implements MembersDAO {
         int result = membersRepository.updateNmoney(groupId, phone, nMoney);
         return result;
     }
+
+    @Override
+    public int updateState(String groupId, String phone, String stateValue){
+        int result = membersRepository.updateState(groupId, phone, stateValue);
+        return result;
+    }
 }

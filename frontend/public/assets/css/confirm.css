@@ -20,4 +20,5 @@ td{
 }
 .stateBtn{
     width: 40px;
+    cursor: pointer;
 }

@@ -31,4 +31,9 @@ public class MembersServiceImpl implements MembersService {
     public int updateNmoney(String groupId, String phone, String nMoney){
         return membersHandler.updateNmoney(groupId, phone, nMoney);
     }
+
+    @Override
+    public int updateState(String groupId, String phone, String stateValue){
+        return membersHandler.updateState(groupId, phone, stateValue);
+    }
 }

@@ -15,4 +15,8 @@ public interface MembersRepository extends JpaRepository<MembersEntity, String> 
     @Modifying
     @Query(value = "UPDATE members SET n_money = :nMoney_value WHERE group_id = :groupId AND phone = :phone", nativeQuery = true)
     int updateNmoney(@Param("groupId")String groupId, @Param("phone")String phone, @Param("nMoney_value")String nMoney);
+
+    @Modifying
+    @Query(value = "UPDATE members SET send_state = :state_value WHERE group_id = :groupId AND phone = :phone", nativeQuery = true)
+    int updateState(@Param("groupId")String groupId, @Param("phone")String phone, @Param("state_value")String stateValue);
 }

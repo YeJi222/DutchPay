@@ -45,4 +45,9 @@ public class MembersHandlerImpl implements MembersHandler {
     public int updateNmoney(String groupId, String phone, String nMoney){
         return membersDAO.updateNmoney(groupId, phone, nMoney);
     }
+
+    @Override
+    public int updateState(String groupId, String phone, String stateValue){
+        return membersDAO.updateState(groupId, phone, stateValue);
+    }
 }

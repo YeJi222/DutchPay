@@ -10,4 +10,5 @@ public interface MembersHandler {
     List<MembersEntity> getMembersEntityList(String groupId);
     MembersDTO saveMembersEntity(String groupId, String phone, String nMoney, String sendState);
     int updateNmoney(String groupId, String phone, String nMoney);
+    int updateState(String groupId, String phone, String stateValue);
 }
