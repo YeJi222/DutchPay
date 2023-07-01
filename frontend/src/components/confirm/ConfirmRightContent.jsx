@@ -12,18 +12,38 @@ function ConfirmRightContent(props){
             <div className='mainRightPart'>
                 <div className="receiveTitle">정산 현황 확인하기</div>
                 <div>
-                    
+                <table className='contentsTable'>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Contents</th>
+                                <th>Money</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {groupInfo.contentList.map((content, idx) => (
+                                <tr>
+                                    <td>{idx+1}</td>
+                                    <td>{content.content}</td>
+                                    <td>{content.dutchMoney}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
                     <table className='confirmTable'>
                         <thead>
                             <tr>
+                                <th>No.</th>
                                 <th>정산 Members</th>
-                                <th>ON/OFF</th>
+                                <th>State</th>
                                 <th>N money</th>
                             </tr>
                         </thead>
                         <tbody>
                             {groupInfo.membersInfo.map((member, idx) => (
                                 <tr>
+                                    <td>{idx+1}</td>
                                     <td>{member.compositeKey.phone}</td>
                                     <td>
                                         {

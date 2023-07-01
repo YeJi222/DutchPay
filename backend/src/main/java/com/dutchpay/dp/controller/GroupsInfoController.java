@@ -5,8 +5,6 @@ import com.dutchpay.dp.data.entity.GroupsEntity;
 import com.dutchpay.dp.data.entity.MembersEntity;
 import com.dutchpay.dp.data.service.GroupsService;
 import com.dutchpay.dp.data.service.MembersService;
-import com.dutchpay.dp.data.service.UserService;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,12 +38,18 @@ public class GroupsInfoController {
         // dutch money(toatl money 계산)
         List<GroupsEntity> groupList =  groupsService.getContentsList(groupId);
         int totalMoney = 0;
+
+        List<HashMap<String, Object>> contentList = new ArrayList<>();
         for(int i = 0 ; i < groupList.size() ; i++){
             int dutchMoney = Integer.parseInt(groupList.get(i).getDutchMoney());
             totalMoney += dutchMoney;
 
-            System.out.println("content-money : " + groupList.get(i).getPayContent() + " - " + groupList.get(i).getDutchMoney());
+            HashMap<String, Object> contentMap = new HashMap<>();
+            contentMap.put("content", groupList.get(i).getPayContent());
+            contentMap.put("dutchMoney", groupList.get(i).getDutchMoney());
+            contentList.add(contentMap);
         }
+        System.out.println("content-money : " + contentList);
 
         // 멤버별 확인
         List<MembersEntity> memberList = membersService.getMembersList(groupId);
@@ -61,6 +65,7 @@ public class GroupsInfoController {
         map.put("timestamp", timestamp);
         map.put("totalMoney", totalMoney);
         map.put("membersInfo", membersInfo);
+        map.put("contentList", contentList);
 
         // System.out.println("group Info : " + map);
 
