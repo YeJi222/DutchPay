@@ -12,6 +12,8 @@ function ConfirmLeftContent(props){
 
     const groupInfo = props.groupInfo;
 
+    console.log("groupInfo: ", groupInfo);
+
     useEffect(() => {
         if(sessionData === null){
             let timerInterval;
@@ -54,6 +56,8 @@ function ConfirmLeftContent(props){
         }
     }, []);
 
+    var yesCount = 0;
+    var noCount = 0;
     if(groupInfo != undefined){
         return(
             <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
@@ -66,8 +70,19 @@ function ConfirmLeftContent(props){
                     Account : {groupInfo.userAccount}<br></br>
                 </div>
                 <div className='mainLeftBottomText'>
-                    정산 미완료: {props.onLen}명<br></br>
-                    정산 완료 : {props.offLen}명<br></br>
+                    <div>
+                        {groupInfo.membersInfo.map((members, idx) => {
+                            if (members.sendState === 'yes') {
+                                yesCount += 1;
+                            } else {
+                                noCount += 1;
+                            }
+                        })}
+                    </div>
+                    
+
+                    정산 미완료: {noCount}명<br></br>
+                    정산 완료 : {yesCount}명<br></br>
                     <br></br>
                     총 받을 금액 : {groupInfo.totalMoney}원<br></br>
                     받은 금액 : {props.sumMoney}원<br></br>

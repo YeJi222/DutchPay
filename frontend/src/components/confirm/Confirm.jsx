@@ -11,7 +11,7 @@ function Confirm(){
     const location = useLocation();
     const [stateFlag, setStateFlag] = useState(location.state.stateFlag);
 
-    console.log("state: ", location.state);
+    // console.log("state: ", location.state);
 
     const [isMainToggled, setIsMainToggled] = useState("receive");
     const [userInfo, setUserInfo] = useState(location.state);
