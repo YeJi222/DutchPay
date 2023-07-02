@@ -57,6 +57,7 @@ function ConfirmLeftContent(props){
     }, []);
 
     var yesCount = 0;
+    var yesMoney = 0;
     var noCount = 0;
     if(groupInfo != undefined){
         return(
@@ -74,6 +75,7 @@ function ConfirmLeftContent(props){
                         {groupInfo.membersInfo.map((members, idx) => {
                             if (members.sendState === 'yes') {
                                 yesCount += 1;
+                                yesMoney += Number(members.nmoney);
                             } else {
                                 noCount += 1;
                             }
@@ -85,8 +87,8 @@ function ConfirmLeftContent(props){
                     정산 완료 : {yesCount}명<br></br>
                     <br></br>
                     총 받을 금액 : {groupInfo.totalMoney}원<br></br>
-                    받은 금액 : {props.sumMoney}원<br></br>
-                    남은 금액 : {props.sumMoney}원<br></br>
+                    받은 금액 : {yesMoney}원<br></br>
+                    남은 금액 : {groupInfo.totalMoney - yesMoney}원<br></br>
                 </div>
             </div>    
         );
