@@ -88,4 +88,20 @@ public class GroupsInfoController {
 
         return "success to update state";
     }
+
+    @PostMapping(value = "/changeGroupState")
+    public String changeState(@RequestParam("groupId") String groupId) {
+        HashMap<String, Object> map = new HashMap<>();
+//        String changeState = "";
+//        if(state.equals("redBtn")){
+//            changeState = "yes";
+//        } else{
+//            changeState = "no";
+//        }
+//        int result = membersService.updateState(groupId, phone, changeState);
+//
+//        System.out.println("state : " + state);
+
+        return "success to update state";
+    }
 }

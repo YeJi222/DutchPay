@@ -42,6 +42,7 @@ function ConfirmRightContent(props){
                                 <th>No.</th>
                                 <th>Contents</th>
                                 <th>Money</th>
+                                <th>State</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,7 @@ function ConfirmRightContent(props){
                                     <td>{idx+1}</td>
                                     <td>{content.content}</td>
                                     <td>{content.dutchMoney}</td>
+                                    <td></td>
                                 </tr>
                             ))}
                         </tbody>

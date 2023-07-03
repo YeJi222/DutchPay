@@ -99,6 +99,7 @@ function Confirm(){
                 <ConfirmLeftContent
                     isToggled={isMainToggled}   
                     groupInfo={groupInfo}
+                    groupId={groupId}
                 />
 
                 {/* right content */}

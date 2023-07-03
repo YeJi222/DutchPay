@@ -11,6 +11,7 @@ function ConfirmLeftContent(props){
     const sessionData = JSON.parse(storedData);
 
     const groupInfo = props.groupInfo;
+    const groupId = props.groupId;
 
     console.log("groupInfo: ", groupInfo);
 
@@ -82,13 +83,38 @@ function ConfirmLeftContent(props){
                         })}
                     </div>
                     
-
                     정산 미완료: {noCount}명<br></br>
                     정산 완료 : {yesCount}명<br></br>
                     <br></br>
                     총 받을 금액 : {groupInfo.totalMoney}원<br></br>
                     받은 금액 : {yesMoney}원<br></br>
                     남은 금액 : {groupInfo.totalMoney - yesMoney}원<br></br>
+                    {
+                        (groupInfo.totalMoney - yesMoney) === 0 ? (
+                            // console.log('정산 완료')
+                            // group state 바꾸기
+                            () => {
+                                console.log(groupId);
+                                const formData = new FormData();
+                                formData.append('groupId', groupId);
+            
+                                axios({
+                                    method: "post",
+                                    url: 'http://localhost:8090/changeGroupState',
+                                    data: formData
+                                })
+                                .then(function(response){
+                                    console.log(response.data);
+                                    
+                                })
+                                .catch(function(error){
+                                    console.log(error);
+                                });
+                            }
+                        ) : (
+                            console.log('정산 미완료')
+                        )
+                    }
                 </div>
             </div>    
         );
