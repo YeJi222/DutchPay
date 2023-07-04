@@ -61,6 +61,7 @@ function ConfirmLeftContent(props){
     var yesMoney = 0;
     var noCount = 0;
     if(groupInfo != undefined){
+        let formData = new FormData();
         return(
             <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
                 <div className='confirmLeftTopText'>
@@ -90,27 +91,45 @@ function ConfirmLeftContent(props){
                     받은 금액 : {yesMoney}원<br></br>
                     남은 금액 : {groupInfo.totalMoney - yesMoney}원<br></br>
                     {
+                        
                         (groupInfo.totalMoney - yesMoney) === 0 ? (
-                            // console.log('정산 완료')
+                            console.log(groupId),
+                            console.log('정산 완료'),
+                            
+                            formData.append('groupId', groupId),
+        
+                            axios({
+                                method: "post",
+                                url: 'http://localhost:8090/changeGroupState',
+                                data: formData
+                            })
+                            .then(function(response){
+                                console.log(response.data);
+                                
+                            })
+                            .catch(function(error){
+                                console.log(error);
+                            })
+                            
                             // group state 바꾸기
-                            () => {
-                                console.log(groupId);
-                                const formData = new FormData();
-                                formData.append('groupId', groupId);
+                            // () => {
+                            //     console.log(groupId);
+                            //     const formData = new FormData();
+                            //     formData.append('groupId', groupId);
             
-                                axios({
-                                    method: "post",
-                                    url: 'http://localhost:8090/changeGroupState',
-                                    data: formData
-                                })
-                                .then(function(response){
-                                    console.log(response.data);
+                            //     axios({
+                            //         method: "post",
+                            //         url: 'http://localhost:8090/changeGroupState',
+                            //         data: formData
+                            //     })
+                            //     .then(function(response){
+                            //         console.log(response.data);
                                     
-                                })
-                                .catch(function(error){
-                                    console.log(error);
-                                });
-                            }
+                            //     })
+                            //     .catch(function(error){
+                            //         console.log(error);
+                            //     });
+                            // }
                         ) : (
                             console.log('정산 미완료')
                         )

@@ -49,7 +49,7 @@ public class GroupsInfoController {
             contentMap.put("dutchMoney", groupList.get(i).getDutchMoney());
             contentList.add(contentMap);
         }
-        System.out.println("content-money : " + contentList);
+        // System.out.println("content-money : " + contentList);
 
         // 멤버별 확인
         List<MembersEntity> memberList = membersService.getMembersList(groupId);
@@ -57,7 +57,7 @@ public class GroupsInfoController {
         for(int i = 0 ; i < memberList.size() ; i++){
             membersInfo.add(memberList.get(i));
         }
-        System.out.println("member : " + membersInfo);
+        // System.out.println("member : " + membersInfo);
 
         map.put("userId", groupInfo.getUserId());
         map.put("userBank", groupInfo.getUserBank());
@@ -84,14 +84,16 @@ public class GroupsInfoController {
         }
         int result = membersService.updateState(groupId, phone, changeState);
 
-        System.out.println("state : " + state);
+        // System.out.println("state : " + state);
 
         return "success to update state";
     }
 
     @PostMapping(value = "/changeGroupState")
-    public String changeState(@RequestParam("groupId") String groupId) {
+    public String changeGroupState(@RequestParam("groupId") String groupId) {
         HashMap<String, Object> map = new HashMap<>();
+        System.out.println("groupId : " + groupId);
+
 //        String changeState = "";
 //        if(state.equals("redBtn")){
 //            changeState = "yes";
