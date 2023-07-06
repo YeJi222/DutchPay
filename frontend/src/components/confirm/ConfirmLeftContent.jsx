@@ -60,8 +60,32 @@ function ConfirmLeftContent(props){
     var yesCount = 0;
     var yesMoney = 0;
     var noCount = 0;
+    var remainMoney = 0;
     if(groupInfo != undefined){
-        let formData = new FormData();
+        console.log("남은 금액", groupInfo.totalMoney - yesMoney);
+        if(remainMoney === 0){
+            const formData = new FormData();
+            console.log(groupId);
+            console.log('정산 완료');
+            
+            formData.append('groupId', groupId);
+
+            axios({
+                method: "post",
+                url: 'http://localhost:8090/changeGroupState',
+                data: formData
+            })
+            .then(function(response){
+                console.log(response.data);
+                
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+        } else{
+            console.log('정산 미완료');
+        }
+
         return(
             <div className='mainLeftPart' style={{ backgroundColor: props.isToggled === "receive" ? "#FFF6F6" : "#E3EAFF" }}>
                 <div className='confirmLeftTopText'>
@@ -74,14 +98,19 @@ function ConfirmLeftContent(props){
                 </div>
                 <div className='mainLeftBottomText'>
                     <div>
-                        {groupInfo.membersInfo.map((members, idx) => {
-                            if (members.sendState === 'yes') {
-                                yesCount += 1;
-                                yesMoney += Number(members.nmoney);
-                            } else {
-                                noCount += 1;
-                            }
-                        })}
+                        {
+                            groupInfo.membersInfo.map((members, idx) => {
+                                if (members.sendState === 'yes') {
+                                    yesCount += 1;
+                                    yesMoney += Number(members.nmoney);
+                                } else {
+                                    noCount += 1;
+                                }
+                            })
+                        }
+                        {
+                            remainMoney = Number(groupInfo.totalMoney) - Number(yesMoney)
+                        }
                     </div>
                     
                     정산 미완료: {noCount}명<br></br>
@@ -89,51 +118,8 @@ function ConfirmLeftContent(props){
                     <br></br>
                     총 받을 금액 : {groupInfo.totalMoney}원<br></br>
                     받은 금액 : {yesMoney}원<br></br>
-                    남은 금액 : {groupInfo.totalMoney - yesMoney}원<br></br>
-                    {
-                        
-                        (groupInfo.totalMoney - yesMoney) === 0 ? (
-                            console.log(groupId),
-                            console.log('정산 완료'),
-                            
-                            formData.append('groupId', groupId),
-        
-                            axios({
-                                method: "post",
-                                url: 'http://localhost:8090/changeGroupState',
-                                data: formData
-                            })
-                            .then(function(response){
-                                console.log(response.data);
-                                
-                            })
-                            .catch(function(error){
-                                console.log(error);
-                            })
-                            
-                            // group state 바꾸기
-                            // () => {
-                            //     console.log(groupId);
-                            //     const formData = new FormData();
-                            //     formData.append('groupId', groupId);
-            
-                            //     axios({
-                            //         method: "post",
-                            //         url: 'http://localhost:8090/changeGroupState',
-                            //         data: formData
-                            //     })
-                            //     .then(function(response){
-                            //         console.log(response.data);
-                                    
-                            //     })
-                            //     .catch(function(error){
-                            //         console.log(error);
-                            //     });
-                            // }
-                        ) : (
-                            console.log('정산 미완료')
-                        )
-                    }
+                    남은 금액 : {remainMoney}원<br></br>
+                    
                 </div>
             </div>    
         );
