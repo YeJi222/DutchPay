@@ -2,14 +2,14 @@
 ![ManualPage](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=Manual&fontSize=90)
 
 ## 🎈 First Page (Login Page)
-<img width="764" alt="image" src="https://user-images.githubusercontent.com/70511859/224049213-bbfc5e65-13dd-4267-9833-9af7bb14d001.png">
+<img width="1083" alt="image" src="https://github.com/YeJi222/DutchPay/assets/70511859/0413f628-a98a-4123-a15c-cd3555e828d9">
 <ul>
-  <li> Login 버튼 -> Login을 한 후, Dutch Pay System을 사용할 수 있습니다. </li>
-  <li> Register 버튼 -> 회원가입을 할 수 있는 페이지로 이동합니다. </li>
+  <li> Login 토글 버튼 -> Login을 한 후, Dutch Pay System을 사용할 수 있습니다. </li>
+  <li> Sign Up 토글 버튼 -> 회원가입을 할 수 있는 페이지로 이동합니다. </li>
 </ul>
 
 ## 🎈 Register Page
-<img width="767" alt="image" src="https://user-images.githubusercontent.com/70511859/224051166-30e0a481-7858-458d-a740-c57735671cd3.png">
+<img width="1087" alt="image" src="https://github.com/YeJi222/DutchPay/assets/70511859/d2bbe31d-e1c8-4aa0-b8fc-16002cbb5712">
 <ul>
   <li> 새로 가입할 아이디와 비밀번호, 계좌번호, 전화번호를 입력받게 하고 Register 버튼을 누르면 회원가입을 할 수 있습니다. </li>
   <li> 빈칸이 있으면 회원가입 처리를 하지 않고, 사용자가 다시 한 번 확인할 수 있도록 안내합니다.</li>
