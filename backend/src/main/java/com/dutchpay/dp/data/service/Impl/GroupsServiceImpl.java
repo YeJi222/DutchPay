@@ -71,4 +71,9 @@ public class GroupsServiceImpl implements GroupsService {
 
         return Integer.toString(groupsEntityList.size());
     }
+
+    @Override
+    public int updateGroupState(String groupId, String stateValue){
+        return groupsHandler.updateGroupState(groupId, stateValue);
+    }
 }

@@ -13,6 +13,6 @@ public interface GroupsService {
     GroupsDTO saveGroup(String groupId, String contentId, String userId, String userBank, String userAccount,
         String dutchMoney, String payContent, String state, Timestamp timestamp);
     GroupsDTO getGroup(String groupId);
-
     String createGroupId();
+    int updateGroupState(String groupId, String stateValue);
 }

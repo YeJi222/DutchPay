@@ -94,6 +94,9 @@ public class GroupsInfoController {
         HashMap<String, Object> map = new HashMap<>();
         System.out.println("groupId : " + groupId);
 
+        int result = groupsService.updateGroupState(groupId, "on");
+
+
 //        String changeState = "";
 //        if(state.equals("redBtn")){
 //            changeState = "yes";

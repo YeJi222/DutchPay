@@ -11,4 +11,5 @@ public interface GroupsDAO {
     GroupsEntity saveGroup(GroupsEntity groupEntity);
     GroupsEntity getGroups(String groupId);
     List<String> getGroupIdAll();
+    int updateGroupState(String groupId, String stateValue);
 }

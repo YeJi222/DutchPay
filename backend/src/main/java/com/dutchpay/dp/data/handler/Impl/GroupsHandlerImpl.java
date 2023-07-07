@@ -68,4 +68,9 @@ public class GroupsHandlerImpl implements GroupsHandler {
     public List<String> getGroupIdAll(){
         return groupsDAO.getGroupIdAll();
     }
+
+    @Override
+    public int updateGroupState(String groupId, String stateValue){
+        return groupsDAO.updateGroupState(groupId, stateValue);
+    }
 }

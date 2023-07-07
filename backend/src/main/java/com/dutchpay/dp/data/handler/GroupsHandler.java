@@ -12,6 +12,7 @@ public interface GroupsHandler {
     List<GroupsEntity> getSameGroupIdList(String groupId);
     GroupsDTO saveGroupEntity(String groupId, String contentId, String userId, String userBank,
         String userAccount, String dutchMoney, String payContent, String state, Timestamp timestamp);
-     GroupsDTO getGroupEntity(String groupId);
+    GroupsDTO getGroupEntity(String groupId);
     List<String> getGroupIdAll();
+    int updateGroupState(String groupId, String stateValue);
 }

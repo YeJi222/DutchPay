@@ -57,4 +57,10 @@ public class GroupsDAOImpl implements GroupsDAO {
 
         return distinctGroupIdList;
     }
+
+    @Override
+    public int updateGroupState(String groupId, String stateValue){
+        int result = groupsRepository.updateGroupState(groupId, stateValue);
+        return result;
+    }
 }
