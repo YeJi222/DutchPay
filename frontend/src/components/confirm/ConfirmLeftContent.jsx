@@ -97,7 +97,7 @@ function ConfirmLeftContent(props){
                     Account : {groupInfo.userAccount}<br></br>
                 </div>
                 <div className='mainLeftBottomText'>
-                    <div>
+                    <div style={{display:"none"}}>
                         {
                             groupInfo.membersInfo.map((members, idx) => {
                                 if (members.sendState === 'yes') {
