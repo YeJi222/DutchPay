@@ -66,4 +66,6 @@
 
 ## Contributor<br><a href="https://github.com/YeJi222/DutchPay/graphs/contributors" target="_blank"> <img src="https://contrib.rocks/image?repo=YeJi222/DutchPay" /> </a>
 
+### 추가기능 아이디어
+- 영수증 or 이체내역 인식 및 자동 데이터 추출    
 
